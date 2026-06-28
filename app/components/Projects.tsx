@@ -16,6 +16,7 @@ const projects = [
       "Built to WCAG 2.2 AA accessibility standards with mobile-first responsive design",
       "Wrote a Playwright browser test suite with axe accessibility checks for automated quality assurance",
       "Architected with clean separation of concerns: Pages, Services, ViewModels, and Data layers",
+      "Leveraged Claude Code (agentic AI) throughout the build to accelerate iteration and maintain architectural consistency across the full stack",
     ],
   },
   {
@@ -47,6 +48,21 @@ const projects = [
     ],
   },
   {
+    title: "jeremymcain.com — Personal Portfolio",
+    category: "AI-Assisted Web Development",
+    tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Vercel", "Claude Code"],
+    color: "amber",
+    icon: "⚡",
+    github: "https://github.com/jcain5/portfolio-site",
+    bullets: [
+      "Designed and built this portfolio site from scratch using Next.js 16 and React 19 with TypeScript",
+      "Developed with Claude Code (agentic AI) as the primary development tool across the full build cycle",
+      "Deployed to Vercel with a custom domain and continuous deployment on every push to main",
+      "Implemented scroll-triggered section animations, a typing role animation, and a responsive mobile-first layout",
+      "Integrated Vercel Analytics for post-launch traffic monitoring",
+    ],
+  },
+  {
     title: "Virtualization & Enterprise Lab",
     category: "Infrastructure",
     tags: ["Proxmox", "VMware", "VirtualBox", "Linux", "Windows"],
@@ -66,6 +82,7 @@ const colorMap: Record<string, { border: string; tag: string; tagBg: string; ico
   cyan:    { border: "border-cyan-500/30 hover:border-cyan-500/60",    tag: "text-cyan-400",    tagBg: "bg-cyan-500/10 border-cyan-500/20",    icon: "bg-cyan-500/10",    dot: "bg-cyan-400",    glow: "from-cyan-500/5" },
   purple:  { border: "border-purple-500/30 hover:border-purple-500/60", tag: "text-purple-400",  tagBg: "bg-purple-500/10 border-purple-500/20", icon: "bg-purple-500/10",  dot: "bg-purple-400",  glow: "from-purple-500/5" },
   emerald: { border: "border-emerald-500/30 hover:border-emerald-500/60",tag: "text-emerald-400", tagBg: "bg-emerald-500/10 border-emerald-500/20",icon: "bg-emerald-500/10", dot: "bg-emerald-400", glow: "from-emerald-500/5" },
+  amber:   { border: "border-amber-500/30 hover:border-amber-500/60",   tag: "text-amber-400",   tagBg: "bg-amber-500/10 border-amber-500/20",   icon: "bg-amber-500/10",   dot: "bg-amber-400",   glow: "from-amber-500/5" },
 };
 
 export default function Projects() {
