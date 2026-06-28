@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 
 const roles = [
-  "Cloud Infrastructure Engineer",
-  "Security Operations Specialist",
   "IT Systems Professional",
-  "Network & Security Engineer",
+  "Aspiring Cloud Infrastructure Engineer",
+  "Aspiring Security Operations Specialist",
+  "Aspiring Network & Security Engineer",
 ];
 
 export default function Hero() {
