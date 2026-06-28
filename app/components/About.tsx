@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -21,6 +22,17 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div>
+            <div className="mb-8 flex justify-start">
+              <div className="relative w-32 h-32 rounded-full ring-2 ring-cyan-500/40 ring-offset-4 ring-offset-[#0a0f1e] overflow-hidden">
+                <Image
+                  src="/profile.jpg"
+                  alt="Jeremy Cain"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
             <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">01. ABOUT</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
               Building the future of{" "}
