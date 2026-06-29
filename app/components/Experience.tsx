@@ -124,7 +124,7 @@ export default function Experience() {
                         <span className={`text-xs px-2.5 py-1 rounded-full border font-mono ${a.badgeBg} ${a.badge}`}>
                           {job.type}
                         </span>
-                        <span className="text-xs text-slate-500 font-mono whitespace-nowrap">{job.period}</span>
+                        <span className="text-xs text-slate-400 font-mono whitespace-nowrap">{job.period}</span>
                       </div>
                     </div>
 

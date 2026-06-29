@@ -99,7 +99,7 @@ export default function About() {
               >
                 <div className="text-2xl mb-3">{card.icon}</div>
                 <div className="text-sm font-semibold text-white mb-1">{card.title}</div>
-                <div className="text-xs text-slate-500 leading-relaxed">{card.desc}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{card.desc}</div>
               </div>
             ))}
           </div>

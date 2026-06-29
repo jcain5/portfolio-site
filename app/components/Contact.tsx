@@ -41,7 +41,7 @@ export default function Contact() {
             <span className="text-2xl">✉️</span>
             <div>
               <div className="text-sm font-medium text-white">Email</div>
-              <div className="text-xs text-slate-500 mt-0.5 font-mono">
+              <div className="text-xs text-slate-400 mt-0.5 font-mono">
                 {copied ? (
                   <span className="text-cyan-400">Copied!</span>
                 ) : (
@@ -60,7 +60,7 @@ export default function Contact() {
             <span className="text-2xl">💼</span>
             <div>
               <div className="text-sm font-medium text-white">LinkedIn</div>
-              <div className="text-xs text-slate-500 mt-0.5 font-mono">Jeremy Cain</div>
+              <div className="text-xs text-slate-400 mt-0.5 font-mono">Jeremy Cain</div>
             </div>
           </a>
 
@@ -75,7 +75,7 @@ export default function Contact() {
             </svg>
             <div>
               <div className="text-sm font-medium text-white">GitHub</div>
-              <div className="text-xs text-slate-500 mt-0.5 font-mono">jcain5</div>
+              <div className="text-xs text-slate-400 mt-0.5 font-mono">jcain5</div>
             </div>
           </a>
 
@@ -86,7 +86,7 @@ export default function Contact() {
             <span className="text-2xl">📞</span>
             <div>
               <div className="text-sm font-medium text-white">Phone</div>
-              <div className="text-xs text-slate-500 mt-0.5 font-mono">(817) 716-3808</div>
+              <div className="text-xs text-slate-400 mt-0.5 font-mono">(817) 716-3808</div>
             </div>
           </a>
         </div>
@@ -103,7 +103,7 @@ export default function Contact() {
 
       {/* Footer */}
       <div className="mt-20 pt-8 border-t border-slate-800 text-center">
-        <p className="text-slate-600 text-xs font-mono">
+        <p className="text-slate-400 text-xs font-mono">
           © 2026 Jeremy Cain · Fort Worth, TX
         </p>
       </div>

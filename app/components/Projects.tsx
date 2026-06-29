@@ -183,7 +183,7 @@ export default function Projects() {
         </div>
         <div className="mt-8 p-5 rounded-xl border border-dashed border-slate-700 text-center">
           <p className="text-slate-500 text-sm">
-            More projects in progress — PowerShell automation scripts, Azure sandbox labs, and LetsDefend SOC Analyst path.
+            <span className="text-slate-400">More projects in progress — PowerShell automation scripts, Azure sandbox labs, and LetsDefend SOC Analyst path.</span>
           </p>
         </div>
       </div>

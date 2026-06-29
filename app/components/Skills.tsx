@@ -82,7 +82,7 @@ export default function Skills() {
 
         {/* Tools strip */}
         <div className="mt-12 pt-8 border-t border-slate-800">
-          <p className="text-xs font-mono text-slate-600 tracking-widest mb-4">TOOLS & PLATFORMS</p>
+          <p className="text-xs font-mono text-slate-400 tracking-widest mb-4">TOOLS & PLATFORMS</p>
           <div className="flex flex-wrap gap-2">
             {[
               "ServiceNow", "BMC Remedy", "SCCM", "Microsoft Intune", "BlackBerry UEM",

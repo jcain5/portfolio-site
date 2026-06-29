@@ -84,7 +84,7 @@ export default function Education() {
                         <h3 className="text-white font-semibold text-lg leading-tight">{d.degree}</h3>
                         <div className="text-slate-400 text-sm mt-0.5">
                           {d.school}
-                          {d.track && <> <span className="text-slate-600">·</span> {d.track}</>}
+                          {d.track && <> <span className="text-slate-500">·</span> {d.track}</>}
                         </div>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
@@ -98,7 +98,7 @@ export default function Education() {
                     </div>
 
                     <div className="mt-3">
-                      <div className="text-xs text-slate-500 font-mono mb-2">Coursework</div>
+                      <div className="text-xs text-slate-400 font-mono mb-2">Coursework</div>
                       <div className="flex flex-wrap gap-1.5">
                         {d.coursework.map((c) => (
                           <span key={c} className="text-xs px-2 py-0.5 rounded-md border border-slate-700 text-slate-400 font-mono">
