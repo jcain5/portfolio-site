@@ -77,6 +77,7 @@ const projects = [
       "Deployed to Vercel with a custom domain and continuous deployment on every push to main",
       "Implemented scroll-triggered section animations, a typing role animation, and a responsive mobile-first layout",
       "Integrated Vercel Analytics for post-launch traffic monitoring",
+      "Meets WCAG 2.2 AA accessibility standards — verified with axe-core (0 violations)",
     ],
   },
   {

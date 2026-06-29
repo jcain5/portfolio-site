@@ -54,8 +54,8 @@ export default function Hero() {
         </div>
 
         <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          4+ years engineering enterprise IT operations at scale — focused on cloud infrastructure,
-          network security, and automation.
+          4+ years of enterprise IT support experience at scale — building toward cloud infrastructure,
+          network security, and automation engineering.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
