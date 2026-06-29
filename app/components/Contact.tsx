@@ -104,7 +104,7 @@ export default function Contact() {
       {/* Footer */}
       <div className="mt-20 pt-8 border-t border-slate-800 text-center">
         <p className="text-slate-600 text-xs font-mono">
-          © 2026 Jeremy Cain · Fort Worth, TX · Built with Next.js & Tailwind CSS
+          © 2026 Jeremy Cain · Fort Worth, TX
         </p>
       </div>
     </section>

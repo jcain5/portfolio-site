@@ -60,6 +60,7 @@ export default function Certifications() {
     <section id="certifications" ref={ref} className="section-fade py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">03. CERTIFICATIONS</p>
+
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
           Verified <span className="text-cyan-400">Credentials</span>
         </h2>
@@ -90,17 +91,6 @@ export default function Certifications() {
           ))}
         </div>
 
-        {/* Education callout */}
-        <div className="mt-10 p-6 rounded-xl bg-[#0f172a] border border-slate-800 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
-          <div>
-            <div className="text-white font-semibold">B.S. Information Technology</div>
-            <div className="text-slate-400 text-sm mt-0.5">Western Governors University — Network &amp; Security Operations Track</div>
-            <div className="text-slate-500 text-xs mt-1 font-mono">Coursework: Networking · Python · Cloud Security · Linux</div>
-          </div>
-          <div className="shrink-0 text-xs font-mono px-4 py-2 rounded-full border border-cyan-500/30 text-cyan-400">
-            WGU
-          </div>
-        </div>
       </div>
     </section>
   );

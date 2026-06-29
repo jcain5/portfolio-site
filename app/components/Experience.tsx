@@ -95,7 +95,7 @@ export default function Experience() {
   return (
     <section id="experience" ref={ref} className="section-fade py-24 px-6 bg-[#0f172a]">
       <div className="max-w-4xl mx-auto">
-        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">04. EXPERIENCE</p>
+        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">05. EXPERIENCE</p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12">
           Career <span className="text-cyan-400">Timeline</span>
         </h2>
