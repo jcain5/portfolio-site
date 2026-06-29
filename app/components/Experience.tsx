@@ -26,7 +26,7 @@ const jobs = [
     type: "Full-time",
     highlights: [
       "Supported 1,000+ global employees across Windows workstations, Microsoft 365, and Azure Active Directory",
-      "Provisioned Active Directory and Microsoft 365 accounts using PowerShell automation",
+      "Provisioned Active Directory and Microsoft 365 accounts by executing pre-configured PowerShell scripts",
       "Managed mobile devices using VMware AirWatch and configured Cisco IP phones",
       "Installed software, resolved hardware failures, and supported multi-factor authentication",
     ],

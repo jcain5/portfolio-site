@@ -85,7 +85,7 @@ export default function Certifications() {
                 </span>
               </div>
               <div className="text-sm font-semibold text-white leading-snug mb-1">{cert.name}</div>
-              <div className="text-xs text-slate-500">{cert.issuer}</div>
+              <div className="text-xs text-slate-400">{cert.issuer}</div>
               <div className={`absolute bottom-3 right-3 w-2 h-2 rounded-full ${cert.dot} opacity-60 group-hover:opacity-100 transition-opacity`} />
             </div>
           ))}

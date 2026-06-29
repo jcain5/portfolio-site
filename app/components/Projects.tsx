@@ -28,7 +28,7 @@ const projects = [
     github: undefined,
     bullets: [
       "Designed and authored a full enterprise cloud migration proposal in response to a simulated server breach on a Windows Server 2008R2 host",
-      "Architected a hybrid cloud environment on AWS using VPC, EC2, and CloudEndure for disaster recovery and business continuity",
+      "Designed and proposed a hybrid cloud environment on AWS using VPC, EC2, and CloudEndure for disaster recovery and business continuity",
       "Proposed decommissioning the compromised on-premises server and migrating to a hardened Windows Server 2019 EC2 instance with current cloud security standards applied",
       "Scoped a 5-phase project plan with 1 goal, 5 objectives, and 34 deliverables across a 6-month implementation timeline",
       "Projected 30% infrastructure cost savings over on-premises hardware replacement",

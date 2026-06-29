@@ -54,7 +54,7 @@ export default function Hero() {
         </div>
 
         <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          4+ years of enterprise IT support experience at scale — building toward cloud infrastructure,
+          7+ years of enterprise IT support experience at scale — building toward cloud infrastructure,
           network security, and automation engineering.
         </p>
 
@@ -76,7 +76,7 @@ export default function Hero() {
         {/* Stats */}
         <div className="mt-16 grid grid-cols-3 gap-8 border-t border-slate-800 pt-10">
           {[
-            { value: "5+", label: "Years Experience" },
+            { value: "7+", label: "Years Experience" },
             { value: "1,000+", label: "Users Supported" },
             { value: "4", label: "Certifications" },
           ].map((stat) => (
