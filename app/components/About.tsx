@@ -45,15 +45,17 @@ export default function About() {
                 Horizon, Citrix, and mobile device management for organizations with thousands of users.
               </p>
               <p>
-                My background is in enterprise technical support, but my focus has always been on
-                the infrastructure underneath: the domain controllers, the firewall rules, the
-                PowerShell automation that eliminates repetitive work, and the security policies
-                that keep systems hardened.
+                Working alongside enterprise infrastructure has driven a deep curiosity for what runs
+                underneath — the domain controllers, the firewall rules, the PowerShell automation
+                that eliminates repetitive work, and the security policies that keep systems hardened.
+                I&apos;ve been building and studying that layer on my own through home lab projects and
+                formal education.
               </p>
               <p>
                 I&apos;m actively building toward cloud infrastructure and security engineering
                 roles — backed by a BS in Network Operations &amp; Security (WGU), a CCNA, CompTIA
-                Security+, AZ-900, and hands-on home lab work with AD DS, pfSense, Proxmox, and Linux.
+                Security+, AZ-900, hands-on home lab work with AD DS, pfSense, Proxmox, and Linux,
+                and an in-progress M.S. in Cybersecurity &amp; Information Assurance at WGU.
               </p>
             </div>
 
