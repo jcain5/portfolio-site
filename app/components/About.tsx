@@ -40,7 +40,7 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-slate-400 leading-relaxed">
               <p>
-                I&apos;m an IT Systems professional with 5+ years of hands-on experience operating
+                I&apos;m an IT Systems professional with 7+ years of hands-on experience operating
                 at enterprise scale — supporting Microsoft 365, Azure AD, Active Directory, VMware
                 Horizon, Citrix, and mobile device management for organizations with thousands of users.
               </p>
