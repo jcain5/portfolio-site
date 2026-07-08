@@ -1,36 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
-
-const roles = [
-  "IT Systems Professional",
-  "Aspiring Cloud Infrastructure Engineer",
-  "Aspiring Security Operations Specialist",
-  "Aspiring Network & Security Engineer",
-];
+import Link from "next/link";
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  useEffect(() => {
-    const current = roles[roleIndex];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!deleting && displayed.length < current.length) {
-      timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 65);
-    } else if (!deleting && displayed.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2200);
-    } else if (deleting && displayed.length > 0) {
-      timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
-    } else {
-      setDeleting(false);
-      setRoleIndex((i) => (i + 1) % roles.length);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayed, deleting, roleIndex]);
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
@@ -46,37 +17,43 @@ export default function Hero() {
           Jeremy Cain
         </h1>
 
-        <div className="h-10 flex items-center justify-center mb-6">
-          <span className="text-xl sm:text-2xl text-slate-300 font-light">
-            {displayed}
-            <span className="animate-blink text-cyan-400 font-thin">|</span>
+        <div className="mb-6">
+          <span className="text-xl sm:text-2xl text-cyan-400 font-semibold tracking-wide">
+            Enterprise Infrastructure Professional
           </span>
         </div>
 
         <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          7+ years of enterprise IT support experience at scale — building toward cloud infrastructure,
-          network security, and automation engineering.
+          Supporting Microsoft enterprise environments through infrastructure engineering,
+          identity management, virtualization, and operational excellence.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#contact"
+          <Link
+            href="/projects"
             className="px-8 py-3.5 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition-all hover:scale-105 active:scale-95"
           >
-            Get In Touch
-          </a>
+            View Projects
+          </Link>
           <a
-            href="#projects"
+            href="/Jeremy_Cain_Resume.docx"
+            download
             className="px-8 py-3.5 border border-slate-600 text-slate-300 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all hover:scale-105 active:scale-95"
           >
-            View Projects
+            Download Resume
           </a>
+          <Link
+            href="/contact"
+            className="px-8 py-3.5 border border-slate-600 text-slate-300 rounded-full hover:border-purple-400 hover:text-purple-400 transition-all hover:scale-105 active:scale-95"
+          >
+            Contact Me
+          </Link>
         </div>
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-3 gap-8 border-t border-slate-800 pt-10">
           {[
-            { value: "7+", label: "Years Experience" },
+            { value: "8+", label: "Years Experience" },
             { value: "1,000+", label: "Users Supported" },
             { value: "4", label: "Certifications" },
           ].map((stat) => (

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import { CareerFocusProvider } from "./context/CareerFocusContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeremy Cain — Cloud Infrastructure & Security",
+  title: "Jeremy Cain — Enterprise IT & Systems Administration",
   description:
-    "IT Systems professional with 4+ years of enterprise experience, focused on cloud infrastructure, network security, and automation.",
+    "Enterprise IT professional with 8+ years supporting Microsoft environments — infrastructure, identity, virtualization, and enterprise applications.",
 };
 
 export default function RootLayout({
@@ -30,7 +33,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body>
-        {children}
+        <Nav />
+        <CareerFocusProvider>
+          <main>{children}</main>
+        </CareerFocusProvider>
+        <Footer />
         <Analytics />
       </body>
     </html>

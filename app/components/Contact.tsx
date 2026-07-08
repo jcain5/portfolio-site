@@ -1,18 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 export default function Contact() {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useScrollReveal<HTMLElement>(0.2);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) entry.target.classList.add("visible"); },
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   const copyEmail = () => {
     navigator.clipboard.writeText("jeremy.m.cain@hotmail.com");
@@ -23,13 +15,14 @@ export default function Contact() {
   return (
     <section id="contact" ref={ref} className="section-fade py-24 px-6 bg-[#0f172a]">
       <div className="max-w-3xl mx-auto text-center">
-        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">06. CONTACT</p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">CONTACT</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
           Let&apos;s <span className="text-cyan-400">Connect</span>
-        </h2>
+        </h1>
         <p className="text-slate-400 mb-12 max-w-lg mx-auto leading-relaxed">
-          I&apos;m actively looking for cloud infrastructure and security engineering opportunities.
-          Whether it&apos;s a role, a project, or just a conversation — reach out.
+          I&apos;m currently seeking opportunities in Systems Administration, Enterprise Infrastructure,
+          Enterprise Applications, Microsoft 365 Administration, and Identity &amp; Access Management —
+          where my production enterprise experience translates directly.
         </p>
 
         {/* Contact options */}
@@ -99,13 +92,6 @@ export default function Contact() {
           <span>Download Resume</span>
           <span>↓</span>
         </a>
-      </div>
-
-      {/* Footer */}
-      <div className="mt-20 pt-8 border-t border-slate-800 text-center">
-        <p className="text-slate-400 text-xs font-mono">
-          © 2026 Jeremy Cain · Fort Worth, TX
-        </p>
       </div>
     </section>
   );
