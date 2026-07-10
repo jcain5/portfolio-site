@@ -2,11 +2,13 @@
 import { colors } from "../lib/colors";
 import { useCareerFocus, type FocusId } from "../context/CareerFocusContext";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { IconServer, IconIdentity, IconMonitor } from "./icons";
 
 const tracks = [
   {
     id: "sysadmin" as FocusId,
-    index: "01",
+    Icon: IconServer,
+    iconColor: "text-[#8FB4DC]",
     title: "Systems Administration",
     color: "blue" as const,
     description:
@@ -15,7 +17,8 @@ const tracks = [
   },
   {
     id: "iam" as FocusId,
-    index: "02",
+    Icon: IconIdentity,
+    iconColor: "text-[#38A6B8]",
     title: "Identity & Access Management",
     color: "cyan" as const,
     description:
@@ -24,7 +27,8 @@ const tracks = [
   },
   {
     id: "infrastructure" as FocusId,
-    index: "03",
+    Icon: IconMonitor,
+    iconColor: "text-slate-300",
     title: "IT Operations & Infrastructure Support",
     color: "slate" as const,
     description:
@@ -77,11 +81,14 @@ export default function CareerFocus() {
                   </span>
                 )}
 
-                <span className={`font-mono text-xs font-semibold mb-4 ${c.label}`}>{track.index}</span>
-
-                <h3 className="font-heading font-semibold text-lg mb-2 text-ink">
-                  {track.title}
-                </h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`flex items-center justify-center w-10 h-10 rounded-md bg-navy shrink-0 ${track.iconColor}`}>
+                    <track.Icon className="w-5 h-5" />
+                  </span>
+                  <h3 className="font-heading font-semibold text-lg text-ink">
+                    {track.title}
+                  </h3>
+                </div>
 
                 <p className="text-sm text-body leading-relaxed mb-4 flex-1">
                   {track.description}
@@ -98,7 +105,7 @@ export default function CareerFocus() {
                   ))}
                 </div>
 
-                {isActive && (
+                {isActive ? (
                   <a
                     href={RESUME_HREF}
                     download
@@ -107,6 +114,8 @@ export default function CareerFocus() {
                   >
                     Download {track.title} Resume
                   </a>
+                ) : (
+                  <span className="text-sm font-mono text-[#2F75C8] font-medium">Learn more →</span>
                 )}
               </div>
             );
