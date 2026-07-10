@@ -11,6 +11,8 @@ interface SectionProps {
   maxWidth?: "4xl" | "6xl";
   headingLevel?: "h1" | "h2";
   threshold?: number;
+  /** True when this Section is the first element on its route — adds top padding to clear the fixed nav. */
+  firstOnPage?: boolean;
   children: ReactNode;
 }
 
@@ -23,6 +25,7 @@ export default function Section({
   maxWidth = "6xl",
   headingLevel = "h2",
   threshold = 0.1,
+  firstOnPage = false,
   children,
 }: SectionProps) {
   const ref = useScrollReveal<HTMLElement>(threshold);
@@ -32,12 +35,16 @@ export default function Section({
     <section
       id={id}
       ref={ref}
-      className={`section-fade py-24 px-6 ${tone === "alt" ? "bg-[#0f172a]" : ""}`}
+      className={`section-fade ${firstOnPage ? "pt-32 pb-20" : "py-20"} px-6 ${tone === "alt" ? "bg-white border-y border-border" : ""}`}
     >
-      <div className={`${maxWidth === "4xl" ? "max-w-4xl" : "max-w-6xl"} mx-auto`}>
-        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">{eyebrow}</p>
-        <Heading className="text-3xl sm:text-4xl font-bold text-white mb-4">{title}</Heading>
-        {intro && <p className="text-slate-400 mb-12 max-w-xl">{intro}</p>}
+      <div className={`${maxWidth === "4xl" ? "max-w-4xl" : "container-grid"} mx-auto`}>
+        <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">
+          {eyebrow}
+        </p>
+        <Heading className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-4 tracking-tight">
+          {title}
+        </Heading>
+        {intro && <p className="text-body mb-12 max-w-xl leading-relaxed">{intro}</p>}
         {children}
       </div>
     </section>

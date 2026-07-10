@@ -6,26 +6,29 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 const tracks = [
   {
     id: "sysadmin" as FocusId,
+    index: "01",
     title: "Systems Administration",
-    icon: "🖥️",
-    color: "cyan" as const,
-    description: "Active Directory, Windows Server, Group Policy, identity lifecycle management, and enterprise desktop operations.",
+    color: "blue" as const,
+    description:
+      "Active Directory, Windows Server, Group Policy, identity lifecycle management, and enterprise desktop operations.",
     skills: ["Active Directory", "Windows Server", "GPO", "PowerShell", "Intune MDM"],
   },
   {
-    id: "enterprise-apps" as FocusId,
-    title: "Enterprise Applications",
-    icon: "📊",
-    color: "purple" as const,
-    description: "Business application support, Microsoft 365 administration, CMS deployment, and enterprise software management.",
-    skills: ["Microsoft 365", "Exchange Online", "SharePoint", "ServiceNow", "Umbraco CMS"],
+    id: "iam" as FocusId,
+    index: "02",
+    title: "Identity & Access Management",
+    color: "cyan" as const,
+    description:
+      "Identity lifecycle management, conditional access, MFA enforcement, and role-based access control across enterprise directory services.",
+    skills: ["Entra ID", "Conditional Access & MFA", "RBAC", "Identity Lifecycle", "Privilege Tiering"],
   },
   {
     id: "infrastructure" as FocusId,
-    title: "Infrastructure Operations",
-    icon: "🔧",
-    color: "emerald" as const,
-    description: "Cloud architecture, network security, virtualization platforms, and enterprise infrastructure planning.",
+    index: "03",
+    title: "IT Operations & Infrastructure Support",
+    color: "slate" as const,
+    description:
+      "Cloud architecture, network security, virtualization platforms, and enterprise infrastructure planning.",
     skills: ["VMware Horizon", "Proxmox VE", "pfSense", "VLANs", "AWS"],
   },
 ];
@@ -43,13 +46,13 @@ export default function CareerFocus() {
   };
 
   return (
-    <section id="career-focus" ref={ref} className="section-fade py-20 px-6 bg-[#0f172a]">
-      <div className="max-w-6xl mx-auto">
-        <p className="font-mono text-cyan-400 text-sm tracking-widest mb-3">CAREER FOCUS</p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-          Target <span className="text-cyan-400">Tracks</span>
+    <section id="career-focus" ref={ref} className="section-fade py-20 px-6 bg-white border-y border-border">
+      <div className="container-grid">
+        <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Focus Areas</p>
+        <h2 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-3 tracking-tight">
+          Target Tracks
         </h2>
-        <p className="text-slate-400 mb-10 max-w-xl">
+        <p className="text-body mb-10 max-w-xl leading-relaxed">
           Select a focus area to highlight related projects and skills — and download a tailored resume for that track.
         </p>
 
@@ -64,23 +67,23 @@ export default function CareerFocus() {
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => e.key === "Enter" && handleSelect(track.id)}
-                className={`relative flex flex-col text-left p-6 rounded-xl bg-gradient-to-b ${isActive ? c.activeGlow : c.glowStrong} to-[#0a0f1e] border transition-all duration-300 hover:-translate-y-1 cursor-pointer select-none ${
-                  isActive ? `${c.activeBorder} shadow-lg` : c.border
+                className={`relative flex flex-col text-left p-6 rounded-lg bg-canvas border transition-colors duration-200 cursor-pointer select-none ${
+                  isActive ? c.activeBorder : `${c.border} ${c.borderHover}`
                 }`}
               >
                 {isActive && (
-                  <span className={`absolute top-3 right-3 text-xs font-mono px-2 py-0.5 rounded-full border ${c.activeBorder} ${c.label}`}>
-                    Active ✓
+                  <span className={`absolute top-4 right-4 text-xs font-mono px-2 py-0.5 rounded-full border ${c.badge}`}>
+                    Active
                   </span>
                 )}
 
-                <span className="text-3xl mb-4">{track.icon}</span>
+                <span className={`font-mono text-xs font-semibold mb-4 ${c.label}`}>{track.index}</span>
 
-                <h3 className={`font-bold text-lg mb-2 transition-colors ${isActive ? c.label : "text-white"}`}>
+                <h3 className="font-heading font-semibold text-lg mb-2 text-ink">
                   {track.title}
                 </h3>
 
-                <p className="text-sm text-slate-400 leading-relaxed mb-4 flex-1">
+                <p className="text-sm text-body leading-relaxed mb-4 flex-1">
                   {track.description}
                 </p>
 
@@ -88,9 +91,7 @@ export default function CareerFocus() {
                   {track.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`text-xs px-2 py-0.5 rounded-md border font-mono transition-colors ${
-                        isActive ? `${c.border} ${c.label}` : "text-slate-500 border-slate-700"
-                      }`}
+                      className="text-xs px-2 py-0.5 rounded-md border border-border-strong text-muted font-mono"
                     >
                       {skill}
                     </span>
@@ -102,9 +103,9 @@ export default function CareerFocus() {
                     href={RESUME_HREF}
                     download
                     onClick={(e) => e.stopPropagation()}
-                    className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-full ${c.button} transition-all hover:scale-105 active:scale-95`}
+                    className={`inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2.5 rounded-lg ${c.button} transition-colors`}
                   >
-                    <span>↓</span> Download {track.title} Resume
+                    Download {track.title} Resume
                   </a>
                 )}
               </div>
@@ -113,7 +114,7 @@ export default function CareerFocus() {
         </div>
 
         {activeFocus && (
-          <p className="mt-6 text-xs font-mono text-slate-500 text-center">
+          <p className="mt-6 text-xs font-mono text-muted text-center">
             Projects and skills below are filtered by this track — click the active card again to clear.
           </p>
         )}

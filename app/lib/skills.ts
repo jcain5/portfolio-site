@@ -28,14 +28,14 @@ export const skillGroups: SkillGroup[] = [
     label: "Microsoft Technologies",
     color: "indigo",
     icon: "🔷",
-    focusTracks: ["enterprise-apps", "sysadmin"],
+    focusTracks: ["sysadmin", "infrastructure"],
     skills: ["Microsoft 365 Admin Center", "Exchange Online", "SharePoint Online", "Microsoft Teams Admin", "Azure Fundamentals (AZ-900)"],
   },
   {
     label: "Identity & Access",
     color: "amber",
     icon: "🔐",
-    focusTracks: ["sysadmin"],
+    focusTracks: ["sysadmin", "iam"],
     skills: ["Microsoft Entra ID (Azure AD)", "Conditional Access & MFA", "Role-Based Access Control", "Identity Lifecycle Management", "Privilege Tiering"],
   },
   {
@@ -56,7 +56,7 @@ export const skillGroups: SkillGroup[] = [
     label: "Automation",
     color: "slate",
     icon: "⚙️",
-    focusTracks: ["sysadmin", "enterprise-apps"],
+    focusTracks: ["sysadmin", "iam"],
     skills: ["PowerShell Scripting", "Account Provisioning Automation", "Microsoft Intune MDM", "BlackBerry UEM / AirWatch", "SCCM Task Sequences"],
   },
   {

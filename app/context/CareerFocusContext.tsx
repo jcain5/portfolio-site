@@ -2,7 +2,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 
-export type FocusId = "sysadmin" | "enterprise-apps" | "infrastructure" | null;
+export type FocusId = "sysadmin" | "iam" | "infrastructure" | null;
 
 interface CareerFocusCtx {
   activeFocus: FocusId;

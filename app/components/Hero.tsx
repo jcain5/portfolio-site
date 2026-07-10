@@ -1,74 +1,67 @@
 "use client";
 import Link from "next/link";
 
+const stats = [
+  { value: "8+", label: "Years Experience" },
+  { value: "1,000+", label: "Users Supported" },
+  { value: "92%+", label: "Schedule Adherence" },
+  { value: "100%", label: "QA Score" },
+];
+
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0f1e] bg-grid" />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl glow-orb" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl glow-orb-delayed" />
+    <section id="hero" className="relative bg-navy overflow-hidden">
+      <div className="absolute inset-0 bg-grid-technical" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy/0 via-navy/0 to-navy" />
 
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        <p className="font-mono text-cyan-400 text-sm tracking-[0.3em] mb-6 uppercase">
-          Hello, World — I&apos;m
-        </p>
-        <h1 className="text-5xl sm:text-7xl font-bold text-white mb-4 tracking-tight">
-          Jeremy Cain
-        </h1>
+      <div className="relative container-grid pt-36 pb-20 sm:pt-40 sm:pb-24">
+        <div className="max-w-3xl">
+          <p className="font-mono text-[#38A6B8] text-xs sm:text-sm tracking-[0.2em] mb-6 uppercase">
+            IT Operations · Systems Administration · Identity
+          </p>
+          <h1 className="font-heading text-4xl sm:text-6xl font-semibold text-white mb-3 tracking-tight">
+            Jeremy Cain
+          </h1>
+          <p className="text-lg sm:text-xl text-[#8FB4DC] font-medium mb-6">
+            IT Operations &amp; Systems Administration Professional
+          </p>
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-10">
+            Enterprise support experience strengthened by hands-on identity, Windows Server,
+            virtualization, networking, automation, and infrastructure deployment.
+          </p>
 
-        <div className="mb-6">
-          <span className="text-xl sm:text-2xl text-cyan-400 font-semibold tracking-wide">
-            Enterprise Infrastructure Professional
-          </span>
-        </div>
-
-        <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          Supporting Microsoft enterprise environments through infrastructure engineering,
-          identity management, virtualization, and operational excellence.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/projects"
-            className="px-8 py-3.5 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition-all hover:scale-105 active:scale-95"
-          >
-            View Projects
-          </Link>
-          <a
-            href="/Jeremy_Cain_Resume.docx"
-            download
-            className="px-8 py-3.5 border border-slate-600 text-slate-300 rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all hover:scale-105 active:scale-95"
-          >
-            Download Resume
-          </a>
-          <Link
-            href="/contact"
-            className="px-8 py-3.5 border border-slate-600 text-slate-300 rounded-full hover:border-purple-400 hover:text-purple-400 transition-all hover:scale-105 active:scale-95"
-          >
-            Contact Me
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="px-6 py-3 bg-[#2F75C8] text-white text-sm font-semibold rounded-lg hover:bg-[#265f9f] transition-colors"
+            >
+              View Projects
+            </Link>
+            <a
+              href="/Jeremy_Cain_Resume.docx"
+              download
+              className="px-6 py-3 border border-slate-500 text-white text-sm font-semibold rounded-lg hover:border-slate-300 hover:bg-white/5 transition-colors"
+            >
+              Download Résumé
+            </a>
+            <Link
+              href="/contact"
+              className="px-6 py-3 border border-slate-700 text-slate-300 text-sm font-semibold rounded-lg hover:border-slate-500 hover:text-white transition-colors"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 border-t border-slate-800 pt-10">
-          {[
-            { value: "8+", label: "Years Experience" },
-            { value: "1,000+", label: "Users Supported" },
-            { value: "4", label: "Certifications" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-cyan-400">{stat.value}</div>
-              <div className="text-xs text-slate-500 mt-1 tracking-wide">{stat.label}</div>
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 border-t border-white/10 pt-8">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <div className="font-heading text-2xl sm:text-3xl font-semibold text-white">{stat.value}</div>
+              <div className="text-xs text-slate-400 mt-1 tracking-wide font-mono">{stat.label}</div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600">
-        <span className="text-xs tracking-widest font-mono">SCROLL</span>
-        <div className="w-px h-8 bg-gradient-to-b from-slate-600 to-transparent" />
       </div>
     </section>
   );

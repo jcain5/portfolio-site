@@ -20,37 +20,38 @@ export default function Nav() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0a0f1e]/90 backdrop-blur-md border-b border-slate-800"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border transition-shadow ${
+        scrolled ? "shadow-[0_1px_2px_rgba(11,23,42,0.06)]" : ""
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container-grid flex items-center justify-between py-4">
         <Link
           href="/"
-          className="font-mono font-bold text-lg text-cyan-400 tracking-wider hover:text-cyan-300 transition-colors"
+          className="font-mono font-semibold text-lg text-navy tracking-wide hover:text-accent transition-colors"
         >
-          JC<span className="text-slate-600">.</span>
+          JC<span className="text-accent">.</span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-7">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors tracking-wide ${
-                  isActive ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400"
+                className={`text-sm transition-colors ${
+                  isActive
+                    ? "text-accent font-medium"
+                    : "text-body hover:text-navy"
                 }`}
               >
                 {link.label}
@@ -61,10 +62,11 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-slate-400 hover:text-cyan-400 transition-colors"
+          className="md:hidden text-navy"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
-          <span className="sr-only">Menu</span>
           <div className="flex flex-col gap-1.5">
             <span className={`block w-6 h-0.5 bg-current transition-all ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`block w-6 h-0.5 bg-current transition-all ${menuOpen ? "opacity-0" : ""}`} />
@@ -75,14 +77,14 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0a0f1e]/95 backdrop-blur-md border-t border-slate-800 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white border-t border-border px-6 py-4 flex flex-col gap-4">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors ${isActive ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400"}`}
+                className={`text-sm transition-colors ${isActive ? "text-accent font-medium" : "text-body hover:text-navy"}`}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

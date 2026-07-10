@@ -40,6 +40,6 @@ export const certs: Certification[] = [
     abbr: "LPI",
     color: "yellow",
     category: "Linux",
-    credly: "https://www.credly.com/badges/YOUR-LPI-BADGE-ID/public_url",
+    credly: "https://www.credly.com/badges/26872cb3-01ab-4605-aef6-969206a845f6/public_url",
   },
 ];
