@@ -35,7 +35,7 @@ export default function Nav() {
     >
       <div className="container-grid flex items-center justify-between py-4">
         <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="Jeremy Cain — home">
-          <Image src="/logo-mark-light.png" alt="Jeremy Cain" width={33} height={40} className="h-9 w-auto" priority />
+          <Image src="/logo-mark-light.png" alt="Jeremy Cain" width={32} height={40} className="h-9 w-auto" priority />
         </Link>
 
         {/* Desktop nav */}
