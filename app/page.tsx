@@ -2,10 +2,14 @@ import Link from "next/link";
 import Hero from "./components/Hero";
 import CareerFocus from "./components/CareerFocus";
 import { colors } from "./lib/colors";
-import { featuredProject, projects } from "./lib/projects";
+import { getFeaturedProjects, getNonFeaturedProjects } from "./lib/projects";
 
 export default function Home() {
-  const c = colors[featuredProject.color];
+  const featured = getFeaturedProjects();
+  const primary = featured.find((p) => p.featuredVariant === "primary") ?? featured[0];
+  const secondaryProjects = featured.filter((p) => p !== primary);
+  const otherProjects = getNonFeaturedProjects();
+  const c = colors[primary.color];
 
   return (
     <>
@@ -14,22 +18,22 @@ export default function Home() {
 
       <section className="py-20 px-6">
         <div className="container-grid">
-          <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Featured Project</p>
+          <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Featured Projects</p>
           <h2 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-10 tracking-tight">
-            Enterprise Infrastructure Lab
+            {primary.title}
           </h2>
 
           <Link
-            href={`/projects/${featuredProject.slug}`}
+            href={`/projects/${primary.slug}`}
             className={`group block rounded-lg bg-white border ${c.border} ${c.borderHover} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(11,23,42,0.06)] overflow-hidden`}
           >
             <div className="grid md:grid-cols-5">
               <div className="md:col-span-3 p-8">
-                <span className={`text-xs font-mono ${c.label}`}>{featuredProject.category}</span>
-                <h3 className="font-heading text-2xl font-semibold text-ink mt-2 mb-3">{featuredProject.title}</h3>
-                <p className="text-body leading-relaxed mb-6">{featuredProject.problem}</p>
+                <span className={`text-xs font-mono ${c.label}`}>{primary.category}</span>
+                <h3 className="font-heading text-2xl font-semibold text-ink mt-2 mb-3">{primary.title}</h3>
+                <p className="text-body leading-relaxed mb-6">{primary.problem ?? primary.summary}</p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {featuredProject.technologies.slice(0, 6).map((tag) => (
+                  {primary.technologies.slice(0, 6).map((tag) => (
                     <span key={tag} className={`text-xs px-2 py-0.5 rounded-md font-mono ${c.label} ${c.chipBg}`}>
                       {tag}
                     </span>
@@ -42,19 +46,43 @@ export default function Home() {
               <div className="md:col-span-2 bg-canvas border-t md:border-t-0 md:border-l border-border p-8 flex flex-col justify-center gap-4">
                 <div>
                   <p className="text-xs font-mono text-muted uppercase tracking-wide mb-1">Environment</p>
-                  <p className="text-sm text-body leading-relaxed">Proxmox VE, Windows Server 2022, pfSense</p>
+                  <p className="text-sm text-body leading-relaxed">{primary.environment}</p>
                 </div>
                 <div>
                   <p className="text-xs font-mono text-muted uppercase tracking-wide mb-1">Ownership</p>
-                  <p className="text-sm text-body leading-relaxed">Designed and administered independently, end-to-end</p>
+                  <p className="text-sm text-body leading-relaxed">{primary.ownership}</p>
                 </div>
               </div>
             </div>
           </Link>
 
-          {projects.length > 0 && (
+          {secondaryProjects.length > 0 && (
+            <div className="mt-6 space-y-4">
+              {secondaryProjects.map((project) => {
+                const sc = colors[project.color];
+                return (
+                  <Link
+                    key={project.slug}
+                    href={`/projects/${project.slug}`}
+                    className={`relative flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-lg bg-white border ${sc.border} ${sc.borderHover} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(11,23,42,0.06)]`}
+                  >
+                    <div className="flex-1">
+                      <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${sc.badge}`}>
+                        FEATURED PROJECT
+                      </span>
+                      <h3 className="font-heading text-lg font-semibold text-ink mt-2 mb-1">{project.title}</h3>
+                      <p className="text-body text-sm leading-relaxed max-w-2xl">{project.summary}</p>
+                    </div>
+                    <span className={`text-sm font-mono ${sc.label} shrink-0`}>View case study →</span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+
+          {otherProjects.length > 0 && (
             <div className="grid sm:grid-cols-3 gap-6 mt-6">
-              {projects.map((project) => {
+              {otherProjects.map((project) => {
                 const pc = colors[project.color];
                 return (
                   <Link

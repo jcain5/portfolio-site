@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { colors } from "../../lib/colors";
 import { projects, getProjectBySlug } from "../../lib/projects";
+import ScreenshotGallery from "../../components/ui/ScreenshotGallery";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -37,13 +38,27 @@ export default async function ProjectDetailPage({
           <h1 className="font-heading text-2xl sm:text-3xl font-semibold text-ink leading-tight mt-2">{project.title}</h1>
         </div>
 
-        <p className="text-body leading-relaxed mb-10">{project.summary}</p>
+        <div className="mb-10">
+          <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Executive Summary</h2>
+          <p className="text-body leading-relaxed">{project.summary}</p>
+        </div>
 
         <div className="space-y-8">
           {project.problem && (
             <div>
-              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Problem</h2>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Business Problem</h2>
               <p className="text-body leading-relaxed">{project.problem}</p>
+            </div>
+          )}
+          {(project.architecture || project.architectureDiagram) && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Architecture</h2>
+              {project.architecture && <p className="text-body leading-relaxed">{project.architecture}</p>}
+              {project.architectureDiagram && (
+                <pre className="mt-3 bg-canvas border border-border rounded-lg p-5 text-xs font-mono text-body overflow-x-auto">
+                  {project.architectureDiagram}
+                </pre>
+              )}
             </div>
           )}
           {project.environment && (
@@ -58,10 +73,45 @@ export default async function ProjectDetailPage({
               <p className="text-body leading-relaxed">{project.ownership}</p>
             </div>
           )}
-          {project.architecture && (
+          {project.dnsConfiguration && project.dnsConfiguration.length > 0 && (
             <div>
-              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Architecture</h2>
-              <p className="text-body leading-relaxed">{project.architecture}</p>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">DNS Configuration</h2>
+              <div className="space-y-4">
+                {project.dnsConfiguration.map((entry) => (
+                  <div key={entry.label}>
+                    <p className="text-sm font-mono text-ink font-medium mb-1">{entry.label}</p>
+                    <p className="text-sm text-body leading-relaxed">{entry.description}</p>
+                    {entry.record && (
+                      <code className="mt-1 inline-block text-xs font-mono px-2 py-1 rounded-md bg-canvas border border-border text-body">
+                        {entry.record}
+                      </code>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.emailAliases && project.emailAliases.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Email Alias Strategy</h2>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th scope="col" className="py-2 pr-4 font-mono text-xs uppercase tracking-wide text-muted">Alias</th>
+                      <th scope="col" className="py-2 font-mono text-xs uppercase tracking-wide text-muted">Purpose</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {project.emailAliases.map((row) => (
+                      <tr key={row.alias} className="border-b border-border">
+                        <td className="py-2 pr-4 font-mono text-body">{row.alias}</td>
+                        <td className="py-2 text-body">{row.purpose}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
           {project.implementation && project.implementation.length > 0 && (
@@ -79,8 +129,21 @@ export default async function ProjectDetailPage({
           )}
           {project.validation && (
             <div>
-              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Validation</h2>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Production Validation</h2>
               <p className="text-body leading-relaxed">{project.validation}</p>
+            </div>
+          )}
+          {project.skillsDemonstrated && project.skillsDemonstrated.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Skills Demonstrated</h2>
+              <ul className="space-y-2">
+                {project.skillsDemonstrated.map((skill, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${c.dot}`} />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {project.documentation && (
@@ -89,11 +152,31 @@ export default async function ProjectDetailPage({
               <p className="text-body leading-relaxed">{project.documentation}</p>
             </div>
           )}
+          {project.lessonsLearned && (
+            <div className="p-5 rounded-lg bg-canvas border border-border">
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Lessons Learned</h2>
+              <p className="text-body leading-relaxed">{project.lessonsLearned}</p>
+            </div>
+          )}
+          {project.knowledgeBase && (
+            <div className="p-5 rounded-lg border border-border">
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Related Documentation</h2>
+              <Link
+                href={`/documentation/${project.knowledgeBase.slug}`}
+                className={`text-sm font-mono ${c.label} hover:underline`}
+              >
+                {project.knowledgeBase.title} →
+              </Link>
+            </div>
+          )}
           {project.outcome && (
             <div className="p-5 rounded-lg bg-canvas border border-border">
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Outcome</h2>
               <p className="text-body leading-relaxed">{project.outcome}</p>
             </div>
+          )}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <ScreenshotGallery screenshots={project.screenshots} />
           )}
         </div>
 

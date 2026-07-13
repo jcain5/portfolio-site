@@ -2,11 +2,12 @@
 import Link from "next/link";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
-import { projects } from "../lib/projects";
+import { getNonFeaturedProjects } from "../lib/projects";
 import { useCareerFocus } from "../context/CareerFocusContext";
 
 export default function Projects() {
   const { activeFocus } = useCareerFocus();
+  const projects = getNonFeaturedProjects();
 
   return (
     <Section
