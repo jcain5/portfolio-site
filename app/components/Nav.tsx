@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -33,11 +34,8 @@ export default function Nav() {
       }`}
     >
       <div className="container-grid flex items-center justify-between py-4">
-        <Link
-          href="/"
-          className="font-mono font-semibold text-lg text-navy tracking-wide hover:text-accent transition-colors"
-        >
-          JC<span className="text-accent">.</span>
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" aria-label="Jeremy Cain — home">
+          <Image src="/logo-mark-light.png" alt="Jeremy Cain" width={33} height={40} className="h-9 w-auto" priority />
         </Link>
 
         {/* Desktop nav */}

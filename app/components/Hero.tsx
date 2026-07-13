@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import OperationsDiagram from "./OperationsDiagram";
 import { IconCalendar, IconUsers, IconShieldCheck, IconMonitor } from "./icons";
@@ -19,6 +20,7 @@ export default function Hero() {
       <div className="relative container-grid pt-36 pb-20 sm:pt-40 sm:pb-24">
         <div className="grid lg:grid-cols-12 lg:gap-8 items-center">
           <div className="lg:col-span-7">
+            <Image src="/logo-mark-dark.png" alt="Jeremy Cain" width={33} height={40} className="h-10 w-auto mb-6" priority />
             <p className="font-mono text-[#38A6B8] text-xs sm:text-sm tracking-[0.2em] mb-6 uppercase">
               IT Operations · Systems Administration · Identity
             </p>
