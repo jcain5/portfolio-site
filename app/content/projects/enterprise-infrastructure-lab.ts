@@ -12,7 +12,8 @@ export const enterpriseInfrastructureLab: ProjectCaseStudy = {
   featuredRank: 1,
   featuredVariant: "primary",
   summary:
-    "Designed and administer an enterprise-style infrastructure lab featuring Windows Server, Active Directory, Proxmox, DNS, Group Policy, PowerShell, pfSense, and security monitoring. Built to demonstrate production-ready systems administration practices.",
+    "Designed and administer an enterprise-style infrastructure environment featuring Windows Server, Active Directory, Proxmox, DNS, Group Policy, PowerShell, pfSense, and enterprise security monitoring.",
+  featuredChips: ["Windows Server", "Active Directory", "Proxmox", "PowerShell", "DNS", "Group Policy", "pfSense"],
 
   environment:
     "A Dell PowerEdge R720XD running Proxmox VE as the virtualization host, with Cisco Catalyst switching and a pfSense firewall providing VLAN-segmented network infrastructure.",

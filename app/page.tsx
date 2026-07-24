@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Hero from "./components/Hero";
 import CareerFocus from "./components/CareerFocus";
@@ -33,25 +34,30 @@ export default function Home() {
                 <h3 className="font-heading text-2xl font-semibold text-ink mt-2 mb-3">{primary.title}</h3>
                 <p className="text-body leading-relaxed mb-6">{primary.problem ?? primary.summary}</p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {primary.technologies.slice(0, 6).map((tag) => (
+                  {(primary.featuredChips ?? primary.technologies.slice(0, 6)).map((tag) => (
                     <span key={tag} className={`text-xs px-2 py-0.5 rounded-md font-mono ${c.label} ${c.chipBg}`}>
                       {tag}
                     </span>
                   ))}
                 </div>
                 <span className="text-sm font-mono text-[#2F75C8] font-medium">
-                  View full case study →
+                  View Case Study →
                 </span>
               </div>
-              <div className="md:col-span-2 bg-canvas border-t md:border-t-0 md:border-l border-border p-8 flex flex-col justify-center gap-4">
-                <div>
-                  <p className="text-xs font-mono text-muted uppercase tracking-wide mb-1">Environment</p>
-                  <p className="text-sm text-body leading-relaxed">{primary.environment}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-muted uppercase tracking-wide mb-1">Ownership</p>
-                  <p className="text-sm text-body leading-relaxed">{primary.ownership}</p>
-                </div>
+              <div className="md:col-span-2 relative h-56 md:h-auto border-t md:border-t-0 md:border-l border-border">
+                {primary.screenshots?.[0]?.src ? (
+                  <Image
+                    src={primary.screenshots[0].src}
+                    alt={primary.screenshots[0].alt}
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center p-4 text-center bg-canvas">
+                    <p className="text-xs font-mono text-muted">Image pending</p>
+                  </div>
+                )}
               </div>
             </div>
           </Link>
@@ -60,6 +66,7 @@ export default function Home() {
             <div className="mt-6 space-y-4">
               {secondaryProjects.map((project) => {
                 const sc = colors[project.color];
+                const thumb = project.screenshots?.[0];
                 return (
                   <Link
                     key={project.slug}
@@ -71,9 +78,33 @@ export default function Home() {
                         FEATURED PROJECT
                       </span>
                       <h3 className="font-heading text-lg font-semibold text-ink mt-2 mb-1">{project.title}</h3>
-                      <p className="text-body text-sm leading-relaxed max-w-2xl">{project.summary}</p>
+                      <p className="text-body text-sm leading-relaxed max-w-2xl mb-3">{project.summary}</p>
+                      {project.featuredChips && (
+                        <div className="flex flex-wrap gap-2">
+                          {project.featuredChips.map((tag) => (
+                            <span key={tag} className={`text-xs px-2 py-0.5 rounded-md font-mono ${sc.label} ${sc.chipBg}`}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    <span className={`text-sm font-mono ${sc.label} shrink-0`}>View case study →</span>
+                    <div className="relative w-full sm:w-48 aspect-video shrink-0 rounded-md overflow-hidden border border-border">
+                      {thumb?.src ? (
+                        <Image
+                          src={thumb.src}
+                          alt={thumb.alt}
+                          fill
+                          sizes="192px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-canvas p-2 text-center">
+                          <p className="text-[11px] font-mono text-muted">Image pending</p>
+                        </div>
+                      )}
+                    </div>
+                    <span className={`text-sm font-mono ${sc.label} shrink-0`}>View Case Study →</span>
                   </Link>
                 );
               })}

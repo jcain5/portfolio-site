@@ -10,6 +10,7 @@ export const professionalEmailInfrastructure: ProjectCaseStudy = {
   featuredVariant: "secondary",
   summary:
     "Designed and secured a custom email platform for jeremymcain.com using Zoho Mail and Hostinger DNS. Configured MX, SPF, DKIM, and DMARC to deliver a secure, professional communication system.",
+  featuredChips: ["Zoho Mail", "DNS", "SPF", "DKIM", "DMARC"],
 
   problem:
     "A recruiter- and client-facing identity needs a professional, custom-domain email address with verifiable authentication rather than a free consumer inbox — requiring DNS-level trust (MX, SPF, DKIM, DMARC) so messages are accepted and not flagged as spoofed, plus documented alias routing for distinct contact purposes.",

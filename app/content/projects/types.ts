@@ -68,6 +68,9 @@ export interface ProjectCaseStudy {
   knowledgeBase?: { slug: string; title: string };
 
   screenshots?: ScreenshotSlot[];
+  // Compact chip set shown on the homepage featured-project card; falls back
+  // to the first few `technologies` entries when omitted.
+  featuredChips?: string[];
   technologies: string[];
   github?: string;
   liveUrl?: string;

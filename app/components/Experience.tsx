@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
 import { jobs } from "../lib/experience";
@@ -9,6 +10,16 @@ export default function Experience() {
       id="experience"
       eyebrow="EXPERIENCE"
       title="Career Timeline"
+      intro={
+        <>
+          Enterprise IT operations experience, reinforced by hands-on infrastructure engineering through my{" "}
+          <Link href="/projects/enterprise-infrastructure-lab" className="text-[#2F75C8] hover:underline">
+            Enterprise Infrastructure Lab
+          </Link>
+          , where I design, build, and administer the same Windows Server, identity, virtualization, and networking
+          systems I support professionally.
+        </>
+      }
       tone="alt"
       maxWidth="4xl"
       headingLevel="h1"
@@ -43,6 +54,19 @@ export default function Experience() {
                     </div>
                   </div>
 
+                  {job.coreTechnologies.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-xs font-mono text-muted uppercase tracking-wide mb-2">Core Technologies</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {job.coreTechnologies.map((tech) => (
+                          <span key={tech} className={`text-xs px-2 py-0.5 rounded-md font-mono ${a.label} ${a.chipBg}`}>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <ul className="space-y-2">
                     {job.highlights.map((h, j) => (
                       <li key={j} className="flex gap-3 text-sm text-body">
@@ -51,10 +75,34 @@ export default function Experience() {
                       </li>
                     ))}
                   </ul>
+
+                  {job.relatedProjects && job.relatedProjects.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-border flex flex-wrap gap-4">
+                      {job.relatedProjects.map((rp) => (
+                        <Link
+                          key={rp.slug}
+                          href={`/projects/${rp.slug}`}
+                          className={`text-xs font-mono ${a.label} hover:underline`}
+                        >
+                          {rp.title} →
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-8 pl-12">
+          <p className="text-xs font-mono text-muted uppercase tracking-wide mb-2">Related Personal Projects</p>
+          <Link
+            href="/projects/professional-email-infrastructure"
+            className="text-sm font-mono text-[#2F75C8] hover:underline"
+          >
+            Professional Email Infrastructure →
+          </Link>
         </div>
       </div>
     </Section>
