@@ -39,6 +39,8 @@ const tracks = [
 
 // All three tracks point at the single general resume for now — dedicated
 // per-track resume files don't exist yet (was previously a live 404).
+// TODO(dev): once available, point the "sysadmin" track at
+// public/Jeremy-Cain-Systems-Administration-Resume.pdf instead.
 const RESUME_HREF = "/Jeremy_Cain_Resume.docx";
 
 export default function CareerFocus() {

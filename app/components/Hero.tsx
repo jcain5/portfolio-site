@@ -30,9 +30,14 @@ export default function Hero() {
             <p className="text-lg sm:text-xl text-[#8FB4DC] font-medium mb-6">
               IT Operations &amp; Systems Administration Professional
             </p>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-10">
-              Enterprise support experience strengthened by hands-on identity, Windows Server,
-              virtualization, networking, automation, and infrastructure deployment.
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-4">
+              I support and build Windows, Linux, networking, virtualization, identity, and security
+              environments. Hands-on work includes Active Directory, Windows Server, Proxmox, pfSense,
+              Cisco switching, Wazuh, DNS, Group Policy, PowerShell, and enterprise troubleshooting.
+            </p>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-10">
+              Target roles: Systems Administrator, Infrastructure Support Engineer, IT Operations Analyst,
+              IAM Administrator, Platform Operations Engineer.
             </p>
 
             <div className="flex flex-wrap gap-3">

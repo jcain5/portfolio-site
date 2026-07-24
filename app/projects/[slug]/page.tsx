@@ -1,11 +1,27 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { colors } from "../../lib/colors";
 import { projects, getProjectBySlug } from "../../lib/projects";
 import ScreenshotGallery from "../../components/ui/ScreenshotGallery";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return {};
+
+  return {
+    title: project.metaTitle ?? `${project.title} | Jeremy M. Cain`,
+    description: project.metaDescription ?? project.summary,
+  };
 }
 
 export default async function ProjectDetailPage({
@@ -36,6 +52,9 @@ export default async function ProjectDetailPage({
             )}
           </div>
           <h1 className="font-heading text-2xl sm:text-3xl font-semibold text-ink leading-tight mt-2">{project.title}</h1>
+          {project.subtitle && (
+            <p className="text-sm text-muted mt-1">{project.subtitle}</p>
+          )}
         </div>
 
         <div className="mb-10">
@@ -71,6 +90,25 @@ export default async function ProjectDetailPage({
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Ownership</h2>
               <p className="text-body leading-relaxed">{project.ownership}</p>
+            </div>
+          )}
+          {project.technologyCategories && project.technologyCategories.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Technology Breakdown</h2>
+              <div className="space-y-4">
+                {project.technologyCategories.map((group) => (
+                  <div key={group.category}>
+                    <p className="text-sm font-mono text-ink font-medium mb-2">{group.category}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item) => (
+                        <span key={item} className={`text-xs px-2 py-0.5 rounded-md font-mono ${c.label} ${c.chipBg}`}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
           {project.dnsConfiguration && project.dnsConfiguration.length > 0 && (
@@ -133,6 +171,19 @@ export default async function ProjectDetailPage({
               <p className="text-body leading-relaxed">{project.validation}</p>
             </div>
           )}
+          {project.troubleshootingHighlights && project.troubleshootingHighlights.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Troubleshooting Highlights</h2>
+              <ul className="space-y-2">
+                {project.troubleshootingHighlights.map((item, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${c.dot}`} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {project.skillsDemonstrated && project.skillsDemonstrated.length > 0 && (
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Skills Demonstrated</h2>
@@ -150,6 +201,25 @@ export default async function ProjectDetailPage({
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Documentation</h2>
               <p className="text-body leading-relaxed">{project.documentation}</p>
+            </div>
+          )}
+          {project.roadmap && project.roadmap.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Current Roadmap (Planned)</h2>
+              <ul className="space-y-2">
+                {project.roadmap.map((item, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className="mt-2 w-1 h-1 rounded-full shrink-0 bg-amber-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {project.transparencyNote && (
+            <div className="p-5 rounded-lg bg-amber-50 border border-amber-200">
+              <h2 className="text-xs font-mono text-amber-700 tracking-[0.15em] uppercase font-medium mb-2">Transparency Note</h2>
+              <p className="text-body leading-relaxed">{project.transparencyNote}</p>
             </div>
           )}
           {project.lessonsLearned && (

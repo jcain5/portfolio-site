@@ -6,10 +6,10 @@ export const professionalEmailInfrastructure: ProjectCaseStudy = {
   category: "Email & DNS Infrastructure",
   color: "purple",
   focusTracks: ["sysadmin", "infrastructure"],
-  featuredRank: 2,
+  featuredRank: 3,
   featuredVariant: "secondary",
   summary:
-    "Configured a production-style email solution for jeremymcain.com using Zoho Mail and Hostinger DNS. Implemented MX, SPF, DKIM, DMARC, and professional email aliases to support a secure, branded communication platform.",
+    "Designed and secured a custom email platform for jeremymcain.com using Zoho Mail and Hostinger DNS. Configured MX, SPF, DKIM, and DMARC to deliver a secure, professional communication system.",
 
   problem:
     "A recruiter- and client-facing identity needs a professional, custom-domain email address with verifiable authentication rather than a free consumer inbox — requiring DNS-level trust (MX, SPF, DKIM, DMARC) so messages are accepted and not flagged as spoofed, plus documented alias routing for distinct contact purposes.",

@@ -1,67 +1,114 @@
 import type { ProjectCaseStudy } from "./types";
 
-// Consolidates what were three overlapping home-lab entries (AD/Windows Server
-// Lab, pfSense/VLAN Lab, Virtualization/Enterprise Lab) into one deep case
-// study. Primary featured project — rendered via /projects/[slug].
+// Primary featured project — rendered via /projects/[slug]. Independent home
+// lab, not paid employment; see `transparencyNote` below.
 export const enterpriseInfrastructureLab: ProjectCaseStudy = {
   slug: "enterprise-infrastructure-lab",
   title: "Enterprise Infrastructure Lab",
+  subtitle: "Independent Systems Administration Project",
   category: "Enterprise Infrastructure",
   color: "cyan",
   focusTracks: ["sysadmin", "infrastructure"],
   featuredRank: 1,
   featuredVariant: "primary",
   summary:
-    "A production-style home lab spanning virtualization, Active Directory, and network security — administered like enterprise infrastructure.",
+    "Designed and administer an enterprise-style infrastructure lab featuring Windows Server, Active Directory, Proxmox, DNS, Group Policy, PowerShell, pfSense, and security monitoring. Built to demonstrate production-ready systems administration practices.",
 
-  problem:
-    "Enterprise support work means operating Active Directory, Group Policy, and virtualization platforms day to day — but not designing or administering them from the ground up. This lab closes that gap by standing up the same identity, virtualization, and network security stack found in production enterprise environments, administered end-to-end rather than just supported.",
   environment:
-    "A self-hosted, multi-hypervisor lab: Proxmox VE as the primary virtualization platform, with VMware Workstation and VirtualBox for isolated testing. Windows Server 2022 domain controllers, Ubuntu and Kali Linux clients, and a pfSense virtual firewall run as VMs across a segmented home network.",
-  ownership:
-    "Designed, built, and administered independently — architecture, deployment, configuration, and ongoing maintenance, with no managed services or pre-built templates.",
+    "A Dell PowerEdge R720XD running Proxmox VE as the virtualization host, with Cisco Catalyst switching and a pfSense firewall providing VLAN-segmented network infrastructure.",
   architecture:
-    "Windows Server 2022 promoted to an Active Directory Domain Controller with integrated DNS and DHCP. An OU structure mirrors a department hierarchy to support Group Policy delegation and role-based access control through AD security groups. Network segmentation is handled by a pfSense virtual firewall enforcing a multi-VLAN topology — Trusted, IoT, and DMZ zones — with explicit inter-VLAN routing rules and a Snort IDS/IPS instance monitoring traffic across segments. OpenVPN provides site-to-site and client remote access.",
-  implementation: [
-    "Installed and configured Windows Server 2022 in a Proxmox virtualized environment",
-    "Promoted the server to an Active Directory Domain Controller with integrated DNS and DHCP",
-    "Built an OU structure reflecting department hierarchy to support Group Policy delegation",
-    "Applied GPOs enforcing security baselines — firewall policy, software restrictions, and account lockout",
-    "Configured role-based access control through AD security groups and privilege tiering",
-    "Deployed pfSense as a virtual firewall segmenting the network into Trusted, IoT, and DMZ VLANs",
-    "Configured inter-VLAN routing with explicit firewall rules and integrated Snort IDS/IPS",
-    "Implemented OpenVPN for site-to-site and client remote access",
+    "Cisco Catalyst switching and VLAN segmentation route traffic through a pfSense firewall enforcing inter-VLAN access policy, with DHCP, Pi-hole, and Unbound handling DNS resolution for the segmented network.",
+
+  technologyCategories: [
+    {
+      category: "Microsoft",
+      items: ["Windows Server 2022", "Active Directory Domain Services", "DNS", "Group Policy", "PowerShell", "Windows 11"],
+    },
+    {
+      category: "Virtualization & Hardware",
+      items: ["Dell PowerEdge R720XD", "Proxmox VE"],
+    },
+    {
+      category: "Networking",
+      items: ["Cisco Catalyst switching", "Cisco routing", "VLAN segmentation", "pfSense", "DHCP", "Pi-hole", "Unbound"],
+    },
+    {
+      category: "Security & Linux",
+      items: ["Wazuh", "Suricata", "Ubuntu", "Debian", "SSH", "systemd"],
+    },
   ],
-  validation:
-    "Verified GPO enforcement by confirming security baseline application on domain-joined test machines and testing account lockout and software restriction behavior. Confirmed VLAN isolation by testing inter-VLAN traffic against firewall rules and monitoring Snort IDS/IPS alerts for policy violations. Validated identity lifecycle changes — account provisioning, group membership, and delegated permissions — by testing access before and after changes.",
-  documentation:
-    "Network topology diagram covering VLAN zones and firewall rule sets, an OU and Group Policy reference for the AD structure, and a runbook for VM provisioning, snapshot management, and cloning across the Proxmox, VMware Workstation, and VirtualBox hosts.",
-  outcome:
-    "A production-style reference environment for identity administration, Group Policy management, and network segmentation — directly informing GPO, RBAC, and firewall rule decisions applied in enterprise support work.",
+
+  implementation: [
+    "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",
+    "Deployed Windows Server 2022 with Active Directory Domain Services and DNS",
+    "Created organizational units, users, security groups, administrative accounts, and domain-joined workstations",
+    "Implemented separation between standard and privileged administrative accounts",
+    "Configured Cisco switching, VLAN segmentation, routing, pfSense firewall services, and DNS infrastructure",
+    "Deployed and evaluated Wazuh and Suricata for endpoint and network security monitoring",
+    "Diagnosed DNS resolution failures, Active Directory health warnings, DFS-R events, and service connectivity issues",
+    "Developed PowerShell tools for system inventory, Defender status, event collection, DNS validation, and network testing",
+    "Documented architecture, configuration decisions, validation procedures, and troubleshooting outcomes",
+  ],
+
+  troubleshootingHighlights: [
+    "Restored Active Directory-related name resolution after an upstream DNS resolver interruption",
+    "Investigated DFS-R and domain-controller health warnings using native Windows diagnostic tools",
+    "Validated DNS records, service ports, domain connectivity, and infrastructure health using PowerShell",
+    "Corrected deployment and service issues in Linux-hosted environments using systemd, Nginx, logs, and file validation",
+  ],
+
+  roadmap: [
+    "Deploy a secondary domain controller",
+    "Implement Group Policy security baselines",
+    "Add centralized file services",
+    "Validate backup and recovery procedures",
+    "Expand Wazuh agent coverage and detections",
+    "Improve rack cabling and install structured patch-panel connectivity",
+    "Build automated infrastructure health reporting",
+  ],
+
+  transparencyNote:
+    "This is an actively developed independent lab used to practice, validate, and document enterprise administration workflows. Planned components are identified separately from completed work.",
 
   screenshots: [
-    { src: null, caption: "Network topology — VLAN segmentation and firewall zones", alt: "Network diagram placeholder" },
-    { src: null, caption: "Active Directory OU structure and Group Policy scope", alt: "AD structure diagram placeholder" },
+    {
+      src: "/images/projects/enterprise-infrastructure-lab/rack.jpg",
+      caption: "Dell PowerEdge and Cisco infrastructure supporting the JCES enterprise virtualization and networking lab.",
+      alt: "Rack-mounted Dell PowerEdge server and Cisco switch in an open-frame server rack",
+    },
+    {
+      src: "/images/projects/enterprise-infrastructure-lab/proxmox.png",
+      caption: "Proxmox VE environment hosting Windows, Linux, management, and security workloads.",
+      alt: "Proxmox VE datacenter dashboard showing virtual machines and containers",
+    },
+    {
+      src: "/images/projects/enterprise-infrastructure-lab/ad-ou.png",
+      caption: "Role-based Active Directory structure with organizational units, administrative separation, groups, and domain-joined systems.",
+      alt: "Active Directory Users and Computers console showing the organizational unit structure",
+    },
+    {
+      src: "/images/projects/enterprise-infrastructure-lab/dns-health.png",
+      caption: "PowerShell-driven administrative account review and Active Directory/DNS health validation on the domain controller.",
+      alt: "PowerShell terminal windows showing Active Directory account review and domain controller DNS health validation",
+    },
   ],
 
+  // Compact recruiter-scannable badge list (also used for card/chip previews).
   technologies: [
-    "Proxmox VE", "Windows Server 2022", "Active Directory DS", "GPO", "DNS", "DHCP",
-    "pfSense", "Snort IDS/IPS", "OpenVPN", "VLANs", "VMware Workstation", "VirtualBox", "Ubuntu",
+    "Windows Server", "Active Directory", "DNS", "Group Policy", "PowerShell",
+    "Proxmox VE", "Dell PowerEdge", "Cisco", "VLANs", "pfSense",
+    "Wazuh", "Suricata", "Linux", "Azure",
   ],
   bullets: [
-    "Installed and configured Windows Server 2022 in a Proxmox virtualized environment",
-    "Deployed and promoted server to Active Directory Domain Controller with DNS and DHCP integration",
-    "Designed an OU structure to reflect department hierarchy and support Group Policy delegation",
-    "Implemented Group Policy Objects (GPOs) to enforce security baselines — including firewall policy, software restrictions, and account lockout",
-    "Configured role-based access control through AD security groups and privilege tiering",
-    "Practiced identity lifecycle management: account provisioning, group membership, and permission delegation",
-    "Deployed pfSense as a virtual firewall on Proxmox to segment and protect the home lab environment",
-    "Designed a multi-VLAN network topology with isolated zones: Trusted, IoT, and DMZ",
-    "Configured inter-VLAN routing with explicit firewall rules controlling permitted traffic between segments",
-    "Implemented site-to-site and client VPN for secure remote access using OpenVPN",
-    "Integrated Snort IDS/IPS to monitor traffic and alert on suspicious activity across network segments",
-    "Built a multi-hypervisor lab using Proxmox, VMware Workstation, and VirtualBox",
-    "Runs multiple simultaneous Linux (Ubuntu, Kali) and Windows Server VMs to simulate enterprise environments",
-    "Practices snapshot management, VM cloning, and network bridging and isolation",
+    "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",
+    "Deployed Windows Server 2022 with Active Directory Domain Services and DNS",
+    "Implemented administrative separation, OU structure, and role-based security groups",
+    "Configured Cisco switching, VLAN segmentation, and pfSense firewall services",
+    "Deployed Wazuh and Suricata for endpoint and network security monitoring",
+    "Developed PowerShell tools for inventory, DNS validation, and network testing",
   ],
+
+  metaTitle: "Enterprise Infrastructure Lab | Jeremy M. Cain",
+  metaDescription:
+    "Explore Jeremy Cain's hands-on systems administration lab featuring Dell PowerEdge, Proxmox, Windows Server, Active Directory, Cisco networking, pfSense, Wazuh, PowerShell, and enterprise troubleshooting.",
 };

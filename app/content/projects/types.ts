@@ -18,9 +18,15 @@ export interface EmailAlias {
   purpose: string;
 }
 
+export interface TechnologyCategory {
+  category: string;
+  items: string[];
+}
+
 export interface ProjectCaseStudy {
   slug: string;
   title: string;
+  subtitle?: string;
   category: string;
   status?: string;
   color: ColorKey;
@@ -47,7 +53,16 @@ export interface ProjectCaseStudy {
 
   dnsConfiguration?: DnsConfigEntry[];
   emailAliases?: EmailAlias[];
+  // Grouped breakdown (e.g. Microsoft / Networking / Security) shown alongside
+  // the flat `technologies` chip list, which stays ungrouped for card previews.
+  technologyCategories?: TechnologyCategory[];
   skillsDemonstrated?: string[];
+  troubleshootingHighlights?: string[];
+  // Planned/in-progress work — rendered clearly labeled so it's never
+  // confused with completed work in `implementation`.
+  roadmap?: string[];
+  // Short callout disclosing scope/status (e.g. independent lab vs. paid work).
+  transparencyNote?: string;
   lessonsLearned?: string;
   // Forward cross-link to a /documentation/[slug] article.
   knowledgeBase?: { slug: string; title: string };
@@ -57,4 +72,8 @@ export interface ProjectCaseStudy {
   github?: string;
   liveUrl?: string;
   bullets: string[];
+
+  // Per-project SEO overrides; falls back to `${title} | Jeremy M. Cain` / summary.
+  metaTitle?: string;
+  metaDescription?: string;
 }

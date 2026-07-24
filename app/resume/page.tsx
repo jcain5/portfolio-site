@@ -1,3 +1,6 @@
+// TODO(dev): once a tailored PDF exists, add it here as
+// public/Jeremy-Cain-Systems-Administration-Resume.pdf and surface a second,
+// clearly labeled "Systems Administration Resume" download option below.
 export const metadata = {
   title: "Resume | Jeremy Cain",
 };

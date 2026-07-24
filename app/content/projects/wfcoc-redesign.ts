@@ -7,7 +7,10 @@ export const wfcocRedesign: ProjectCaseStudy = {
   status: "In Development",
   focusTracks: [],
   color: "blue",
-  summary: "Rebuilding a legacy church CMS on ASP.NET Core and Umbraco 18 with accessibility built in from the start.",
+  featuredRank: 2,
+  featuredVariant: "secondary",
+  summary:
+    "Leading the redesign of a church website on Debian Linux, Nginx, .NET, and Umbraco CMS — architecting hosting, security, and deployment ahead of launching a live production environment.",
 
   problem:
     "The organization's public website ran on a legacy Finalweb 2.0 CMS with no accessibility compliance, no ability for non-technical staff to manage content independently, and no automated testing in place.",
