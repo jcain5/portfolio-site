@@ -10,15 +10,15 @@ export const wfcocRedesign: ProjectCaseStudy = {
   featuredRank: 2,
   featuredVariant: "secondary",
   summary:
-    "Redesigning a church website on Ubuntu Server, Nginx, .NET, and Umbraco CMS — now running in beta, with hosting, backup automation, and deployment operations validated ahead of a full production cutover from the legacy CMS.",
+    "A volunteer-led modernization of West Freeway Church of Christ's public website — pairing a rebuilt web platform (Ubuntu Server, Nginx, ASP.NET Core, Umbraco CMS) with the Linux infrastructure, deployment, and backup operations behind it. The replacement environment is operational in beta, with automated backups and recovery procedures documented ahead of a full production cutover from the legacy CMS.",
   featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Linux"],
 
   problem:
-    "The organization's public website ran on a legacy Finalweb 2.0 CMS with no accessibility compliance, no ability for non-technical staff to manage content independently, and no automated testing in place.",
+    "The organization's public website ran on a legacy Finalweb 2.0 CMS with no accessibility compliance, a content workflow that left non-technical staff unable to publish updates independently, and a mobile experience that lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration and operate within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
   environment:
     "Volunteer IT Support Specialist role covering the organization's website, livestream systems, and PBX phone system — the website rebuild is scoped and delivered independently while those other systems stay in daily operation.",
   ownership:
-    "Sole developer — architecture, implementation, accessibility compliance, test automation, backup design, and beta deployment are individually owned.",
+    "Sole developer and infrastructure owner — architecture, implementation, deployment, backup design, troubleshooting, and documentation are individually owned, with ongoing responsibility for the website's infrastructure and integrations after launch.",
   architecture:
     "An ASP.NET Core (.NET 10) application with Umbraco 18 as the CMS layer, backed by a SQLite database, structured with a clean separation of concerns across Pages, Services, ViewModels, and API Controllers. Razor Pages render the public site with Bootstrap 5 for responsive layout. Deployed to Ubuntu Server 24.04 LTS as a systemd-managed service, published behind an Nginx reverse proxy, with an automated backup and recovery workflow protecting the CMS database.",
   architectureDiagram: `Internet
@@ -37,30 +37,50 @@ Automated Backup & Recovery Workflow`,
     "Integrated Umbraco 18 CMS so non-technical staff can manage content independently",
     "Structured the codebase into Pages, Services, ViewModels, and API Controllers",
     "Deployed to Ubuntu Server 24.04 LTS as a systemd-managed service (wfcoc-beta.service) behind an Nginx reverse proxy",
-    "Implemented automated nightly database backups with integrity verification and retention controls",
-    "Documented disaster recovery and operational runbook procedures for the CMS database",
+  ],
+  infrastructureOperations: [
+    "Deployed and manage the application on a Linux (Ubuntu Server) VPS behind an Nginx reverse proxy with TLS",
+    "Run the ASP.NET Core application as a systemd-managed service, including service start/stop/restart and health checks",
+    "Perform layered service-health validation across the reverse proxy, application process, and database",
+    "Review application and database logs to diagnose service and connectivity issues",
+    "Run automated nightly database backups with integrity verification and retention management",
+    "Maintain documented recovery procedures for restoring the CMS database",
   ],
   validation:
-    "Wrote a Playwright browser test suite with integrated axe accessibility checks, run against every core page to catch WCAG 2.2 AA regressions before deployment. Verified the systemd service and Nginx reverse proxy are active and stable in the beta environment, and confirmed the automated nightly backup job completes successfully with integrity validation.",
+    "Implemented automated accessibility checks with Playwright and axe across every core page to identify regressions and support progress toward WCAG 2.2 AA — not a substitute for a full manual audit. Verified the systemd service and Nginx reverse proxy are active and stable in the beta environment, and confirmed the automated nightly backup job completes successfully with integrity validation.",
   documentation:
     "Architecture and deployment notes maintained alongside the codebase, covering the systemd service configuration, the Nginx reverse proxy setup, the backup and recovery workflow, and the Umbraco content model for staff handoff.",
-  outcome:
-    "Running in beta on Ubuntu Server — validating WCAG 2.2 AA compliance, content workflows, and hosting operations ahead of a full production cutover from the legacy CMS. Automated nightly database backups now run with integrity verification, disaster recovery procedures are documented, and the beta environment has a structured operational runbook covering deployment, monitoring, and troubleshooting.",
+  outcome: [
+    "Working beta environment for the redesigned website, operational ahead of a full production cutover",
+    "Repeatable deployment process for the ASP.NET Core application on Ubuntu Server",
+    "Managed Linux application service running under systemd",
+    "Automated nightly database backups with integrity verification",
+    "Structured operations documentation covering deployment, monitoring, backup, and recovery",
+    "Improved content-management foundation for non-technical staff",
+    "Stable legacy site retained for visitors throughout development",
+    "Production cutover from the legacy CMS remains pending",
+  ],
 
   troubleshootingHighlights: [
-    "Diagnosed a gateway error on the beta site by validating each layer independently — reverse proxy, application service status, application listener, direct application response, public HTTPS response, service logs, and database integrity",
-    "Isolated the failure to the application service, restarted it, and confirmed both the direct application endpoint and public HTTPS endpoint returned successful responses",
+    "The public reverse proxy responded normally while the application layer was unavailable, producing a gateway error on the beta site",
+    "Tested each layer independently — reverse proxy, application service status, application listener, direct application response, public HTTPS response, and service logs — to isolate the failure before making changes",
+    "Restored the application service, validated both the internal application endpoint and the public HTTPS response, confirmed database integrity, and documented the incident",
   ],
 
   skillsDemonstrated: [
     "Linux Administration",
-    "Reverse Proxy Configuration",
+    "Nginx",
+    "systemd",
+    "ASP.NET Core",
+    "Umbraco",
+    "SQLite",
     "Backup Strategy",
     "Disaster Recovery",
-    "Service Monitoring",
-    "Production Troubleshooting",
+    "Monitoring",
+    "Troubleshooting",
     "Technical Documentation",
     "Stakeholder Communication",
+    "Production Change Management",
   ],
 
   screenshots: [
@@ -81,11 +101,11 @@ Automated Backup & Recovery Workflow`,
     },
   ],
 
-  technologies: [".NET 10", "ASP.NET Core", "Umbraco 18 CMS", "SQLite", "C#", "Razor Pages", "Bootstrap 5", "Playwright", "Ubuntu Server", "Nginx", "systemd"],
+  technologies: [".NET 10", "ASP.NET Core", "Umbraco 18 CMS", "SQLite", "C#", "Razor Pages", "Bootstrap 5", "Playwright", "axe", "Ubuntu Server", "Nginx", "systemd", "GitHub", "Google Calendar", "YouTube"],
   github: "https://github.com/jcain5/wfcoc-redesign",
   bullets: [
     "Developing a modern ASP.NET Core website for West Freeway Church of Christ to replace the existing Finalweb 2.0 CMS",
-    "Implemented 9 core pages with Bootstrap 5 responsive design and WCAG 2.2 AA accessibility compliance",
+    "Implemented 9 core pages with Bootstrap 5 responsive design and automated accessibility checks supporting progress toward WCAG 2.2 AA",
     "Integrating Umbraco 18 CMS to enable non-technical staff to manage content independently",
     "Architecture designed with clean separation of concerns: Pages, Services, ViewModels, and API Controllers",
     "Deployed to Ubuntu Server behind an Nginx reverse proxy as a systemd-managed beta service",

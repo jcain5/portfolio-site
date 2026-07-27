@@ -47,9 +47,12 @@ export interface ProjectCaseStudy {
   // Literal ASCII architecture diagram, rendered verbatim in a monospace panel.
   architectureDiagram?: string;
   implementation?: string[];
+  // Ongoing operational practices (deployment, service management, monitoring,
+  // backup/recovery) — distinct from `implementation`, which covers what was built.
+  infrastructureOperations?: string[];
   validation?: string;
   documentation?: string;
-  outcome?: string;
+  outcome?: string | string[];
 
   dnsConfiguration?: DnsConfigEntry[];
   emailAliases?: EmailAlias[];
