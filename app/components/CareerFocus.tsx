@@ -22,8 +22,8 @@ const tracks = [
     title: "Identity & Access Management",
     color: "cyan" as const,
     description:
-      "Identity lifecycle management, conditional access, MFA enforcement, and role-based access control across enterprise directory services.",
-    skills: ["Entra ID", "Conditional Access & MFA", "RBAC", "Identity Lifecycle", "Privilege Tiering"],
+      "Identity lifecycle support, MFA troubleshooting, and role-based access control across enterprise directory services.",
+    skills: ["Entra ID", "MFA Troubleshooting", "RBAC", "Identity Lifecycle", "Privilege Tiering"],
   },
   {
     id: "infrastructure" as FocusId,
@@ -32,8 +32,8 @@ const tracks = [
     title: "IT Operations & Infrastructure Support",
     color: "slate" as const,
     description:
-      "Cloud architecture, network security, virtualization platforms, and enterprise infrastructure planning.",
-    skills: ["VMware Horizon", "Proxmox VE", "pfSense", "VLANs", "AWS"],
+      "Cloud platform support, network security, virtualization, and Linux infrastructure.",
+    skills: ["VMware Horizon", "Proxmox VE", "pfSense", "VLANs", "Ubuntu"],
   },
 ];
 

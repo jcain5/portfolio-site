@@ -15,7 +15,7 @@ const nodes = [
   { key: "identity", x: 240, y: 35, label: "Identity", sub: "Microsoft Entra ID", Icon: IconIdentity },
   { key: "network", x: 406, y: 156, label: "Network & Security", sub: "pfSense · VLANs · VPN", Icon: IconNetwork },
   { key: "docs", x: 343, y: 352, label: "Documentation", sub: "Runbooks · Build Guides", Icon: IconDocument },
-  { key: "virtualization", x: 137, y: 352, label: "Virtualization", sub: "Proxmox VE · vSphere", Icon: IconLayers },
+  { key: "virtualization", x: 137, y: 352, label: "Virtualization", sub: "Proxmox VE · VMware Horizon", Icon: IconLayers },
   { key: "server", x: 74, y: 156, label: "Windows Server", sub: "AD · DNS · DHCP · GPO", Icon: IconServer },
 ];
 

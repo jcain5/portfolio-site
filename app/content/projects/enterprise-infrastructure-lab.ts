@@ -98,7 +98,7 @@ export const enterpriseInfrastructureLab: ProjectCaseStudy = {
   technologies: [
     "Windows Server", "Active Directory", "DNS", "Group Policy", "PowerShell",
     "Proxmox VE", "Dell PowerEdge", "Cisco", "VLANs", "pfSense",
-    "Wazuh", "Suricata", "Linux", "Azure",
+    "Wazuh", "Suricata", "Linux",
   ],
   bullets: [
     "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",

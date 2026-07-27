@@ -10,15 +10,15 @@ export const wfcocRedesign: ProjectCaseStudy = {
   featuredRank: 2,
   featuredVariant: "secondary",
   summary:
-    "A volunteer-led modernization of West Freeway Church of Christ's public website — pairing a rebuilt web platform (Ubuntu Server, Nginx, ASP.NET Core, Umbraco CMS) with the Linux infrastructure, deployment, and backup operations behind it. The replacement environment is operational in beta, with automated backups and recovery procedures documented ahead of a full production cutover from the legacy CMS.",
+    "A volunteer-led, production-style nonprofit web platform for West Freeway Church of Christ, currently in beta on Ubuntu Server, Nginx, ASP.NET Core, and Umbraco CMS — with automated backups, recovery planning, and production cutover preparation, while the legacy site remains live during migration.",
   featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Backups & Recovery"],
 
   problem:
-    "The organization's public website ran on a legacy Finalweb 2.0 CMS with no accessibility compliance, a content workflow that left non-technical staff unable to publish updates independently, and a mobile experience that lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration and operate within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
+    "The organization's public website ran on a legacy Finalweb 2.0 CMS that lacked a documented accessibility testing process and presented accessibility limitations, a content workflow that left non-technical staff unable to publish updates independently, and a mobile experience that lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration and operate within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
   environment:
     "Volunteer IT Support Specialist role covering the organization's website, livestream systems, and PBX phone system — the website rebuild is scoped and delivered independently while those other systems stay in daily operation.",
   ownership:
-    "Sole developer and infrastructure owner — architecture, implementation, deployment, backup design, troubleshooting, and documentation are individually owned, with ongoing responsibility for the website's infrastructure and integrations after launch.",
+    "Sole project owner for architecture, implementation, deployment, backup design, troubleshooting, and documentation throughout the beta build. Expected to retain ongoing operational responsibility for the platform's infrastructure and integrations after the production cutover.",
   architecture:
     "An ASP.NET Core (.NET 10) application with Umbraco 18 as the CMS layer, backed by a SQLite database, structured with a clean separation of concerns across Pages, Services, ViewModels, and API Controllers. Razor Pages render the public site with Bootstrap 5 for responsive layout. Deployed to Ubuntu Server 24.04 LTS as a systemd-managed service, published behind an Nginx reverse proxy, with an automated backup and recovery workflow protecting the CMS database.",
   architectureDiagram: `Internet
@@ -47,7 +47,7 @@ Automated Backup & Recovery Workflow`,
     "Maintain documented recovery procedures for restoring the CMS database",
   ],
   validation:
-    "Implemented automated accessibility checks with Playwright and axe across every core page to identify regressions and support progress toward WCAG 2.2 AA — not a substitute for a full manual audit. Verified the systemd service and Nginx reverse proxy are active and stable in the beta environment, and confirmed the automated nightly backup job completes successfully with integrity validation.",
+    "Implemented automated accessibility checks with Playwright and axe across every core page to identify regressions and support progress toward WCAG 2.2 AA — not a substitute for a full manual audit. Verified the systemd service and Nginx reverse proxy are operational in the beta environment, and confirmed the automated nightly backup job completes successfully with integrity validation.",
   documentation:
     "Architecture and deployment notes maintained alongside the codebase, covering the systemd service configuration, the Nginx reverse proxy setup, the backup and recovery workflow, and the Umbraco content model for staff handoff.",
   outcome: [

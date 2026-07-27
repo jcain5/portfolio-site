@@ -49,7 +49,7 @@ function Bio() {
             </h1>
             <div className="space-y-4 text-body leading-relaxed">
               <p>
-                I&apos;m an IT Systems professional with 7+ years of hands-on experience operating
+                I&apos;m an IT Systems professional with 8+ years of hands-on experience operating
                 at enterprise scale — supporting Microsoft 365, Azure AD, Active Directory, VMware
                 Horizon, Citrix, and mobile device management for organizations with thousands of users.
               </p>
@@ -79,8 +79,8 @@ function Bio() {
 
           <div className="grid grid-cols-2 gap-4">
             {[
-              { title: "Identity & Access", desc: "Entra ID, Conditional Access, MFA, RBAC" },
-              { title: "Security", desc: "Security+, CCNA, MFA enforcement, IDS/IPS" },
+              { title: "Identity & Access", desc: "Entra ID, MFA Troubleshooting, RBAC, Identity Lifecycle" },
+              { title: "Security", desc: "Security+, CCNA, MFA Troubleshooting, IDS/IPS" },
               { title: "Automation", desc: "PowerShell scripting, SCCM deployment, GPOs" },
               { title: "Networking", desc: "DNS, DHCP, VPN, pfSense, SonicWall, Fortinet" },
             ].map((card) => (

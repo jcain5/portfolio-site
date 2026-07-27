@@ -36,7 +36,7 @@ export const skillGroups: SkillGroup[] = [
     color: "amber",
     icon: "🔐",
     focusTracks: ["sysadmin", "iam"],
-    skills: ["Microsoft Entra ID (Azure AD)", "Conditional Access & MFA", "Role-Based Access Control", "Identity Lifecycle Management", "Privilege Tiering"],
+    skills: ["Microsoft Entra ID (Azure AD)", "MFA Troubleshooting", "Role-Based Access Control", "Identity Lifecycle Management", "Privilege Tiering"],
   },
   {
     label: "Virtualization",

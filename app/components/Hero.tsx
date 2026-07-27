@@ -2,12 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import OperationsDiagram from "./OperationsDiagram";
-import { IconCalendar, IconUsers, IconShieldCheck, IconMonitor } from "./icons";
+import { IconCalendar, IconUsers, IconMonitor } from "./icons";
 
 const stats = [
   { value: "8+", label: "Years Experience", Icon: IconCalendar },
   { value: "1,000+", label: "Users Supported", Icon: IconUsers },
-  { value: "92%+", label: "Schedule Adherence", Icon: IconShieldCheck },
   { value: "100%", label: "QA Score", Icon: IconMonitor },
 ];
 
@@ -69,7 +68,7 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 border-t border-white/10 pt-8">
+        <div className="mt-16 grid grid-cols-3 gap-6 sm:gap-8 border-t border-white/10 pt-8">
           {stats.map((stat) => (
             <div key={stat.label} className="flex items-start gap-3">
               <span className="shrink-0 text-[#38A6B8] mt-0.5">
