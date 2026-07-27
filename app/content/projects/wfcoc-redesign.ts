@@ -14,7 +14,7 @@ export const wfcocRedesign: ProjectCaseStudy = {
   featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Backups & Recovery"],
 
   problem:
-    "The organization's public website ran on a legacy Finalweb 2.0 CMS that lacked a documented accessibility testing process and presented accessibility limitations, a content workflow that left non-technical staff unable to publish updates independently, and a mobile experience that lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration and operate within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
+    "The organization's public website ran on a legacy Finalweb 2.0 CMS that lacked a documented accessibility testing process and presented accessibility limitations. Its content workflow prevented non-technical staff from publishing updates independently, and its mobile experience lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration while operating within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
   environment:
     "Volunteer IT Support Specialist role covering the organization's website, livestream systems, and PBX phone system — the website rebuild is scoped and delivered independently while those other systems stay in daily operation.",
   ownership:
