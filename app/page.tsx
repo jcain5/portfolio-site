@@ -74,9 +74,16 @@ export default function Home() {
                     className={`relative flex flex-col sm:flex-row sm:items-center gap-4 p-6 rounded-lg bg-white border ${sc.border} ${sc.borderHover} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(11,23,42,0.06)]`}
                   >
                     <div className="flex-1">
-                      <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${sc.badge}`}>
-                        FEATURED PROJECT
-                      </span>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${sc.badge}`}>
+                          FEATURED PROJECT
+                        </span>
+                        {project.status && (
+                          <span className="text-xs font-mono px-2 py-0.5 rounded-full border border-amber-200 text-amber-700 bg-amber-50">
+                            {project.status}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="font-heading text-lg font-semibold text-ink mt-2 mb-1">{project.title}</h3>
                       <p className="text-body text-sm leading-relaxed max-w-2xl mb-3">{project.summary}</p>
                       {project.featuredChips && (

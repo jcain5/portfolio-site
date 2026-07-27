@@ -3,7 +3,7 @@ import type { ProjectCaseStudy } from "./types";
 export const wfcocRedesign: ProjectCaseStudy = {
   slug: "wfcoc-redesign",
   title: "West Freeway Church of Christ — Website Redesign",
-  category: "Web Infrastructure & Operations",
+  category: "Infrastructure & Web Operations",
   status: "Beta",
   focusTracks: ["sysadmin", "infrastructure"],
   color: "blue",
@@ -11,7 +11,7 @@ export const wfcocRedesign: ProjectCaseStudy = {
   featuredVariant: "secondary",
   summary:
     "A volunteer-led modernization of West Freeway Church of Christ's public website — pairing a rebuilt web platform (Ubuntu Server, Nginx, ASP.NET Core, Umbraco CMS) with the Linux infrastructure, deployment, and backup operations behind it. The replacement environment is operational in beta, with automated backups and recovery procedures documented ahead of a full production cutover from the legacy CMS.",
-  featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Linux"],
+  featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Backups & Recovery"],
 
   problem:
     "The organization's public website ran on a legacy Finalweb 2.0 CMS with no accessibility compliance, a content workflow that left non-technical staff unable to publish updates independently, and a mobile experience that lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration and operate within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
@@ -36,7 +36,7 @@ Automated Backup & Recovery Workflow`,
     "Built 9 core pages with Bootstrap 5 responsive design",
     "Integrated Umbraco 18 CMS so non-technical staff can manage content independently",
     "Structured the codebase into Pages, Services, ViewModels, and API Controllers",
-    "Deployed to Ubuntu Server 24.04 LTS as a systemd-managed service (wfcoc-beta.service) behind an Nginx reverse proxy",
+    "Deployed to Ubuntu Server 24.04 LTS as a systemd-managed application service behind an Nginx reverse proxy",
   ],
   infrastructureOperations: [
     "Deployed and manage the application on a Linux (Ubuntu Server) VPS behind an Nginx reverse proxy with TLS",
@@ -88,16 +88,6 @@ Automated Backup & Recovery Workflow`,
       src: "/images/projects/wfcoc-redesign/nginx-status.png",
       caption: "Nginx reverse proxy running as a managed systemd service in the beta environment.",
       alt: "Terminal output of systemctl status nginx showing the service active and running",
-    },
-    {
-      src: "/images/projects/wfcoc-redesign/dotnet-info.png",
-      caption: ".NET 10 runtime installed on Ubuntu Server, hosting the ASP.NET Core application.",
-      alt: "Terminal output of dotnet --info showing the .NET runtime and Ubuntu 24.04 host details",
-    },
-    {
-      src: "/images/projects/wfcoc-redesign/hostnamectl.png",
-      caption: "Beta deployment host running Ubuntu Server 24.04 LTS.",
-      alt: "Terminal output of hostnamectl showing Ubuntu 24.04.4 LTS as the operating system",
     },
   ],
 
