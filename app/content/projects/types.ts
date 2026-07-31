@@ -47,6 +47,8 @@ export interface ProjectCaseStudy {
   // Literal ASCII architecture diagram, rendered verbatim in a monospace panel.
   architectureDiagram?: string;
   implementation?: string[];
+  // Concrete, user-facing capabilities of the finished product.
+  features?: string[];
   // Ongoing operational practices (deployment, service management, monitoring,
   // backup/recovery) — distinct from `implementation`, which covers what was built.
   infrastructureOperations?: string[];
@@ -66,6 +68,8 @@ export interface ProjectCaseStudy {
   roadmap?: string[];
   // Short callout disclosing scope/status (e.g. independent lab vs. paid work).
   transparencyNote?: string;
+  // Callout disclosing data-handling/privacy posture (e.g. fictional sample data).
+  privacy?: string;
   lessonsLearned?: string;
   // Forward cross-link to a /documentation/[slug] article.
   knowledgeBase?: { slug: string; title: string };

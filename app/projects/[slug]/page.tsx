@@ -165,6 +165,19 @@ export default async function ProjectDetailPage({
               </ul>
             </div>
           )}
+          {project.features && project.features.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Features</h2>
+              <ul className="space-y-2">
+                {project.features.map((item, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${c.dot}`} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {project.infrastructureOperations && project.infrastructureOperations.length > 0 && (
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Infrastructure &amp; Operations</h2>
@@ -233,6 +246,12 @@ export default async function ProjectDetailPage({
             <div className="p-5 rounded-lg bg-amber-50 border border-amber-200">
               <h2 className="text-xs font-mono text-amber-700 tracking-[0.15em] uppercase font-medium mb-2">Transparency Note</h2>
               <p className="text-body leading-relaxed">{project.transparencyNote}</p>
+            </div>
+          )}
+          {project.privacy && (
+            <div className="p-5 rounded-lg bg-amber-50 border border-amber-200">
+              <h2 className="text-xs font-mono text-amber-700 tracking-[0.15em] uppercase font-medium mb-2">Privacy</h2>
+              <p className="text-body leading-relaxed">{project.privacy}</p>
             </div>
           )}
           {project.lessonsLearned && (
