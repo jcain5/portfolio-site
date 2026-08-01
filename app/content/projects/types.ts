@@ -40,6 +40,8 @@ export interface ProjectCaseStudy {
 
   // Case-study structure: problem, environment, ownership, architecture,
   // implementation, validation, documentation, outcome.
+  // Short framing paragraph shown before the Business Problem section.
+  overview?: string;
   problem?: string;
   environment?: string;
   ownership?: string;
@@ -47,6 +49,11 @@ export interface ProjectCaseStudy {
   // Literal ASCII architecture diagram, rendered verbatim in a monospace panel.
   architectureDiagram?: string;
   implementation?: string[];
+  // Ordered flow of how the built solution actually works, distinct from
+  // `implementation` (which covers what/how it was built).
+  solution?: string[];
+  // Explicit, honest scope boundaries of the current version.
+  currentLimitations?: string[];
   // Concrete, user-facing capabilities of the finished product.
   features?: string[];
   // Ongoing operational practices (deployment, service management, monitoring,
@@ -70,6 +77,8 @@ export interface ProjectCaseStudy {
   transparencyNote?: string;
   // Callout disclosing data-handling/privacy posture (e.g. fictional sample data).
   privacy?: string;
+  // Callout disclosing authorized-use scope (e.g. lab-only, no exploitation).
+  securityNote?: string;
   lessonsLearned?: string;
   // Forward cross-link to a /documentation/[slug] article.
   knowledgeBase?: { slug: string; title: string };

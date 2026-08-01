@@ -63,10 +63,29 @@ export default async function ProjectDetailPage({
         </div>
 
         <div className="space-y-8">
+          {project.overview && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Overview</h2>
+              <p className="text-body leading-relaxed">{project.overview}</p>
+            </div>
+          )}
           {project.problem && (
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Business Problem</h2>
               <p className="text-body leading-relaxed">{project.problem}</p>
+            </div>
+          )}
+          {project.solution && project.solution.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Solution</h2>
+              <ul className="space-y-2">
+                {project.solution.map((step, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${c.dot}`} />
+                    {step}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {(project.architecture || project.architectureDiagram) && (
@@ -223,6 +242,19 @@ export default async function ProjectDetailPage({
               </ul>
             </div>
           )}
+          {project.currentLimitations && project.currentLimitations.length > 0 && (
+            <div>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Current Limitations</h2>
+              <ul className="space-y-2">
+                {project.currentLimitations.map((item, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className="mt-2 w-1 h-1 rounded-full shrink-0 bg-slate-400" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {project.documentation && (
             <div>
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Documentation</h2>
@@ -252,6 +284,12 @@ export default async function ProjectDetailPage({
             <div className="p-5 rounded-lg bg-amber-50 border border-amber-200">
               <h2 className="text-xs font-mono text-amber-700 tracking-[0.15em] uppercase font-medium mb-2">Privacy</h2>
               <p className="text-body leading-relaxed">{project.privacy}</p>
+            </div>
+          )}
+          {project.securityNote && (
+            <div className="p-5 rounded-lg bg-amber-50 border border-amber-200">
+              <h2 className="text-xs font-mono text-amber-700 tracking-[0.15em] uppercase font-medium mb-2">Security Note</h2>
+              <p className="text-body leading-relaxed">{project.securityNote}</p>
             </div>
           )}
           {project.lessonsLearned && (
