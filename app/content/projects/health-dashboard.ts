@@ -10,6 +10,8 @@ export const healthDashboard: ProjectCaseStudy = {
   focusTracks: [],
   summary:
     "A Python console application that records weigh-ins, calculates Body Mass Index, assigns BMI categories, and stores historical entries in CSV format. Being expanded through versioned releases toward reporting, visualization, and a future C# Windows desktop edition.",
+  cardSummary:
+    "Python health-tracking application with BMI calculations, CSV persistence, input validation, and iterative feature development.",
 
   problem:
     "Manual health tracking often produces scattered notes without consistent calculations or a reusable history. This project creates a structured local workflow for entering weigh-ins, consistently calculating BMI, and preserving records in a portable CSV format.",

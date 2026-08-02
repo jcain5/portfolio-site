@@ -32,6 +32,9 @@ export interface ProjectCaseStudy {
   color: ColorKey;
   focusTracks: NonNullable<FocusId>[];
   summary: string;
+  // Short one-line blurb for project grid/index cards, distinct from
+  // `summary` (shown as the Executive Summary on the project detail page).
+  cardSummary?: string;
 
   // Set to surface this project in the Featured sections on the homepage
   // and /projects, ordered ascending. featuredVariant controls visual weight.

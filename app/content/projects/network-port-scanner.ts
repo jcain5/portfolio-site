@@ -10,6 +10,8 @@ export const networkPortScanner: ProjectCaseStudy = {
   focusTracks: [],
   summary:
     "Built a modular Python TCP port scanner for authorized lab use. It supports custom targets, ports, timeouts, output filenames, append and overwrite modes, service mapping, CSV reporting, and 27 automated tests.",
+  cardSummary:
+    "Modular Python TCP scanner with CLI controls, CSV reporting, validation, and 27 automated tests.",
 
   overview:
     "Built as a guided Python learning project for scanning systems in an authorized home infrastructure lab, this command-line scanner practices socket programming, structured data handling, and file I/O against real network services in a controlled environment.",

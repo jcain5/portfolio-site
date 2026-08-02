@@ -40,7 +40,10 @@ export default function Projects() {
                   </span>
                 )}
               </div>
-              <h3 className="text-ink font-heading font-semibold text-lg leading-snug mb-4">{project.title}</h3>
+              <h3 className="text-ink font-heading font-semibold text-lg leading-snug mb-2">{project.title}</h3>
+              {project.cardSummary && (
+                <p className="text-body text-sm leading-relaxed mb-4">{project.cardSummary}</p>
+              )}
 
               <ul className="space-y-2 mb-6 flex-1">
                 {project.bullets.slice(0, 4).map((b, j) => (
