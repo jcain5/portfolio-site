@@ -62,6 +62,9 @@ export interface ProjectCaseStudy {
   validation?: string;
   documentation?: string;
   outcome?: string | string[];
+  // Compact test/verification summary (e.g. automated test coverage areas),
+  // rendered as a callout near the screenshot gallery.
+  verification?: { summary: string; items: string[] };
 
   dnsConfiguration?: DnsConfigEntry[];
   emailAliases?: EmailAlias[];

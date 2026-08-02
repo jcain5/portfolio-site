@@ -326,6 +326,20 @@ export default async function ProjectDetailPage({
               )}
             </div>
           )}
+          {project.verification && (
+            <div className="p-5 rounded-lg bg-canvas border border-border">
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Verification</h2>
+              <p className="text-body leading-relaxed mb-3">{project.verification.summary}</p>
+              <ul className="space-y-2">
+                {project.verification.items.map((item, i) => (
+                  <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
+                    <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${c.dot}`} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {project.screenshots && project.screenshots.length > 0 && (
             <ScreenshotGallery screenshots={project.screenshots} />
           )}

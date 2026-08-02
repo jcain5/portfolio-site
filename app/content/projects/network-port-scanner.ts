@@ -82,6 +82,17 @@ export const networkPortScanner: ProjectCaseStudy = {
   securityNote:
     "This tool is intended only for systems and networks that you own or have explicit permission to test. It does not perform exploitation, credential attacks, or authentication attempts, and unauthorized port scanning may violate organizational policies, service agreements, or applicable law.",
 
+  verification: {
+    summary: "27 automated tests passing across:",
+    items: [
+      "IP address validation",
+      "TCP scan outcomes",
+      "CLI argument parsing",
+      "timeout validation",
+      "custom-port validation",
+    ],
+  },
+
   screenshots: [
     {
       src: "/images/projects/network-port-scanner/help-screenshot.png",
