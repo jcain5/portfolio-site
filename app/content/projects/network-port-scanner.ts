@@ -3,13 +3,13 @@ import type { ProjectCaseStudy } from "./types";
 export const networkPortScanner: ProjectCaseStudy = {
   slug: "network-port-scanner",
   title: "Python Network Port Scanner",
-  subtitle: "Independent Python Learning Project",
+  subtitle: "Modular TCP scanner with CLI controls, CSV reporting, validation, and automated tests.",
   category: "Software Development",
-  status: "Version 1.0 Complete",
+  status: "Phase 2 Complete",
   color: "slate",
   focusTracks: [],
   summary:
-    "A Python TCP port scanner built for authorized infrastructure-lab testing. It validates target IP addresses, scans common TCP ports, maps ports to likely services, distinguishes connection outcomes, measures scan duration, and exports timestamped results to CSV.",
+    "Built a modular Python TCP port scanner for authorized lab use. It supports custom targets, ports, timeouts, output filenames, append and overwrite modes, service mapping, CSV reporting, and 27 automated tests.",
 
   overview:
     "Built as a guided Python learning project for scanning systems in an authorized home infrastructure lab, this command-line scanner practices socket programming, structured data handling, and file I/O against real network services in a controlled environment.",
@@ -18,57 +18,65 @@ export const networkPortScanner: ProjectCaseStudy = {
     "Ad hoc port checks with individual terminal commands don't scale and leave no record. The goal was a reusable way to check common TCP services against a target and preserve the results, instead of relying on temporary terminal output that disappears after the session ends.",
 
   solution: [
-    "Prompt for a target IP address",
-    "Validate the address as IPv4 or IPv6",
-    "Scan a predefined dictionary of common TCP services",
+    "Parse command-line arguments for target, timeout, ports, and output file",
+    "Validate the target address as IPv4 or IPv6",
+    "Validate timeout and port-list values before scanning",
+    "Scan the built-in common-service list or a custom port list over TCP",
     "Classify each TCP connection result",
     "Display readable, real-time output for each port",
-    "Save timestamped results to a CSV file",
-    "Allow the user to append to or overwrite the existing CSV",
+    "Save timestamped results to CSV in append or overwrite mode",
   ],
 
   implementation: [
-    "Used Python's ipaddress module to validate IPv4 and IPv6 target addresses before scanning",
-    "Implemented TCP socket scanning with configurable connection timeouts",
+    "Refactored the original script into a modular scanner package: validation, scanning, services, and reporting",
+    "Built a command-line interface with argparse for --target, --timeout, --ports, and --output",
+    "Enforced mutually exclusive --append and --overwrite flags at the parser level",
+    "Validated IPv4/IPv6 targets, timeout ranges, and custom port lists before scanning",
     "Classified each connection attempt as OPEN, CLOSED, TIMEOUT, or UNREACHABLE",
-    "Mapped scanned ports to common service names for readable output",
-    "Measured and reported total scan duration",
-    "Exported timestamped scan results to CSV with append or overwrite modes",
+    "Mapped scanned ports to common service names, labeling unmapped ports UNKNOWN",
     "Handled Ctrl+C interruption gracefully instead of crashing mid-scan",
-    "Packaged the project on GitHub with a README, LICENSE, .gitignore, and sanitized sample CSV",
+    "Wrote 27 automated unit tests covering validation, mocked-socket scanning, and argument parsing",
+  ],
+
+  features: [
+    "IPv4 and IPv6 validation",
+    "OPEN, CLOSED, TIMEOUT, and UNREACHABLE statuses",
+    "--target, --timeout, --ports, and --output flags",
+    "Mutually exclusive --append and --overwrite modes",
+    "Modular Python package design",
+    "Mocked socket and parser tests",
+    "27 passing automated tests",
+    "Standard library only — no third-party dependencies",
   ],
 
   skillsDemonstrated: [
-    "Functions and Type Hints",
-    "Socket Programming",
-    "Exception Handling",
-    "Dictionaries and Lists",
-    "CSV File Operations",
-    "Main Entry-Point Structure",
-    "Graceful Interruption Handling",
-    "GitHub Packaging and Evidence Sanitization",
+    "Python",
+    "TCP Sockets",
+    "argparse",
+    "CSV",
+    "unittest",
+    "Mocking",
+    "Input Validation",
+    "Modular Design",
+    "Git",
+    "GitHub",
+    "Networking",
   ],
 
   currentLimitations: [
     "Scans a single host at a time",
     "Executes scans sequentially, not concurrently",
     "TCP only — no UDP support",
-    "Uses a predefined port list rather than custom ranges",
     "No operating-system detection",
     "No service-version detection",
-    "No vulnerability scanning",
-    "No exploitation or authentication attempts",
+    "No vulnerability scanning or exploitation",
+    "No stealth scanning techniques",
   ],
 
   roadmap: [
-    "CIDR subnet scanning",
-    "Concurrent scanning with thread pools",
-    "Hostname resolution",
-    "Command-line arguments",
-    "Configurable timeout values and custom port ranges",
-    "Optional JSON export",
-    "Automated tests",
-    "Sanitized reporting mode",
+    "Phase 3: Multi-host and CIDR scanning",
+    "Phase 4: Data visualization and historical comparison",
+    "Phase 5: AI-assisted interpretation and visual modeling",
   ],
 
   securityNote:
@@ -76,22 +84,27 @@ export const networkPortScanner: ProjectCaseStudy = {
 
   screenshots: [
     {
+      src: "/images/projects/network-port-scanner/help-screenshot.png",
+      caption: "Command-line --help output showing the target, timeout, ports, output, append, and overwrite options.",
+      alt: "Terminal output of `python3 main.py --help` listing the scanner's command-line options",
+    },
+    {
       src: "/images/projects/network-port-scanner/sample-scan-results.png",
       caption: "Sanitized sample_scan_results.csv showing the timestamp, target, port, service, and status fields.",
       alt: "Spreadsheet view of sample_scan_results.csv with fictional documentation-range IP addresses and TCP scan statuses",
     },
   ],
 
-  technologies: ["Python", "Sockets", "TCP/IP", "CSV", "Git", "GitHub"],
+  technologies: ["Python", "argparse", "Sockets", "TCP/IP", "CSV", "unittest", "Git", "GitHub"],
   github: "https://github.com/jcain5/Network-Port-Scanner",
   bullets: [
-    "Built a Python TCP port scanner for authorized infrastructure-lab testing",
-    "Validated IPv4 and IPv6 targets and classified results as OPEN, CLOSED, TIMEOUT, or UNREACHABLE",
-    "Mapped scanned ports to common service names and measured total scan duration",
-    "Exported timestamped results to CSV with append or overwrite modes",
+    "Built a modular Python TCP port scanner with a CLI (argparse) for authorized lab use",
+    "Validated IPv4 and IPv6 targets, timeouts, and custom port lists before scanning",
+    "Classified TCP results as OPEN, CLOSED, TIMEOUT, or UNREACHABLE and exported timestamped CSV reports",
+    "Covered the codebase with 27 automated unit tests using mocked sockets",
   ],
 
-  metaTitle: "Python Network Port Scanner | Jeremy M. Cain",
+  metaTitle: "Python Network Port Scanner (Phase 2) | Jeremy M. Cain",
   metaDescription:
-    "A Python TCP port scanner for authorized infrastructure-lab testing — IP validation, socket programming, service mapping, and timestamped CSV export.",
+    "A modular Python TCP port scanner with CLI controls, input validation, CSV reporting, and 27 automated tests — built for authorized lab use.",
 };
