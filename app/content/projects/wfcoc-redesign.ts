@@ -2,21 +2,21 @@ import type { ProjectCaseStudy } from "./types";
 
 export const wfcocRedesign: ProjectCaseStudy = {
   slug: "wfcoc-redesign",
-  title: "West Freeway Church of Christ — Website Redesign",
-  category: "Infrastructure & Web Operations",
+  title: "West Freeway Church of Christ — Infrastructure & Web Operations",
+  category: "Linux Infrastructure & Web Operations",
   status: "Beta",
   focusTracks: ["sysadmin", "infrastructure"],
   color: "blue",
   featuredRank: 2,
   featuredVariant: "secondary",
   summary:
-    "A volunteer-led, production-style nonprofit web platform for West Freeway Church of Christ, currently in beta on Ubuntu Server, Nginx, ASP.NET Core, and Umbraco CMS — with automated backups, recovery planning, and production cutover preparation, while the legacy site remains live during migration.",
-  featuredChips: ["Ubuntu", "Nginx", ".NET", "Umbraco", "Backups & Recovery"],
+    "Sole-owner Linux infrastructure and web operations for a nonprofit: a self-managed Ubuntu Server environment running Nginx, ASP.NET Core, and Umbraco CMS as a systemd-managed service, live today in a beta environment with automated nightly backups, documented recovery procedures, and layered incident response — while the existing legacy production site continues serving visitors until cutover.",
+  featuredChips: ["Ubuntu Server", "systemd", "Nginx", "Backups & Recovery", "Incident Response"],
 
   problem:
     "The legacy site lacked a documented accessibility testing process and presented accessibility limitations. Its content workflow prevented non-technical staff from publishing updates independently, and its mobile experience lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration while operating within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
   environment:
-    "Volunteer IT Support Specialist role covering the organization's website, livestream systems, and PBX phone system — the website rebuild is scoped and delivered independently while those other systems stay in daily operation.",
+    "Independent infrastructure and web operations role for the organization — covering the website, livestream systems, and PBX phone system — with the website rebuild scoped, deployed, and administered independently while those other systems stay in daily operation.",
   ownership:
     "Sole technical implementer for architecture, implementation, deployment, backup design, troubleshooting, and documentation, with current responsibility for the beta environment and expected operational ownership after production cutover.",
   architecture:
@@ -91,16 +91,16 @@ Automated Backup & Recovery Workflow`,
     },
   ],
 
-  technologies: [".NET 10", "ASP.NET Core", "Umbraco 18 CMS", "SQLite", "C#", "Razor Pages", "Bootstrap 5", "Playwright", "axe", "Ubuntu Server", "Nginx", "systemd", "GitHub", "Google Calendar", "YouTube"],
+  technologies: ["Ubuntu Server", "Nginx", "systemd", ".NET 10", "ASP.NET Core", "Umbraco 18 CMS", "SQLite", "C#", "Razor Pages", "Bootstrap 5", "Playwright", "axe", "GitHub", "Google Calendar", "YouTube"],
   github: "https://github.com/jcain5/wfcoc-redesign",
   bullets: [
-    "Developing a modern ASP.NET Core website for West Freeway Church of Christ to replace the existing Finalweb 2.0 CMS",
-    "Implemented 9 core pages with Bootstrap 5 responsive design and automated accessibility checks supporting progress toward WCAG 2.2 AA",
-    "Integrating Umbraco 18 CMS to enable non-technical staff to manage content independently",
-    "Architecture designed with clean separation of concerns: Pages, Services, ViewModels, and API Controllers",
     "Deployed to Ubuntu Server behind an Nginx reverse proxy as a systemd-managed beta service",
     "Implemented automated nightly database backups with integrity verification and retention management",
     "Diagnosed and resolved a reverse-proxy/application-service failure using layered health checks and service logs",
+    "Developing a modern ASP.NET Core website for West Freeway Church of Christ to replace the existing Finalweb 2.0 CMS",
+    "Integrating Umbraco 18 CMS to enable non-technical staff to manage content independently",
+    "Architecture designed with clean separation of concerns: Pages, Services, ViewModels, and API Controllers",
+    "Implemented 9 core pages with Bootstrap 5 responsive design and automated accessibility checks supporting progress toward WCAG 2.2 AA",
     "Wrote a Playwright browser test suite with axe accessibility checks for automated quality assurance",
   ],
 };

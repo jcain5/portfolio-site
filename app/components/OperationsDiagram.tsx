@@ -66,7 +66,7 @@ export default function OperationsDiagram() {
           <IconOperations className="w-5 h-5" />
         </span>
         <span className="text-[10px] font-mono font-semibold text-white leading-tight px-1">
-          Operations &amp; Support
+          Infrastructure Ops
         </span>
       </div>
     </div>

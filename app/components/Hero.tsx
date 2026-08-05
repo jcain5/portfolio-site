@@ -6,8 +6,8 @@ import { IconCalendar, IconUsers, IconMonitor } from "./icons";
 
 const stats = [
   { value: "8+", label: "Years Experience", Icon: IconCalendar },
-  { value: "1,000+", label: "Users Supported", Icon: IconUsers },
-  { value: "100%", label: "QA Score", Icon: IconMonitor },
+  { value: "1,000+", label: "Endpoints Administered", Icon: IconUsers },
+  { value: "3", label: "Certifications", Icon: IconMonitor },
 ];
 
 export default function Hero() {
@@ -21,21 +21,22 @@ export default function Hero() {
           <div className="lg:col-span-7">
             <Image src="/logo-mark-dark.png" alt="Jeremy Cain" width={32} height={40} className="h-10 w-auto mb-6" priority />
             <p className="font-mono text-[#38A6B8] text-xs sm:text-sm tracking-[0.2em] mb-6 uppercase">
-              IT Operations · Systems Administration · Identity
+              Systems Administration · Infrastructure · Identity &amp; Access
             </p>
             <h1 className="font-heading text-4xl sm:text-6xl font-semibold text-white mb-3 tracking-tight">
               Jeremy Cain
             </h1>
             <p className="text-lg sm:text-xl text-[#8FB4DC] font-medium mb-6">
-              IT Operations &amp; Systems Administration Professional
+              IT Operations &amp; Infrastructure Professional
             </p>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-4">
-              I support and build Windows, Linux, networking, virtualization, identity, and security
-              environments. Hands-on work includes Active Directory, Windows Server, Proxmox, pfSense,
-              Cisco switching, Wazuh, DNS, Group Policy, PowerShell, and enterprise troubleshooting.
+              I support and troubleshoot Windows, Linux, networking, virtualization, identity, and
+              security technologies in enterprise environments, while directly designing and
+              administering infrastructure in my lab and nonprofit work, including monitoring,
+              backups, recovery, automation, and incident response.
             </p>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-10">
-              Target roles: Systems Administrator, Infrastructure Support Engineer, IT Operations Analyst,
+              Target roles: Systems Administrator, Infrastructure Administrator, IT Operations Analyst,
               IAM Administrator, Platform Operations Engineer.
             </p>
 

@@ -12,7 +12,7 @@ export const enterpriseInfrastructureLab: ProjectCaseStudy = {
   featuredRank: 1,
   featuredVariant: "primary",
   summary:
-    "Designed and administer an enterprise-style infrastructure environment featuring Windows Server, Active Directory, Proxmox, DNS, Group Policy, PowerShell, pfSense, and enterprise security monitoring.",
+    "Design and administer a multi-host enterprise environment — Windows Server, Active Directory, Proxmox virtualization, Cisco/pfSense networking, and security monitoring (Wazuh, Suricata) — with PowerShell automation and documented configuration, validation, and troubleshooting procedures.",
   featuredChips: ["Windows Server", "Active Directory", "Proxmox", "PowerShell", "DNS", "Group Policy", "pfSense"],
 
   environment:
