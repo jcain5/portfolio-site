@@ -6,7 +6,7 @@ export const professionalEmailInfrastructure: ProjectCaseStudy = {
   category: "Email & DNS Infrastructure",
   color: "purple",
   focusTracks: ["sysadmin", "infrastructure"],
-  featuredRank: 3,
+  featuredRank: 4,
   featuredVariant: "secondary",
   summary:
     "Designed and secured a custom email platform for jeremymcain.com using Zoho Mail and Hostinger DNS. Configured MX, SPF, DKIM, and DMARC to deliver a secure, professional communication system.",

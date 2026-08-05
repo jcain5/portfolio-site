@@ -2,7 +2,8 @@ import type { ProjectCaseStudy } from "./types";
 
 export const wfcocRedesign: ProjectCaseStudy = {
   slug: "wfcoc-redesign",
-  title: "West Freeway Church of Christ — Infrastructure & Web Operations",
+  title: "Nonprofit Web Platform and Linux Operations",
+  subtitle: "Ubuntu, Nginx, ASP.NET Core, systemd, automated backups, incident response, and production-cutover planning.",
   category: "Linux Infrastructure & Web Operations",
   status: "Beta",
   focusTracks: ["sysadmin", "infrastructure"],
