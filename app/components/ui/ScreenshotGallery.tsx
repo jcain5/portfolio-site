@@ -59,7 +59,7 @@ export default function ScreenshotGallery({ screenshots }: { screenshots: Screen
                   alt={shot.alt}
                   fill
                   sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </button>
               <figcaption className="text-xs font-mono text-muted mt-2">{shot.caption}</figcaption>
