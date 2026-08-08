@@ -92,7 +92,7 @@ export default function Contact() {
         </div>
 
         <a
-          href="/Jeremy_Cain_Resume.docx"
+          href="/Jeremy_Cain_Jr_System_Administrator.pdf"
           download
           className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#2F75C8] text-white font-semibold rounded-lg hover:bg-[#265f9f] transition-colors"
         >

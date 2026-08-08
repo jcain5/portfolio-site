@@ -41,7 +41,7 @@ const tracks = [
 // per-track resume files don't exist yet (was previously a live 404).
 // TODO(dev): once available, point the "sysadmin" track at
 // public/Jeremy-Cain-Systems-Administration-Resume.pdf instead.
-const RESUME_HREF = "/Jeremy_Cain_Resume.docx";
+const RESUME_HREF = "/Jeremy_Cain_Jr_System_Administrator.pdf";
 
 export default function CareerFocus() {
   const ref = useScrollReveal<HTMLElement>(0.1);

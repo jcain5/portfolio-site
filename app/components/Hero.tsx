@@ -48,7 +48,7 @@ export default function Hero() {
                 View Projects
               </Link>
               <a
-                href="/Jeremy_Cain_Resume.docx"
+                href="/Jeremy_Cain_Jr_System_Administrator.pdf"
                 download
                 className="px-6 py-3 border border-slate-500 text-white text-sm font-semibold rounded-lg hover:border-slate-300 hover:bg-white/5 transition-colors"
               >
