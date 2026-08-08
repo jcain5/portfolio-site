@@ -1,6 +1,14 @@
+"use client";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/keystatic")) {
+    return null;
+  }
+
   return (
     <footer className="bg-navy px-6 py-8">
       <div className="container-grid flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">

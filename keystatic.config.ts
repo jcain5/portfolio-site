@@ -1,6 +1,6 @@
 import { config, fields, collection } from "@keystatic/core";
 
-const isGitHubMode = process.env.KEYSTATIC_STORAGE_KIND === "github";
+const isGitHubMode = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE_KIND === "github";
 
 const colorOptions = [
   { label: "Cyan", value: "cyan" },
