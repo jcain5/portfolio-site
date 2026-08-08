@@ -20,20 +20,12 @@ function LinkedInIcon() {
   );
 }
 
-function PhoneIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5.25c0-.83.67-1.5 1.5-1.5H7.5a1.5 1.5 0 0 1 1.44 1.08l1.02 3.53a1.5 1.5 0 0 1-.4 1.5l-1.62 1.62a12.06 12.06 0 0 0 5.23 5.23l1.62-1.62a1.5 1.5 0 0 1 1.5-.4l3.53 1.02a1.5 1.5 0 0 1 1.08 1.44v3a1.5 1.5 0 0 1-1.5 1.5C9.94 21.6 2.4 14.06 2.4 4.5" />
-    </svg>
-  );
-}
-
 export default function Contact() {
   const ref = useScrollReveal<HTMLElement>(0.2);
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("jeremy@jeremymcain.com");
+    navigator.clipboard.writeText("jobs@jeremymcain.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -46,13 +38,13 @@ export default function Contact() {
           Let&apos;s Connect
         </h1>
         <p className="text-body mb-12 max-w-lg mx-auto leading-relaxed">
-          I&apos;m currently seeking opportunities in Systems Administration, Enterprise Infrastructure,
-          Identity &amp; Access Management, and IT Operations — where my production enterprise experience
-          translates directly.
+          I&apos;m currently seeking roles in IT Operations, Systems Administration, Infrastructure Support,
+          and Identity &amp; Access Management where I can apply enterprise support experience, infrastructure
+          lab work, and hands-on systems administration projects.
         </p>
 
         {/* Contact options */}
-        <div className="grid sm:grid-cols-4 gap-4 mb-10">
+        <div className="grid sm:grid-cols-3 gap-4 mb-10">
           <button
             onClick={copyEmail}
             className="flex flex-col items-center gap-3 p-6 rounded-lg bg-canvas border border-border hover:border-[#2F75C8]/40 transition-colors"
@@ -64,7 +56,7 @@ export default function Contact() {
                 {copied ? (
                   <span className="text-[#2F75C8]">Copied!</span>
                 ) : (
-                  "jeremy@jeremymcain.com"
+                  "jobs@jeremymcain.com"
                 )}
               </div>
             </div>
@@ -95,17 +87,6 @@ export default function Contact() {
             <div>
               <div className="text-sm font-medium text-ink">GitHub</div>
               <div className="text-xs text-muted mt-0.5 font-mono">jcain5</div>
-            </div>
-          </a>
-
-          <a
-            href="tel:+18177163808"
-            className="flex flex-col items-center gap-3 p-6 rounded-lg bg-canvas border border-border hover:border-[#2F75C8]/40 transition-colors"
-          >
-            <span className="text-navy"><PhoneIcon /></span>
-            <div>
-              <div className="text-sm font-medium text-ink">Phone</div>
-              <div className="text-xs text-muted mt-0.5 font-mono">(817) 716-3808</div>
             </div>
           </a>
         </div>
