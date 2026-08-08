@@ -6,8 +6,9 @@
   "focusTracks": ["sysadmin", "infrastructure"],
   "skills": [
     "Incident Troubleshooting",
-    "Backup & Recovery Planning",
-    "Service Monitoring & Health Checks",
+    "Automated Backup Scheduling & Integrity Verification",
+    "Disaster Recovery Procedures",
+    "Service Health Validation",
     "Production Change Management",
     "Log Review & Root-Cause Analysis"
   ],

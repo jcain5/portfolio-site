@@ -93,8 +93,8 @@ export const jobs: Job[] = [
       "SSL/TLS", "Networking", "Audio/Visual Systems",
     ],
     highlights: [
-      "Architecting and developing a website on ASP.NET Core (.NET 10) and Umbraco 18 CMS, deployed to Ubuntu Server as a systemd-managed beta service behind an Nginx reverse proxy",
       "Own DNS and SSL/TLS certificate management for the organization's public web presence, alongside hosting operations for the beta deployment ahead of full production cutover",
+      "Architecting and developing a website on ASP.NET Core (.NET 10) and Umbraco 18 CMS, deployed to Ubuntu Server as a systemd-managed beta service behind an Nginx reverse proxy",
       "Manage day-to-day IT infrastructure — desktops, network connectivity, and livestream audio/visual systems — supporting weekly live production events",
       "Administer the organization's GoTo Connect PBX phone system and provide ongoing production support across all managed systems",
     ],

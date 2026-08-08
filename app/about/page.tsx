@@ -7,7 +7,7 @@ import { useScrollReveal } from "../hooks/useScrollReveal";
 const roles = [
   { title: "Systems Administrator", index: "01", color: "blue" as const },
   { title: "IT Operations Analyst", index: "02", color: "cyan" as const },
-  { title: "Infrastructure Support Engineer", index: "03", color: "slate" as const },
+  { title: "Infrastructure Administrator", index: "03", color: "slate" as const },
   { title: "Microsoft 365 Administrator", index: "04", color: "indigo" as const },
   { title: "Identity & Access Management Analyst", index: "05", color: "amber" as const },
 ];
@@ -49,22 +49,23 @@ function Bio() {
             </h1>
             <div className="space-y-4 text-body leading-relaxed">
               <p>
-                I&apos;m an IT Systems professional with 8+ years of hands-on experience operating
-                at enterprise scale — supporting Microsoft 365, Azure AD, Active Directory, VMware
-                Horizon, Citrix, and mobile device management for organizations with thousands of users.
+                I&apos;m an IT operations and infrastructure professional with 8+ years of experience
+                supporting and troubleshooting enterprise environments involving Active Directory,
+                Microsoft 365, Entra ID, VMware Horizon, Citrix, and endpoint and mobile device
+                management for organizations with thousands of users.
               </p>
               <p>
-                Working alongside enterprise infrastructure has driven a deep curiosity for what runs
-                underneath — the domain controllers, the firewall rules, the PowerShell automation
-                that eliminates repetitive work, and the security policies that keep systems hardened.
-                I&apos;ve been building and studying that layer on my own through home lab projects and
-                formal education.
+                That enterprise experience is reinforced by infrastructure I directly design and
+                administer: domain controllers, Group Policy, firewall rules, PowerShell automation,
+                network segmentation, and security monitoring in my Enterprise Infrastructure Lab,
+                along with the Linux server, backups, deployment process, and incident response
+                supporting a nonprofit web platform.
               </p>
               <p>
-                I&apos;m actively building toward infrastructure and identity-focused operations
-                roles — backed by a BS in Network Operations &amp; Security (WGU), a CCNA, CompTIA
-                Security+, AZ-900, hands-on home lab work with AD DS, pfSense, Proxmox, and Linux,
-                and an in-progress M.S. in Cybersecurity &amp; Information Assurance at WGU.
+                I hold a CCNA, CompTIA Security+, and Microsoft Azure Fundamentals certification, as
+                well as a B.S. in Network Operations and Security from WGU. I&apos;m also completing
+                an M.S. in Cybersecurity and Information Assurance, building credentials alongside
+                practical systems administration, automation, and infrastructure work.
               </p>
             </div>
 
@@ -80,7 +81,7 @@ function Bio() {
           <div className="grid grid-cols-2 gap-4">
             {[
               { title: "Identity & Access", desc: "Entra ID, MFA Troubleshooting, RBAC, Identity Lifecycle" },
-              { title: "Security", desc: "Security+, CCNA, MFA Troubleshooting, IDS/IPS" },
+              { title: "Security", desc: "Security+, CCNA, Wazuh/Suricata Monitoring, IDS/IPS" },
               { title: "Automation", desc: "PowerShell scripting, SCCM deployment, GPOs" },
               { title: "Networking", desc: "DNS, DHCP, VPN, pfSense, SonicWall, Fortinet" },
             ].map((card) => (

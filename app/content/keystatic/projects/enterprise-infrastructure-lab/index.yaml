@@ -20,7 +20,7 @@
   "featuredRank": 1,
   "featuredVariant": "primary",
   "displayOrder": 0,
-  "summary": "Designed and administer an enterprise-style infrastructure environment featuring Windows Server, Active Directory, Proxmox, DNS, Group Policy, PowerShell, pfSense, and enterprise security monitoring.",
+  "summary": "Design and administer a multi-host enterprise environment — Windows Server, Active Directory, Proxmox virtualization, Cisco/pfSense networking, and security monitoring (Wazuh, Suricata) — with PowerShell automation and documented configuration, validation, and troubleshooting procedures.",
   "featuredChips": ["Windows Server", "Active Directory", "Proxmox", "PowerShell", "DNS", "Group Policy", "pfSense"],
   "environment": "A Dell PowerEdge R720XD running Proxmox VE as the virtualization host, with Cisco Catalyst switching and a pfSense firewall providing VLAN-segmented network infrastructure.",
   "architecture": "Cisco Catalyst switching and VLAN segmentation route traffic through a pfSense firewall enforcing inter-VLAN access policy, with DHCP, Pi-hole, and Unbound handling DNS resolution for the segmented network.",

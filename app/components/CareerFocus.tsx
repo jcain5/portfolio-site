@@ -12,7 +12,7 @@ const tracks = [
     title: "Systems Administration",
     color: "blue" as const,
     description:
-      "Active Directory, Windows Server, Group Policy, identity lifecycle management, and enterprise desktop operations.",
+      "Active Directory, Windows Server, Group Policy, identity lifecycle management, and enterprise endpoint administration.",
     skills: ["Active Directory", "Windows Server", "GPO", "PowerShell", "Intune MDM"],
   },
   {
@@ -22,17 +22,17 @@ const tracks = [
     title: "Identity & Access Management",
     color: "cyan" as const,
     description:
-      "Identity lifecycle support, MFA troubleshooting, and role-based access control across enterprise directory services.",
+      "Identity lifecycle management, MFA troubleshooting, and role-based access control across enterprise directory services.",
     skills: ["Entra ID", "MFA Troubleshooting", "RBAC", "Identity Lifecycle", "Privilege Tiering"],
   },
   {
     id: "infrastructure" as FocusId,
     Icon: IconMonitor,
     iconColor: "text-slate-300",
-    title: "IT Operations & Infrastructure Support",
+    title: "Infrastructure & Platform Operations",
     color: "slate" as const,
     description:
-      "Cloud platform support, network security, virtualization, and Linux infrastructure.",
+      "Virtualization, network security, and Linux infrastructure administration.",
     skills: ["VMware Horizon", "Proxmox VE", "pfSense", "VLANs", "Ubuntu"],
   },
 ];

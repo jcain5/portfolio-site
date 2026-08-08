@@ -17,7 +17,7 @@ export default function Experience() {
             Enterprise Infrastructure Lab
           </Link>
           , where I design, build, and administer the same Windows Server, identity, virtualization, and networking
-          systems I support professionally.
+          systems I operate professionally.
         </>
       }
       tone="alt"

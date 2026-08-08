@@ -12,7 +12,7 @@ export default function Projects({ projects }: { projects: ProjectCaseStudy[] })
       id="projects"
       eyebrow="PROJECTS"
       title="Case Studies"
-      intro="Hands-on infrastructure, identity, and systems work — built in a self-managed lab and applied in real enterprise environments."
+      intro="Networking, automation, and software development evidence that supports the infrastructure and systems administration work above."
       headingLevel="h1"
       threshold={0.05}
     >
@@ -28,11 +28,6 @@ export default function Projects({ projects }: { projects: ProjectCaseStudy[] })
             />
           );
         })}
-      </div>
-      <div className="mt-8 p-5 rounded-lg border border-dashed border-border-strong text-center">
-        <p className="text-muted text-sm">
-          More projects in progress — PowerShell automation scripts, Azure sandbox labs, and LetsDefend SOC Analyst path.
-        </p>
       </div>
     </Section>
   );
