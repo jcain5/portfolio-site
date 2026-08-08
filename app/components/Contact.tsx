@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import ContactForm from "./ContactForm";
 
 function MailIcon() {
   return (
@@ -116,6 +117,18 @@ export default function Contact() {
         >
           <span>Download Resume</span>
         </a>
+      </div>
+
+      <div className="max-w-3xl mx-auto mt-16 pt-16 border-t border-border">
+        <h2 className="font-heading text-2xl font-semibold text-ink mb-2 text-center">Send a Message</h2>
+        <p className="text-body mb-10 text-center">
+          Prefer email? Reach me directly at{" "}
+          <a href="mailto:jobs@jeremymcain.com" className="text-[#2F75C8] font-medium underline">
+            jobs@jeremymcain.com
+          </a>
+          .
+        </p>
+        <ContactForm />
       </div>
     </section>
   );
