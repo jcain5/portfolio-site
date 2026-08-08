@@ -1,0 +1,15 @@
+{
+  "label": "Technical Documentation",
+  "description": "Architecture notes, runbooks, and validation records written for repeatability and handoff — not just describing what was built, but how to run and recover it.",
+  "color": "indigo",
+  "icon": "📝",
+  "focusTracks": [],
+  "skills": [
+    "Architecture & Runbook Documentation",
+    "Case-Study Writing",
+    "Change & Incident Records",
+    "Validation & Test Documentation",
+    "Staff Handoff Documentation"
+  ],
+  "displayOrder": 7
+}

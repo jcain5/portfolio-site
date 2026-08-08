@@ -1,0 +1,16 @@
+{
+  "label": "Infrastructure & Virtualization",
+  "description": "Hypervisor administration and physical server infrastructure, from enterprise virtualization platforms to a self-managed home lab.",
+  "color": "purple",
+  "icon": "💻",
+  "focusTracks": ["infrastructure", "sysadmin"],
+  "skills": [
+    "Proxmox VE",
+    "VMware Horizon",
+    "Citrix Virtual Desktops",
+    "Cloud PC (Windows 365)",
+    "VirtualBox",
+    "Dell PowerEdge Server Hardware"
+  ],
+  "displayOrder": 1
+}

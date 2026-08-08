@@ -1,0 +1,16 @@
+{
+  "label": "Security Foundations",
+  "description": "Practical security awareness applied through firewall policy, network isolation, and endpoint/network monitoring tooling.",
+  "color": "rose",
+  "icon": "🛡️",
+  "focusTracks": ["infrastructure"],
+  "skills": [
+    "CompTIA Security+",
+    "Wazuh Endpoint Monitoring",
+    "Suricata IDS/IPS",
+    "Firewall Rule Design",
+    "Network Isolation (VLAN)",
+    "Zero-Trust Principles"
+  ],
+  "displayOrder": 6
+}

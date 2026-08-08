@@ -1,0 +1,16 @@
+{
+  "label": "Automation & Scripting",
+  "description": "PowerShell and Python scripting for account provisioning, endpoint management, and infrastructure validation.",
+  "color": "slate",
+  "icon": "⚙️",
+  "focusTracks": ["sysadmin", "iam"],
+  "skills": [
+    "PowerShell Scripting",
+    "Python Scripting",
+    "Account Provisioning Automation",
+    "Microsoft Intune MDM",
+    "BlackBerry UEM / AirWatch",
+    "SCCM Task Sequences"
+  ],
+  "displayOrder": 4
+}

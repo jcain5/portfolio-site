@@ -1,0 +1,24 @@
+{
+  "label": "Systems Administration",
+  "description": "Windows Server, Active Directory, Group Policy, and Linux service administration across enterprise support and independent lab environments.",
+  "color": "cyan",
+  "icon": "🏢",
+  "focusTracks": ["sysadmin", "infrastructure"],
+  "skills": [
+    "Active Directory Domain Services",
+    "Windows Server 2022",
+    "Group Policy (GPO)",
+    "DNS Server Management",
+    "DHCP Server Management",
+    "IIS Web Server",
+    "Remote Desktop Services",
+    "Server Roles & Features",
+    "Linux Service Administration (systemd)",
+    "Microsoft 365 Admin Center",
+    "Exchange Online",
+    "SharePoint Online",
+    "Microsoft Teams Admin",
+    "ServiceNow / BMC Remedy"
+  ],
+  "displayOrder": 0
+}

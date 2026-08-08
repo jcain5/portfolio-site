@@ -2,10 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { colors } from "../../lib/colors";
-import { projects, getProjectBySlug } from "../../lib/projects";
+import { getAllProjects, getProjectBySlug } from "../../lib/projects";
 import ScreenshotGallery from "../../components/ui/ScreenshotGallery";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const projects = await getAllProjects();
   return projects.map((p) => ({ slug: p.slug }));
 }
 
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
 
   return {
@@ -30,7 +31,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) notFound();
 
   const c = colors[project.color];
@@ -298,21 +299,29 @@ export default async function ProjectDetailPage({
               <p className="text-body leading-relaxed">{project.lessonsLearned}</p>
             </div>
           )}
-          {project.knowledgeBase && (
+          {project.relatedDocumentation && project.relatedDocumentation.length > 0 && (
             <div className="p-5 rounded-lg border border-border">
-              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Related Documentation</h2>
-              <Link
-                href={`/documentation/${project.knowledgeBase.slug}`}
-                className={`text-sm font-mono ${c.label} hover:underline`}
-              >
-                {project.knowledgeBase.title} →
-              </Link>
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Related Documentation</h2>
+              <ul className="space-y-2">
+                {project.relatedDocumentation.map((doc) => (
+                  <li key={doc.slug}>
+                    <Link
+                      href={`/documentation/${doc.slug}`}
+                      className={`text-sm font-mono ${c.label} hover:underline`}
+                    >
+                      {doc.title} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
-          {project.outcome && (
+          {project.outcome && project.outcome.length > 0 && (
             <div className="p-5 rounded-lg bg-canvas border border-border">
               <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-2">Outcome</h2>
-              {Array.isArray(project.outcome) ? (
+              {project.outcome.length === 1 ? (
+                <p className="text-body leading-relaxed">{project.outcome[0]}</p>
+              ) : (
                 <ul className="space-y-2">
                   {project.outcome.map((item, i) => (
                     <li key={i} className="flex gap-2.5 text-sm text-body leading-relaxed">
@@ -321,8 +330,6 @@ export default async function ProjectDetailPage({
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-body leading-relaxed">{project.outcome}</p>
               )}
             </div>
           )}

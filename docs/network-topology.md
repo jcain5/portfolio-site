@@ -1,0 +1,92 @@
+# Network Topology — Enterprise Infrastructure Lab
+
+**Classification:** Production-style home lab. This design and its validation were performed in a personal lab environment and are not deployed in a production or employer-owned network.
+
+**Last updated:** 2026-07-09
+
+## 1. Overview
+
+The lab network is a segmented, five-VLAN topology built around a single perimeter firewall, a managed access/trunk switch, and a virtualization host. It exists to practice the same segmentation, firewall-policy, and IDS/IPS patterns used in enterprise networks — trust-tiered VLANs, default-deny inter-VLAN routing, and centralized detection — at a scale a single rack can support.
+
+**Core components:**
+
+| Component | Role |
+|---|---|
+| pfSense | Perimeter firewall and router-on-a-stick for all inter-VLAN routing; hosts the Suricata IDS/IPS package |
+| Suricata | Network intrusion detection/prevention, running as a pfSense package against WAN- and DMZ-facing interfaces |
+| Cisco 3750X | Layer 2 access switch; 802.1Q trunk to both pfSense and the Proxmox host, VLAN access ports for physical devices |
+| Dell R720XD (Proxmox VE) | Virtualization host; a VLAN-aware Linux bridge presents tagged traffic from the trunk to VMs on the correct VLAN |
+
+## 2. Topology Diagram
+
+```mermaid
+flowchart TB
+    WAN((Internet / WAN))
+    FW["pfSense Firewall\n+ Suricata IDS/IPS"]
+    SW["Cisco 3750X\n802.1Q Trunk"]
+    HOST["Dell R720XD\nProxmox VE Host"]
+
+    WAN --- FW
+    FW ---|"Trunk: VLANs 10/20/30/40/50"| SW
+    SW ---|"Trunk: VLANs 10/20/30/40/50"| HOST
+
+    SW --- V10["VLAN 10 — Management\n172.16.10.0/24"]
+    SW --- V20["VLAN 20 — Servers\n172.16.20.0/24"]
+    SW --- V30["VLAN 30 — Workloads\n172.16.30.0/24"]
+    SW --- V40["VLAN 40 — Security\n172.16.40.0/24"]
+    SW --- V50["VLAN 50 — DMZ\n172.16.50.0/24"]
+```
+
+pfSense is the sole Layer 3 gateway (router-on-a-stick): it holds one sub-interface per VLAN over a single trunked link to the 3750X, and every inter-VLAN packet — including VLAN-to-VLAN traffic that never leaves the switch physically — is routed through and inspected by the firewall by disabling local inter-VLAN switching at Layer 2 and forcing routing decisions to pfSense. The 3750X trunks the same VLAN set to the Proxmox host, where a VLAN-aware bridge (`vmbr0` with VLAN awareness enabled) tags traffic per VM NIC so a single physical trunk can back all five segments without one vNIC per VLAN per VM.
+
+## 3. VLAN / IP Address Table
+
+| VLAN ID | Name | Subnet | Gateway | Typical Hosts |
+|---|---|---|---|---|
+| 10 | Management | 172.16.10.0/24 | 172.16.10.1 | Switch SVI, Proxmox host management NIC, pfSense LAN management, out-of-band/iDRAC |
+| 20 | Servers | 172.16.20.0/24 | 172.16.20.1 | Windows Server 2022 Domain Controller, core infrastructure VMs |
+| 30 | Workloads | 172.16.30.0/24 | 172.16.30.1 | Domain-joined test clients (Windows/Linux), general-purpose lab VMs |
+| 40 | Security | 172.16.40.0/24 | 172.16.40.1 | Suricata management interface, centralized log/alert collector |
+| 50 | DMZ | 172.16.50.0/24 | 172.16.50.1 | Internet/lab-facing test services (reverse proxy, sample web app) |
+
+## 4. Traffic-Flow Matrix
+
+Default policy on every pfSense interface is **deny all**; the rules below are the explicit allows layered on top. Because pfSense is a stateful firewall, only the rule permitting the *initiating* direction is listed — return traffic for an established connection is permitted automatically and does not need a mirrored rule.
+
+| Source → Destination | Allowed | Denied |
+|---|---|---|
+| Management → Servers | SSH (22), RDP (3389), WinRM (5985/5986), HTTPS (443) — administrative access | Everything not explicitly listed |
+| Management → Workloads | SSH (22), RDP (3389) — support/admin access | Everything else |
+| Management → Security | HTTPS (443), SSH (22) — Suricata/log console access | Everything else |
+| Management → DMZ | SSH (22), HTTPS (443) — limited administrative access only | Everything else |
+| Servers → Workloads | DNS (53/tcp+udp), Kerberos (88/tcp+udp), LDAP (389), LDAPS (636), SMB (445) — AD services served to clients | Servers → Management (no server-initiated admin traffic); Servers → DMZ |
+| Servers → Security | Syslog (514/udp) — centralized logging | Servers → DMZ |
+| Workloads → Servers | DNS, Kerberos, LDAP/LDAPS, SMB — domain join, authentication, Group Policy/SYSVOL | Workloads → Management; Workloads → Security; Workloads → DMZ |
+| Security → all VLANs | Passive monitoring/alerting traffic only; limited return access to Management console | Security → Internet (no general outbound egress) |
+| DMZ → Internet | HTTP/HTTPS (80/443) outbound only | DMZ → Management, Servers, Workloads, Security (fully isolated inbound-to-internal) |
+| All internal VLANs → Internet | Outbound allowed, ports scoped to what each segment needs (e.g., patching) | — |
+
+## 5. Security Rationale
+
+- **Default-deny, explicit-allow.** Every VLAN pair is closed by default; the matrix above is the complete allow-list. This keeps the effective attack surface equal to documented, intentional traffic rather than "whatever wasn't explicitly blocked."
+- **Trust-tiered segmentation.** VLANs map to trust level, not just function: Management (highest trust, broadest reach) → Servers/Workloads (mutual, protocol-scoped trust for AD operations) → Security (read/monitor-only, minimal egress) → DMZ (lowest trust, fully isolated from internal segments in both directions).
+- **DMZ isolation is bidirectional.** The DMZ can reach the internet but nothing internal, and nothing internal can reach into the DMZ except a narrow Management path. A compromised DMZ host has no path back into Servers, Workloads, or Security — containing blast radius is the point of a DMZ, not just its outbound restriction.
+- **Router-on-a-stick keeps all inter-VLAN traffic firewall-visible.** Because the 3750X does not route between VLANs itself, there is no path between segments that bypasses pfSense's rule evaluation and Suricata's inspection.
+- **Suricata deployment is asymmetric by design.** WAN- and DMZ-facing interfaces run Suricata inline (IPS mode, actively blocking matched signatures) since that boundary faces the least-trusted traffic. Internal interfaces (Management, Servers, Workloads, Security) run Suricata in IDS/alert-only mode. This is a deliberate availability trade-off for a lab: inline IPS on internal segments risks false-positive-driven outages of legitimate AD/admin traffic, which isn't an acceptable risk to accept without a longer signature-tuning period than this lab has had.
+- **Explicit logged deny (cleanup) rule.** Rather than relying solely on pfSense's implicit default-deny, an explicit, logged deny rule sits at the bottom of each interface ruleset so blocked attempts are visible in the firewall log for troubleshooting and detection, not just silently dropped.
+
+## 6. Validation
+
+- Confirmed 802.1Q tagging end-to-end: verified the 3750X trunk's allowed-VLAN list (`show interfaces trunk`), confirmed the Proxmox VLAN-aware bridge presents the correct tag per VM NIC, and confirmed each pfSense VLAN sub-interface (`parent.<VLAN ID>`) received its expected gateway address.
+- Verified inter-VLAN isolation empirically: from a Workloads test host, confirmed `ping`/`nmap` against Security and DMZ address ranges failed by default, then confirmed the specific AD-service ports (DNS/Kerberos/LDAP/SMB) to Servers succeeded only after the corresponding allow rules were added — with the intermediate denies visible in the pfSense firewall log.
+- Verified statefulness: confirmed a single allow rule (e.g., Management → Servers RDP) permits the full two-way session by inspecting the pfSense state table, with no separate reverse-direction rule required.
+- Verified Suricata alerting using known, benign test signatures (ET "test" rule category and a controlled port scan against a monitored interface) and confirmed matching alerts appeared in the Suricata alert log.
+- Verified the DMZ's inbound isolation by attempting connections from Servers and Workloads test hosts toward the DMZ subnet and confirming all were blocked.
+
+## 7. Limitations
+
+- **Single points of failure.** One pfSense instance (no CARP/HA pair) and one Cisco 3750X (no redundant switch or uplink) — a hardware or software fault on either takes the whole lab network down. This is an accepted lab trade-off, not a production-viable design.
+- **Suricata is lab-scale, not production-tuned.** The ruleset (a subset of ET Open) has not been tuned against sustained production-level traffic volume or a real threat feed; false-positive/false-negative rates have not been formally measured.
+- **DMZ has no real external exposure.** The DMZ segment is not reachable from the public internet in this lab, so validation demonstrates internal segmentation and containment, not perimeter defense against live external attackers.
+- **No periodic rule audit process.** The traffic-flow matrix reflects the intended design at time of writing; there is no recurring review process to catch rule drift the way a change-management process would in a managed environment.
+- **No formal capacity/throughput testing.** VLAN and firewall behavior has been validated functionally (does traffic pass or get blocked as designed), not load-tested under realistic bandwidth or connection-count pressure.

@@ -1,0 +1,88 @@
+---
+{
+  "title": "Active Directory Design — Enterprise Infrastructure Lab",
+  "category": "Architecture Note",
+  "classification": "Production-style home lab. This design and its validation were performed in a personal lab environment and are not deployed in a production or employer-owned directory.",
+  "goal": "Tier-oriented Active Directory OU design, GPO inventory, and validation procedures for the Enterprise Infrastructure Lab domain (jeremycain.org).",
+  "steps": [],
+  "validationChecklist": [],
+  "references": [],
+  "relatedProjects": ["enterprise-infrastructure-lab"],
+  "lastUpdated": "2026-07-09"
+}
+---
+**Domain:** `jeremycain.org`
+
+## 1. Overview
+
+The domain uses a tier-oriented OU structure to keep privileged identities, infrastructure, and standard users administratively and logically separate, so Group Policy, delegation, and credential-exposure controls can target each tier independently rather than relying on one flat structure. It's deliberately modeled on the same tiering logic (Tier 0 / privileged vs. lower-trust assets) used in the network segmentation design — Admin Workstations are expected to live on VLAN 10 (Management), Servers OU computer objects on VLAN 20 (Servers), and Standard Workstations on VLAN 30 (Workloads).
+
+## 2. OU Structure
+
+```
+jeremycain.org
+├── Tier 0
+│   ├── Domain Controllers        (administrative node — see note below)
+│   ├── Privileged Accounts
+│   └── Service Accounts
+├── Servers
+│   ├── Infrastructure Servers
+│   ├── File Servers
+│   └── Application Servers
+├── Workstations
+│   ├── Admin Workstations
+│   └── Standard Workstations
+├── Users
+│   ├── IT Users
+│   └── Standard Users
+├── Groups
+└── Disabled Objects
+```
+
+**Note on Domain Controllers:** DC computer objects remain in the built-in `Domain Controllers` container rather than being physically relocated under `Tier 0`. Moving DC computer objects out of that container is not supported practice — it breaks the binding of the *Default Domain Controllers Policy* and the assumptions several DC-aware tools make about object location. `Tier 0 \ Domain Controllers` in the tree above is an administrative/documentation grouping: it's where this design records DC-tier ownership and where the DC hardening GPO (§3.2) is described, not a container DCs are moved into.
+
+**Note on Groups vs. Tier 0:** Security groups referenced throughout this design (e.g., *Privileged Accounts*, *Service Accounts*) are group objects that live in the `Groups` OU — not in `Tier 0`. OU placement controls GPO application and delegation; group membership controls authorization (ACLs, GPO security filtering, Deny Log On lists). Keeping the two separate avoids a common design mistake where OU structure is used as a stand-in for access control.
+
+**Disabled Objects** has no GPOs linked to it by design. Disabled user and computer objects are moved here immediately as part of offboarding/decommissioning, both to keep them out of any live policy and out of active-object counts, pending eventual deletion after a retention window.
+
+## 3. GPO Inventory
+
+| # | GPO Name | Linked To | Scope | Inheritance | Security Filtering | Purpose |
+|---|---|---|---|---|---|---|
+| 1 | Default Domain Policy | Domain root (`jeremycain.org`) | Computer only | Applies domain-wide to every OU | Authenticated Users (default) | **Account policies only** — password policy, account lockout policy, Kerberos ticket policy. Intentionally has no security-baseline or preference settings. |
+| 2 | Domain Controller Baseline | Built-in `Domain Controllers` container | Computer only | Not inherited from `Tier 0` (built-in container is linked independently) | Domain Controllers group (default) | DC-specific audit policy (logon, account management, directory service access, privilege use), User Rights Assignment, Windows Firewall, LDAP signing/channel binding, SMBv1 disabled. |
+| 3 | Server Security Baseline | `Servers` | Computer only | Inherited by Infrastructure/File/Application Servers | Authenticated Users | Common hardening floor for every server role: firewall baseline, legacy protocols disabled, local Administrators group restricted (LAPS-managed), audit policy. |
+| 4 | File Server Hardening | `Servers \ File Servers` | Computer only | Inherits #3, adds role-specific settings | Authenticated Users | SMB signing required, SMBv1 disabled (explicit), access-based enumeration, quota policy reference. |
+| 5 | Application Server Hardening | `Servers \ Application Servers` | Computer only | Inherits #3 | Authenticated Users | Interactive logon restricted to Service Accounts + IT Users; application-hosting hardening notes; enhanced service-account auditing. |
+| 6 | Admin Workstation Restrictions | `Workstations \ Admin Workstations` | Computer only | Not inherited (`Workstations` has no directly linked GPO) | Authenticated Users | Privileged Access Workstation-style controls: logon allow-list limited to Privileged Accounts + IT Users, PowerShell Script Block/process-creation logging, application control baseline. |
+| 7 | Standard Workstation Restrictions | `Workstations \ Standard Workstations` | Computer only | Not inherited | Authenticated Users | Deny Log On Locally / Deny Log On Through RDP for the *Privileged Accounts* and *Service Accounts* groups; Defender baseline; no local admin rights for standard users. |
+| 8 | Standard User Environment | `Users \ Standard Users` | User only | Not inherited | Authenticated Users | Folder redirection, restricted Control Panel, standard desktop/Start Menu baseline. |
+| 9 | IT User Environment | `Users \ IT Users` | User only | Not inherited | Authenticated Users | RSAT tool access, relaxed Control Panel restrictions, MMC snap-in permissions appropriate to IT staff. |
+| 10 | Privileged & Service Account Restrictions | `Tier 0` | User only | Inherited by Privileged Accounts + Service Accounts sub-OUs | Authenticated Users | Account-side controls (MFA/smart-card requirement flags, logon-hours restriction). The interactive-logon **deny** enforcement itself is defined in GPOs #6/#7 above, since Deny Log On rights are Computer Configuration settings that must be scoped to the target computers, not the account's OU. |
+
+## 4. Design Rationale
+
+- **Tiering follows Microsoft's tiered administration model, scoped to lab size.** Tier 0 (DCs, privileged accounts, service accounts) is isolated from Tier 1/2 assets so that credential theft on a lower-trust workstation can't be used to reach domain-admin-equivalent rights. This shows up concretely as: Admin Workstations are the only computers Privileged Accounts are *allowed* to log on to interactively (#6), and Standard Workstations explicitly *deny* that same logon (#7) — an allow-list and a deny-list enforcing the same boundary from both directions.
+- **GPO layering uses inheritance instead of duplicating settings.** `Server Security Baseline` (#3) sets the common floor once at the `Servers` parent OU; File Server and Application Server GPOs (#4, #5) only add what's specific to their role. This keeps the baseline in one place to update rather than three.
+- **Default Domain Policy is deliberately narrow.** Per Microsoft guidance, the Default Domain Policy is left to do only what *must* be domain-wide — account, lockout, and Kerberos policy — because those settings are only effective when set at the domain root. Every other setting lives in a purpose-specific GPO linked closer to what it affects, so nothing is fighting for precedence with the domain-wide account policy.
+- **OU structure and security groups are deliberately not the same mechanism.** Placing a user in `Tier 0 \ Privileged Accounts` puts them in scope for GPOs linked there; it does not, by itself, grant or restrict access anywhere. Access control runs through the security groups in the `Groups` OU (referenced in Deny Log On lists and GPO security filtering). Keeping these separate means moving someone's OU for administrative/reporting reasons never accidentally changes what they can access, and vice versa.
+- **User and Computer scope are split deliberately.** GPOs 3–7 are Computer Configuration only (they describe what a machine allows, regardless of who's logged in); GPOs 8–10 are User Configuration or account-attribute-only (they describe the account's environment/restrictions, regardless of which machine it's used from). This avoids the common mistake of trying to enforce a computer-side restriction (like Deny Log On) from a user-side GPO, where it simply won't apply.
+
+## 5. Validation
+
+- Ran **Group Policy Modeling** (GPMC) for a representative object in every leaf OU (a Standard User, an IT User, a Standard Workstation computer object, an Admin Workstation computer object, a File Server, and a Domain Controller) and confirmed the Resultant Set of Policy matched the inventory in §3 — including that inherited baseline GPOs applied alongside role-specific ones.
+- Ran `gpresult /h` on live test objects and confirmed:
+  - A Standard Workstation test computer received #1, #3-derived-inherited-N/A (workstations aren't under Servers), and #7, and nothing from #6.
+  - An Admin Workstation test computer received #1 and #6, and confirmed #7 did **not** apply.
+- Verified security filtering by removing a test account from the *Privileged Accounts* group and confirming, via `gpresult`, that GPO #10 no longer appeared in that account's applied policy list.
+- Verified Deny Log On enforcement directly: attempted an interactive logon to a Standard Workstation test machine using a *Service Accounts*-group credential and confirmed it was denied, with the corresponding logon-denial event (Event ID 4625) logged with the expected reason code.
+- Confirmed, via the Group Policy Inheritance tab in GPMC, that no GPO other than #1 defines password, lockout, or Kerberos policy anywhere in the domain — ruling out silent precedence conflicts with the Default Domain Policy.
+
+## 6. Limitations
+
+- **Single domain, single forest.** No multi-domain or cross-forest trust scenarios are represented; this design doesn't address trust-boundary considerations that a larger enterprise would need.
+- **No Fine-Grained Password Policies (PSOs).** Account policy is domain-wide via the Default Domain Policy; a more mature tiering implementation would typically apply a stricter PSO to Tier 0 accounts specifically. Noted here as a gap, not implemented.
+- **Partial tiering, not full ESAE-style isolation.** Admin Workstation separation is enforced through GPO logon restrictions layered on top of VLAN placement, not dedicated hardware, network-level PAW isolation, or separate authentication forests.
+- **LAPS is referenced, not independently documented.** Local Administrator Password Solution is assumed as the mechanism behind "local Administrators group restricted" in the Server Security Baseline, but its own configuration and validation aren't covered by this document.
+- **No formal change-management process.** GPO and OU changes are tracked informally through version-controlled documentation rather than a ticketed/approved change process.
+- **No formal benchmark mapping.** Baseline GPO settings approximate common hardening practice; they have not been checked line-by-line against a published standard such as a CIS Benchmark or the Microsoft Security Compliance Toolkit baselines.

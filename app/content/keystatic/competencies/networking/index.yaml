@@ -1,0 +1,17 @@
+{
+  "label": "Networking",
+  "description": "TCP/IP fundamentals, VLAN segmentation, and firewall administration, validated through both enterprise-style lab infrastructure and hands-on scripting.",
+  "color": "emerald",
+  "icon": "🌐",
+  "focusTracks": ["infrastructure"],
+  "skills": [
+    "TCP/IP & DNS/DHCP",
+    "pfSense Firewall & VLANs",
+    "Cisco Switching & Routing",
+    "VLAN Segmentation",
+    "VPN (OpenVPN)",
+    "CCNA Certified",
+    "TCP Socket Programming & Port Scanning"
+  ],
+  "displayOrder": 3
+}

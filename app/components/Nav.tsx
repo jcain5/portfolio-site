@@ -10,6 +10,7 @@ const links = [
   { label: "Experience", href: "/experience" },
   { label: "Lab", href: "/projects/enterprise-infrastructure-lab" },
   { label: "Projects", href: "/projects" },
+  { label: "Docs", href: "/documentation" },
   { label: "Resume", href: "/resume" },
   { label: "Certs", href: "/certifications" },
   { label: "Contact", href: "/contact" },
