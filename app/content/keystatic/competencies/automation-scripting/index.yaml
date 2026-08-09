@@ -1,16 +1,17 @@
 {
   "label": "Automation & Scripting",
-  "description": "PowerShell and Python scripting for account provisioning, endpoint management, and infrastructure validation.",
+  "description": "PowerShell and Python projects focused on infrastructure validation, repeatable troubleshooting, endpoint-support workflows, and operational documentation.",
   "color": "slate",
   "icon": "⚙️",
   "focusTracks": ["sysadmin", "iam"],
   "skills": [
     "PowerShell Scripting",
     "Python Scripting",
-    "Account Provisioning Automation",
+    "Infrastructure Validation",
+    "Active Directory Administration",
     "Microsoft Intune MDM",
     "BlackBerry UEM / AirWatch",
-    "SCCM Task Sequences"
+    "SCCM / Endpoint Deployment Support"
   ],
   "displayOrder": 4
 }
