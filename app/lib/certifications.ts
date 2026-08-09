@@ -11,6 +11,14 @@ export interface Certification {
 
 export const certs: Certification[] = [
   {
+    name: "Cisco CCNA",
+    issuer: "Cisco",
+    abbr: "CCNA",
+    color: "blue",
+    category: "Networking",
+    credly: "https://www.credly.com/badges/fab75ec6-9657-4558-93f8-af2d95af50d1/public_url",
+  },
+  {
     name: "CompTIA Security+",
     issuer: "CompTIA",
     abbr: "SEC+",
@@ -19,12 +27,20 @@ export const certs: Certification[] = [
     credly: "https://www.credly.com/badges/d233a634-7fac-4b05-80c5-ab9687d4734a/public_url",
   },
   {
-    name: "Cisco CCNA",
-    issuer: "Cisco",
-    abbr: "CCNA",
-    color: "blue",
+    name: "CompTIA Network+",
+    issuer: "CompTIA",
+    abbr: "NET+",
+    color: "indigo",
     category: "Networking",
-    credly: "https://www.credly.com/badges/fab75ec6-9657-4558-93f8-af2d95af50d1/public_url",
+    credly: "https://www.credly.com/badges/c3b2b7a4-66d5-42b4-bcde-fa21458ad2f1/public_url",
+  },
+  {
+    name: "CompTIA A+",
+    issuer: "CompTIA",
+    abbr: "A+",
+    color: "slate",
+    category: "IT Fundamentals",
+    credly: "https://www.credly.com/badges/2bf871c2-58e3-4a8e-b489-d5641277b5a1/public_url",
   },
   {
     name: "Azure Fundamentals",
