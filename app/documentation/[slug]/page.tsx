@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getDocumentationEntries, getDocumentationBySlug } from "../../lib/documentation";
 import { getProjectBySlug } from "../../lib/projects";
 import DocumentBody from "../../components/ui/DocumentBody";
@@ -7,6 +8,21 @@ import DocumentBody from "../../components/ui/DocumentBody";
 export async function generateStaticParams() {
   const entries = await getDocumentationEntries();
   return entries.map((a) => ({ slug: a.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getDocumentationBySlug(slug);
+  if (!article) return {};
+
+  return {
+    title: `${article.title} | Jeremy Cain`,
+    description: article.goal || `${article.title} — technical documentation from Jeremy Cain.`,
+  };
 }
 
 const SPF_RECORD_PATTERN = /v=spf1[^)]*/;

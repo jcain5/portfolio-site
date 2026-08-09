@@ -2,6 +2,12 @@ import Skills, { type EvidenceProject } from "../components/Skills";
 import { getCompetencies } from "../lib/competencies";
 import { getAllProjects } from "../lib/projects";
 
+export const metadata = {
+  title: "Skills | Jeremy Cain",
+  description:
+    "Evidence-backed competency areas — systems administration, infrastructure, security, and automation — each linked to supporting projects.",
+};
+
 export default async function SkillsPage() {
   const [competencies, projects] = await Promise.all([getCompetencies(), getAllProjects()]);
 

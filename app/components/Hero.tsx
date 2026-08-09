@@ -6,7 +6,7 @@ import { IconCalendar, IconUsers, IconMonitor } from "./icons";
 
 const stats = [
   { value: "8+", label: "Years Experience", Icon: IconCalendar },
-  { value: "1,000+", label: "Endpoints Administered", Icon: IconUsers },
+  { value: "1,000+", label: "Users & Endpoints Supported", Icon: IconUsers },
   { value: "3", label: "Certifications", Icon: IconMonitor },
 ];
 
