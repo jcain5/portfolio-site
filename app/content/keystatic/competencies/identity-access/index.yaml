@@ -3,14 +3,29 @@
   "description": "Identity lifecycle management, access control, and domain-level authentication trust across Microsoft identity platforms and email infrastructure.",
   "color": "amber",
   "icon": "🔐",
-  "focusTracks": ["sysadmin", "iam"],
+  "focusTracks": [
+    "sysadmin",
+    "iam"
+  ],
   "skills": [
-    "Microsoft Entra ID (Azure AD)",
-    "MFA Troubleshooting",
-    "Role-Based Access Control",
-    "Identity Lifecycle Management",
-    "Privilege Tiering",
-    "Email Authentication (SPF / DKIM / DMARC)"
+    {
+      "label": "Microsoft Entra ID (Azure AD)"
+    },
+    {
+      "label": "MFA Troubleshooting"
+    },
+    {
+      "label": "Role-Based Access Control"
+    },
+    {
+      "label": "Identity Lifecycle Management"
+    },
+    {
+      "label": "Privilege Tiering"
+    },
+    {
+      "label": "Email Authentication (SPF / DKIM / DMARC)"
+    }
   ],
   "displayOrder": 2
 }

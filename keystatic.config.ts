@@ -39,6 +39,36 @@ const documentationCategoryOptions = [
   { label: "Troubleshooting Guide", value: "Troubleshooting Guide" },
 ] as const;
 
+// Two independent classification axes used across projects and competencies.
+// `source` says *where* a competency/project was actually demonstrated;
+// `status` says *how mature* it is. Never conflate them — a thing can be
+// independent-lab + developing (Azure RBAC) or independent-lab + demonstrated
+// (AD in the lab) or professional + demonstrated (Intune troubleshooting).
+const evidenceSourceOptions = [
+  { label: "Professional", value: "professional" },
+  { label: "Volunteer", value: "volunteer" },
+  { label: "Independent Lab", value: "independent-lab" },
+  { label: "Portfolio Project", value: "portfolio-project" },
+  { label: "Education", value: "education" },
+] as const;
+
+const evidenceStatusOptions = [
+  { label: "Demonstrated", value: "demonstrated" },
+  { label: "Developing", value: "developing" },
+  { label: "Planned", value: "planned" },
+] as const;
+
+// Keystatic select fields always resolve to a value (defaultValue substitutes
+// when a key is absent from stored content), so an explicit "unset" option is
+// needed to distinguish "this skill's status wasn't deliberately set" from a
+// real status — used only on individual skills where it adds meaning (e.g. a
+// specific capability that's still developing while the rest of its
+// competency group is demonstrated).
+const optionalSkillStatusOptions = [
+  { label: "Not set (implicitly demonstrated)", value: "" },
+  ...evidenceStatusOptions,
+] as const;
+
 // Shared image directory for assets uploaded through the CMS UI going
 // forward. Existing pre-CMS screenshots keep their current
 // public/images/projects/<slug>/... paths — the reader returns whatever
@@ -95,6 +125,18 @@ export default config({
           label: "Career focus tracks",
           options: focusTrackOptions,
           defaultValue: [],
+        }),
+        evidenceSource: fields.select({
+          label: "Evidence source",
+          description: "Where this project's work was actually performed — drives the evidence badge shown on the card and detail page.",
+          options: evidenceSourceOptions,
+          defaultValue: "portfolio-project",
+        }),
+        evidenceStatus: fields.select({
+          label: "Evidence status",
+          description: "Maturity of this project's demonstrated work.",
+          options: evidenceStatusOptions,
+          defaultValue: "demonstrated",
         }),
         competencies: fields.multiRelationship({
           label: "Competencies",
@@ -302,7 +344,26 @@ export default config({
           options: focusTrackOptions,
           defaultValue: [],
         }),
-        skills: fields.array(fields.text({ label: "Skill" }), { label: "Skills" }),
+        sources: fields.multiselect({
+          label: "Evidence sources",
+          description:
+            "Every place this competency has actually been demonstrated. A group may legitimately span multiple sources (e.g. Networking: professional + volunteer + independent-lab) — shown once per group, not per skill.",
+          options: evidenceSourceOptions,
+          defaultValue: [],
+        }),
+        skills: fields.array(
+          fields.object({
+            label: fields.text({ label: "Skill" }),
+            status: fields.select({
+              label: "Evidence status (optional override)",
+              description:
+                "Leave unset for skills that are simply demonstrated. Only set this when one specific skill's maturity differs from the rest of the group (e.g. a capability that's still developing or planned) — avoid setting this on every skill.",
+              options: optionalSkillStatusOptions,
+              defaultValue: "",
+            }),
+          }),
+          { label: "Skills", itemLabel: (props) => props.fields.label.value || "Skill" }
+        ),
         displayOrder: fields.integer({ label: "Display order", defaultValue: 0 }),
       },
     }),

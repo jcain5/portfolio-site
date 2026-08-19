@@ -50,9 +50,9 @@ export default function Skills({
               )}
               <ul className="space-y-2.5 mb-4">
                 {competency.skills.map((skill) => (
-                  <li key={skill} className="flex items-center gap-2.5">
+                  <li key={skill.label} className="flex items-center gap-2.5">
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${c.dot}`} />
-                    <span className="text-sm text-body">{skill}</span>
+                    <span className="text-sm text-body">{skill.label}</span>
                   </li>
                 ))}
               </ul>

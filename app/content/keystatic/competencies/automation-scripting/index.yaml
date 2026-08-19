@@ -3,15 +3,32 @@
   "description": "PowerShell and Python projects focused on infrastructure validation, repeatable troubleshooting, endpoint-support workflows, and operational documentation.",
   "color": "slate",
   "icon": "⚙️",
-  "focusTracks": ["sysadmin", "iam"],
+  "focusTracks": [
+    "sysadmin",
+    "iam"
+  ],
   "skills": [
-    "PowerShell Scripting",
-    "Python Scripting",
-    "Infrastructure Validation",
-    "Active Directory Administration",
-    "Microsoft Intune MDM",
-    "BlackBerry UEM / AirWatch",
-    "SCCM / Endpoint Deployment Support"
+    {
+      "label": "PowerShell Scripting"
+    },
+    {
+      "label": "Python Scripting"
+    },
+    {
+      "label": "Infrastructure Validation"
+    },
+    {
+      "label": "Active Directory Administration"
+    },
+    {
+      "label": "Microsoft Intune MDM"
+    },
+    {
+      "label": "BlackBerry UEM / AirWatch"
+    },
+    {
+      "label": "SCCM / Endpoint Deployment Support"
+    }
   ],
   "displayOrder": 4
 }

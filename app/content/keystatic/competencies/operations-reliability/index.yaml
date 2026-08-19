@@ -3,14 +3,29 @@
   "description": "Incident troubleshooting, backup and recovery planning, and service monitoring across production-style deployments.",
   "color": "blue",
   "icon": "🔧",
-  "focusTracks": ["sysadmin", "infrastructure"],
+  "focusTracks": [
+    "sysadmin",
+    "infrastructure"
+  ],
   "skills": [
-    "Incident Troubleshooting",
-    "Automated Backup Scheduling & Integrity Verification",
-    "Disaster Recovery Procedures",
-    "Service Health Validation",
-    "Production Change Management",
-    "Log Review & Root-Cause Analysis"
+    {
+      "label": "Incident Troubleshooting"
+    },
+    {
+      "label": "Automated Backup Scheduling & Integrity Verification"
+    },
+    {
+      "label": "Disaster Recovery Procedures"
+    },
+    {
+      "label": "Service Health Validation"
+    },
+    {
+      "label": "Production Change Management"
+    },
+    {
+      "label": "Log Review & Root-Cause Analysis"
+    }
   ],
   "displayOrder": 5
 }

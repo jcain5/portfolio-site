@@ -3,14 +3,28 @@
   "description": "Practical security awareness applied through firewall policy, network isolation, and endpoint/network monitoring tooling.",
   "color": "rose",
   "icon": "🛡️",
-  "focusTracks": ["infrastructure"],
+  "focusTracks": [
+    "infrastructure"
+  ],
   "skills": [
-    "CompTIA Security+",
-    "Wazuh Endpoint Monitoring",
-    "Suricata IDS/IPS",
-    "Firewall Rule Design",
-    "Network Isolation (VLAN)",
-    "Zero-Trust Principles"
+    {
+      "label": "CompTIA Security+"
+    },
+    {
+      "label": "Wazuh Endpoint Monitoring"
+    },
+    {
+      "label": "Suricata IDS/IPS"
+    },
+    {
+      "label": "Firewall Rule Design"
+    },
+    {
+      "label": "Network Isolation (VLAN)"
+    },
+    {
+      "label": "Zero-Trust Principles"
+    }
   ],
   "displayOrder": 6
 }

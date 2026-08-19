@@ -5,11 +5,21 @@
   "icon": "📝",
   "focusTracks": [],
   "skills": [
-    "Architecture & Runbook Documentation",
-    "Case-Study Writing",
-    "Change & Incident Records",
-    "Validation & Test Documentation",
-    "Staff Handoff Documentation"
+    {
+      "label": "Architecture & Runbook Documentation"
+    },
+    {
+      "label": "Case-Study Writing"
+    },
+    {
+      "label": "Change & Incident Records"
+    },
+    {
+      "label": "Validation & Test Documentation"
+    },
+    {
+      "label": "Staff Handoff Documentation"
+    }
   ],
   "displayOrder": 7
 }
