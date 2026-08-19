@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -14,7 +15,7 @@ const roles = [
 
 const degrees = [
   {
-    degree: "M.S. Cybersecurity & Information Assurance",
+    degree: "M.S. Cybersecurity and Information Assurance",
     school: "Western Governors University",
     track: undefined as string | undefined,
     status: "In Progress",
@@ -22,10 +23,10 @@ const degrees = [
     competencies: ["Security Operations", "Network Security", "Cloud Security", "Governance, Risk & Compliance"],
   },
   {
-    degree: "B.S. Information Technology",
+    degree: "B.S. Network Operations and Security",
     school: "Western Governors University",
-    track: "Network & Security Operations Track",
-    status: "Completed",
+    track: undefined as string | undefined,
+    status: "2024",
     accent: "slate" as const,
     competencies: ["Network Administration", "Linux Systems", "Cloud Foundations", "Cryptography"],
   },
@@ -49,23 +50,28 @@ function Bio() {
             </h1>
             <div className="space-y-4 text-body leading-relaxed">
               <p>
-                I&apos;m an IT operations and infrastructure professional with 8+ years of experience
-                supporting and troubleshooting enterprise environments involving Active Directory,
-                Microsoft 365, Entra ID, VMware Horizon, Citrix, and endpoint and mobile device
-                management for organizations with thousands of users.
+                I&apos;m an IT operations professional with technical support experience spanning
+                roles since 2018, supporting and troubleshooting enterprise environments involving
+                Active Directory, Microsoft 365, Entra ID, VMware Horizon, Citrix, and endpoint and
+                mobile device management.
               </p>
               <p>
                 That enterprise experience is reinforced by infrastructure I directly design and
-                administer: domain controllers, Group Policy, firewall rules, PowerShell automation,
-                network segmentation, and security monitoring in my Enterprise Infrastructure Lab,
-                along with the Linux server, backups, deployment process, and incident response
-                supporting a nonprofit web platform.
+                administer: a domain controller, firewall rules, PowerShell automation, network
+                segmentation, and security monitoring in my Enterprise Infrastructure Lab, along with
+                the Linux server, backups, deployment process, and incident response supporting a
+                nonprofit web platform.
               </p>
               <p>
-                I hold a CCNA, CompTIA Security+, and Microsoft Azure Fundamentals certification, as
-                well as a B.S. in Network Operations and Security from WGU. I&apos;m also completing
-                an M.S. in Cybersecurity and Information Assurance, building credentials alongside
-                practical systems administration, automation, and infrastructure work.
+                I hold industry certifications spanning networking, security, cloud, and Linux
+                fundamentals — see{" "}
+                <Link href="/certifications" className="text-[#2F75C8] hover:underline">
+                  Certifications
+                </Link>{" "}
+                for the complete list — along with a B.S. in Network Operations and Security from
+                WGU. I&apos;m also completing an M.S. in Cybersecurity and Information Assurance,
+                building credentials alongside practical systems administration, automation, and
+                infrastructure work.
               </p>
             </div>
 
@@ -82,8 +88,8 @@ function Bio() {
             {[
               { title: "Identity & Access", desc: "Entra ID, MFA Troubleshooting, RBAC, Identity Lifecycle" },
               { title: "Security", desc: "Security+, CCNA, Wazuh/Suricata Monitoring, IDS/IPS" },
-              { title: "Automation", desc: "PowerShell scripting, SCCM deployment, GPOs" },
-              { title: "Networking", desc: "DNS, DHCP, VPN, pfSense, SonicWall, Fortinet" },
+              { title: "Automation", desc: "PowerShell scripting, SCCM (remote support & imaging)" },
+              { title: "Networking", desc: "DNS, DHCP, pfSense" },
             ].map((card) => (
               <div key={card.title} className="p-5 rounded-lg bg-white border border-border hover:border-border-strong transition-colors">
                 <div className="text-sm font-semibold text-ink mb-1">{card.title}</div>
@@ -103,7 +109,7 @@ function TargetRoles() {
       id="target-roles"
       eyebrow="TARGET ROLES"
       title="Open To Opportunities"
-      intro="I'm currently seeking opportunities in enterprise IT — where my Microsoft infrastructure experience and production background directly apply."
+      intro="I'm currently seeking opportunities in enterprise IT — where my enterprise IT operations background and hands-on infrastructure experience directly apply."
       tone="alt"
     >
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">

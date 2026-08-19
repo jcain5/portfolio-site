@@ -3,7 +3,7 @@ import About from "../components/About";
 export const metadata = {
   title: "About | Jeremy Cain",
   description:
-    "IT operations and infrastructure professional with 8+ years of enterprise experience in Active Directory, Microsoft 365, Entra ID, and endpoint management, plus hands-on infrastructure and automation work.",
+    "IT operations professional with technical support experience spanning roles since 2018 — Active Directory, Microsoft 365, Entra ID, and endpoint management, plus hands-on infrastructure and automation work.",
 };
 
 export default function AboutPage() {
