@@ -19,7 +19,7 @@
   "featuredRank": 1,
   "featuredVariant": "primary",
   "displayOrder": 0,
-  "summary": "Design and administer a multi-host enterprise environment — Windows Server, Active Directory, Proxmox virtualization, Cisco/pfSense networking, and security monitoring (Wazuh, Suricata) — with PowerShell automation and documented configuration, validation, and troubleshooting procedures.",
+  "summary": "Designed and administer an enterprise-style, multi-host independent lab environment — Windows Server, Active Directory, Proxmox virtualization, Cisco/pfSense networking, and security monitoring (Wazuh, Suricata) — with PowerShell automation and documented configuration, validation, and troubleshooting procedures.",
   "featuredChips": [
     "Windows Server",
     "Active Directory",

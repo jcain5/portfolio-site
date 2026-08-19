@@ -2,9 +2,18 @@ import Link from "next/link";
 import Section from "./ui/Section";
 import type { DocumentationEntry } from "../lib/documentation";
 
+// Homepage-only presentation order: Active Directory Design and Network
+// Topology are the deepest infrastructure evidence and get primary visual
+// weight; other documentation entries are surfaced as compact links.
+const PRIMARY_SLUGS = ["active-directory-design", "network-topology"];
+
 export default function TechDocsTeaser({ entries }: { entries: DocumentationEntry[] }) {
-  const featured = entries.slice(0, 3);
-  if (featured.length === 0) return null;
+  if (entries.length === 0) return null;
+
+  const primary = PRIMARY_SLUGS.map((slug) => entries.find((e) => e.slug === slug)).filter(
+    (e): e is DocumentationEntry => e != null
+  );
+  const secondary = entries.filter((e) => !PRIMARY_SLUGS.includes(e.slug));
 
   return (
     <Section
@@ -13,8 +22,8 @@ export default function TechDocsTeaser({ entries }: { entries: DocumentationEntr
       title="Runbooks & Architecture Notes"
       intro="Operational documentation written for repeatability and handoff — not just the build, but how to run and recover it."
     >
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featured.map((entry) => (
+      <div className="grid sm:grid-cols-2 gap-6">
+        {primary.map((entry) => (
           <Link
             key={entry.slug}
             href={`/documentation/${entry.slug}`}
@@ -27,6 +36,25 @@ export default function TechDocsTeaser({ entries }: { entries: DocumentationEntr
           </Link>
         ))}
       </div>
+
+      {secondary.length > 0 && (
+        <div className="mt-4 space-y-2">
+          {secondary.map((entry) => (
+            <Link
+              key={entry.slug}
+              href={`/documentation/${entry.slug}`}
+              className="flex items-center justify-between gap-4 p-4 rounded-lg border border-border hover:border-[#2F75C8]/40 transition-colors"
+            >
+              <span>
+                <span className="text-xs font-mono text-muted mr-2">{entry.category}</span>
+                <span className="text-sm text-ink font-medium">{entry.title}</span>
+              </span>
+              <span className="text-xs font-mono text-[#2F75C8] shrink-0">View →</span>
+            </Link>
+          ))}
+        </div>
+      )}
+
       <div className="text-center mt-8">
         <Link
           href="/documentation"
