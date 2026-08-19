@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Hero from "./components/Hero";
-import CareerFocus from "./components/CareerFocus";
 import CoreCompetencies from "./components/CoreCompetencies";
 import TechDocsTeaser from "./components/TechDocsTeaser";
 import ProjectCard from "./components/ProjectCard";
@@ -21,7 +20,6 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <CareerFocus />
       <CoreCompetencies competencies={competencies} />
 
       {primary && (

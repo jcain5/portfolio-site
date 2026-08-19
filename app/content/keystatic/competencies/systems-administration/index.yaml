@@ -3,10 +3,6 @@
   "description": "Windows Server, Active Directory, Group Policy, and Linux service administration across enterprise support and independent lab environments.",
   "color": "cyan",
   "icon": "🏢",
-  "focusTracks": [
-    "sysadmin",
-    "infrastructure"
-  ],
   "skills": [
     {
       "label": "Active Directory Domain Services"

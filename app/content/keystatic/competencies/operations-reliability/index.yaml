@@ -3,10 +3,6 @@
   "description": "Incident troubleshooting, backup and recovery planning, and service monitoring across production-style deployments.",
   "color": "blue",
   "icon": "🔧",
-  "focusTracks": [
-    "sysadmin",
-    "infrastructure"
-  ],
   "skills": [
     {
       "label": "Incident Troubleshooting"

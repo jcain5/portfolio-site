@@ -4,7 +4,6 @@
   "category": "Enterprise Infrastructure",
   "status": "Active",
   "color": "cyan",
-  "focusTracks": ["sysadmin", "infrastructure"],
   "competencies": [
     "systems-administration",
     "infrastructure-virtualization",
@@ -21,25 +20,58 @@
   "featuredVariant": "primary",
   "displayOrder": 0,
   "summary": "Design and administer a multi-host enterprise environment — Windows Server, Active Directory, Proxmox virtualization, Cisco/pfSense networking, and security monitoring (Wazuh, Suricata) — with PowerShell automation and documented configuration, validation, and troubleshooting procedures.",
-  "featuredChips": ["Windows Server", "Active Directory", "Proxmox", "PowerShell", "DNS", "Group Policy", "pfSense"],
+  "featuredChips": [
+    "Windows Server",
+    "Active Directory",
+    "Proxmox",
+    "PowerShell",
+    "DNS",
+    "Group Policy",
+    "pfSense"
+  ],
   "environment": "A Dell PowerEdge R720XD running Proxmox VE as the virtualization host, with Cisco Catalyst switching and a pfSense firewall providing VLAN-segmented network infrastructure.",
   "architecture": "Cisco Catalyst switching and VLAN segmentation route traffic through a pfSense firewall enforcing inter-VLAN access policy, with DHCP, Pi-hole, and Unbound handling DNS resolution for the segmented network.",
   "technologyCategories": [
     {
       "category": "Microsoft",
-      "items": ["Windows Server 2022", "Active Directory Domain Services", "DNS", "Group Policy", "PowerShell", "Windows 11"]
+      "items": [
+        "Windows Server 2022",
+        "Active Directory Domain Services",
+        "DNS",
+        "Group Policy",
+        "PowerShell",
+        "Windows 11"
+      ]
     },
     {
       "category": "Virtualization & Hardware",
-      "items": ["Dell PowerEdge R720XD", "Proxmox VE"]
+      "items": [
+        "Dell PowerEdge R720XD",
+        "Proxmox VE"
+      ]
     },
     {
       "category": "Networking",
-      "items": ["Cisco Catalyst switching", "Cisco routing", "VLAN segmentation", "pfSense", "DHCP", "Pi-hole", "Unbound"]
+      "items": [
+        "Cisco Catalyst switching",
+        "Cisco routing",
+        "VLAN segmentation",
+        "pfSense",
+        "DHCP",
+        "Pi-hole",
+        "Unbound"
+      ]
     },
     {
       "category": "Security & Linux",
-      "items": ["Wazuh", "Suricata", "Ubuntu", "Debian", "SSH", "systemd"]
+      "items": [
+        "Wazuh",
+        "Suricata",
+        "Ubuntu",
+        "Debian",
+        "SSH",
+        "systemd"
+      ]
     }
   ],
   "implementation": [
@@ -91,11 +123,24 @@
       "alt": "PowerShell terminal windows showing Active Directory account review and domain controller DNS health validation"
     }
   ],
-  "relatedDocumentation": ["active-directory-design", "network-topology"],
+  "relatedDocumentation": [
+    "active-directory-design",
+    "network-topology"
+  ],
   "technologies": [
-    "Windows Server", "Active Directory", "DNS", "Group Policy", "PowerShell",
-    "Proxmox VE", "Dell PowerEdge", "Cisco", "VLANs", "pfSense",
-    "Wazuh", "Suricata", "Linux"
+    "Windows Server",
+    "Active Directory",
+    "DNS",
+    "Group Policy",
+    "PowerShell",
+    "Proxmox VE",
+    "Dell PowerEdge",
+    "Cisco",
+    "VLANs",
+    "pfSense",
+    "Wazuh",
+    "Suricata",
+    "Linux"
   ],
   "bullets": [
     "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",

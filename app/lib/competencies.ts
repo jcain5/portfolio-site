@@ -1,5 +1,4 @@
 import type { ColorKey } from "./colors";
-import type { FocusId } from "../context/CareerFocusContext";
 import type { EvidenceSource, EvidenceStatus } from "./evidence";
 import { normalizeSkillStatus } from "./evidence";
 import { reader } from "./keystatic-reader";
@@ -18,7 +17,6 @@ export interface Competency {
   description?: string;
   color: ColorKey;
   icon?: string;
-  focusTracks: NonNullable<FocusId>[];
   /** Every place this competency has actually been demonstrated — a group may
    * legitimately span multiple sources (e.g. Networking: professional +
    * volunteer + independent-lab). Rendered once per group, not per skill. */
@@ -45,7 +43,6 @@ export async function getCompetencies(): Promise<Competency[]> {
         description: entry.description || undefined,
         color: (entry.color ?? "slate") as ColorKey,
         icon: entry.icon || undefined,
-        focusTracks: (entry.focusTracks ?? []) as NonNullable<FocusId>[],
         sources: (entry.sources ?? []) as EvidenceSource[],
         skills: (entry.skills ?? []).map(normalizeSkill),
         displayOrder: entry.displayOrder ?? 0,

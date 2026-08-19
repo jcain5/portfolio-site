@@ -3,10 +3,6 @@
   "description": "PowerShell and Python projects focused on infrastructure validation, repeatable troubleshooting, endpoint-support workflows, and operational documentation.",
   "color": "slate",
   "icon": "⚙️",
-  "focusTracks": [
-    "sysadmin",
-    "iam"
-  ],
   "skills": [
     {
       "label": "PowerShell Scripting"

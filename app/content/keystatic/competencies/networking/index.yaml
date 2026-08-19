@@ -3,9 +3,6 @@
   "description": "TCP/IP fundamentals, VLAN segmentation, and firewall administration, validated through both enterprise-style lab infrastructure and hands-on scripting.",
   "color": "emerald",
   "icon": "🌐",
-  "focusTracks": [
-    "infrastructure"
-  ],
   "skills": [
     {
       "label": "TCP/IP & DNS/DHCP"

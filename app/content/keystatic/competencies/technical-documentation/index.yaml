@@ -3,7 +3,6 @@
   "description": "Architecture notes, runbooks, and validation records written for repeatability and handoff — not just describing what was built, but how to run and recover it.",
   "color": "indigo",
   "icon": "📝",
-  "focusTracks": [],
   "skills": [
     {
       "label": "Architecture & Runbook Documentation"

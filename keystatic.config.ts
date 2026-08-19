@@ -15,12 +15,6 @@ const colorOptions = [
   { label: "Yellow", value: "yellow" },
 ] as const;
 
-const focusTrackOptions = [
-  { label: "Systems Administration", value: "sysadmin" },
-  { label: "Infrastructure", value: "infrastructure" },
-  { label: "Identity / IAM", value: "iam" },
-] as const;
-
 const statusOptions = [
   { label: "Planned", value: "Planned" },
   { label: "Active", value: "Active" },
@@ -120,11 +114,6 @@ export default config({
           label: "Color token",
           options: colorOptions,
           defaultValue: "slate",
-        }),
-        focusTracks: fields.multiselect({
-          label: "Career focus tracks",
-          options: focusTrackOptions,
-          defaultValue: [],
         }),
         evidenceSource: fields.select({
           label: "Evidence source",
@@ -339,11 +328,6 @@ export default config({
           defaultValue: "slate",
         }),
         icon: fields.text({ label: "Icon (emoji)" }),
-        focusTracks: fields.multiselect({
-          label: "Career focus tracks",
-          options: focusTrackOptions,
-          defaultValue: [],
-        }),
         sources: fields.multiselect({
           label: "Evidence sources",
           description:

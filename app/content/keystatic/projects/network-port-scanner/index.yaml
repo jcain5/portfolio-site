@@ -4,8 +4,11 @@
   "category": "Software Development",
   "status": "In Development",
   "color": "slate",
-  "focusTracks": ["infrastructure"],
-  "competencies": ["networking", "automation-scripting", "technical-documentation"],
+  "competencies": [
+    "networking",
+    "automation-scripting",
+    "technical-documentation"
+  ],
   "published": true,
   "featured": false,
   "displayOrder": 0,
@@ -90,7 +93,16 @@
       "alt": "Spreadsheet view of sample_scan_results.csv with fictional documentation-range IP addresses and TCP scan statuses"
     }
   ],
-  "technologies": ["Python", "argparse", "Sockets", "TCP/IP", "CSV", "unittest", "Git", "GitHub"],
+  "technologies": [
+    "Python",
+    "argparse",
+    "Sockets",
+    "TCP/IP",
+    "CSV",
+    "unittest",
+    "Git",
+    "GitHub"
+  ],
   "github": "https://github.com/jcain5/Network-Port-Scanner",
   "bullets": [
     "Built a modular Python TCP port scanner with a CLI (argparse) for authorized lab use",

@@ -1,5 +1,4 @@
 import type { ColorKey } from "./colors";
-import type { FocusId } from "../context/CareerFocusContext";
 import type { EvidenceSource, EvidenceStatus } from "./evidence";
 import { reader } from "./keystatic-reader";
 import { getDocumentationEntries } from "./documentation";
@@ -33,7 +32,6 @@ export interface ProjectCaseStudy {
   category: string;
   status?: string;
   color: ColorKey;
-  focusTracks: NonNullable<FocusId>[];
   evidenceSource: EvidenceSource;
   evidenceStatus: EvidenceStatus;
   competencySlugs: string[];
@@ -98,7 +96,6 @@ function normalizeProject(slug: string, entry: any, docTitleBySlug: Map<string, 
       category: entry.category || "",
       status: entry.status || undefined,
       color: (entry.color ?? "slate") as ColorKey,
-      focusTracks: (entry.focusTracks ?? []) as NonNullable<FocusId>[],
       evidenceSource: (entry.evidenceSource ?? "portfolio-project") as EvidenceSource,
       evidenceStatus: (entry.evidenceStatus ?? "demonstrated") as EvidenceStatus,
       competencySlugs: [...(entry.competencies ?? [])],

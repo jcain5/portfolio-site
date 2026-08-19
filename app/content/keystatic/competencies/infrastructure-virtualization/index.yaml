@@ -3,10 +3,6 @@
   "description": "Hypervisor administration and physical server infrastructure, from enterprise virtualization platforms to a self-managed home lab.",
   "color": "purple",
   "icon": "💻",
-  "focusTracks": [
-    "infrastructure",
-    "sysadmin"
-  ],
   "skills": [
     {
       "label": "Proxmox VE"

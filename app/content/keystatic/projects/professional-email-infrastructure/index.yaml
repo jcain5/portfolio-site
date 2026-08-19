@@ -3,15 +3,23 @@
   "category": "Email & DNS Infrastructure",
   "status": "Complete",
   "color": "purple",
-  "focusTracks": ["sysadmin", "infrastructure"],
-  "competencies": ["identity-access", "technical-documentation"],
+  "competencies": [
+    "identity-access",
+    "technical-documentation"
+  ],
   "published": true,
   "featured": true,
   "featuredRank": 3,
   "featuredVariant": "secondary",
   "displayOrder": 0,
   "summary": "Designed and secured a custom email platform for jeremymcain.com using Zoho Mail and Hostinger DNS. Configured MX, SPF, DKIM, and DMARC to deliver a secure, professional communication system.",
-  "featuredChips": ["Zoho Mail", "DNS", "SPF", "DKIM", "DMARC"],
+  "featuredChips": [
+    "Zoho Mail",
+    "DNS",
+    "SPF",
+    "DKIM",
+    "DMARC"
+  ],
   "problem": "A recruiter- and client-facing identity needs a professional, custom-domain email address with verifiable authentication rather than a free consumer inbox — requiring DNS-level trust (MX, SPF, DKIM, DMARC) so messages are accepted and not flagged as spoofed, plus documented alias routing for distinct contact purposes.",
   "environment": "Domain: jeremymcain.com · DNS: Hostinger · Mail: Zoho Mail",
   "architecture": "Zoho Mail handles inbound and outbound delivery for the domain, authenticated end-to-end through DNS records hosted at the registrar (Hostinger) rather than at Zoho.",
@@ -36,11 +44,26 @@
     }
   ],
   "emailAliases": [
-    { "alias": "jeremy@", "purpose": "Primary identity" },
-    { "alias": "hello@", "purpose": "Website" },
-    { "alias": "jobs@", "purpose": "Recruiting" },
-    { "alias": "projects@", "purpose": "Technical collaboration" },
-    { "alias": "security@", "purpose": "Security disclosures" }
+    {
+      "alias": "jeremy@",
+      "purpose": "Primary identity"
+    },
+    {
+      "alias": "hello@",
+      "purpose": "Website"
+    },
+    {
+      "alias": "jobs@",
+      "purpose": "Recruiting"
+    },
+    {
+      "alias": "projects@",
+      "purpose": "Technical collaboration"
+    },
+    {
+      "alias": "security@",
+      "purpose": "Security disclosures"
+    }
   ],
   "validation": "DNS propagated across resolvers, MX resolution verified, SPF passed on outbound test messages, DKIM signatures validated, DMARC policy published and reporting, and delivery confirmed for every alias.",
   "skillsDemonstrated": [
@@ -52,14 +75,37 @@
     "Technical Documentation"
   ],
   "lessonsLearned": "Email hosting and DNS hosting are separate services. Email aliases inherit the domain authentication configuration and do not require additional MX, SPF, DKIM, or DMARC records.",
-  "relatedDocumentation": ["configuring-spf-dkim-dmarc-and-email-aliases"],
-  "screenshots": [
-    { "alt": "Hostinger DNS zone editor placeholder", "caption": "Hostinger DNS Zone Editor — MX/SPF/DKIM/DMARC records" },
-    { "alt": "Zoho Mail admin console placeholder", "caption": "Zoho Mail Admin Console — domain and alias configuration" },
-    { "alt": "MXToolbox validation placeholder", "caption": "MXToolbox validation results" },
-    { "alt": "Email authentication results placeholder", "caption": "Email authentication test results" }
+  "relatedDocumentation": [
+    "configuring-spf-dkim-dmarc-and-email-aliases"
   ],
-  "technologies": ["DNS", "Zoho Mail", "Hostinger", "MX", "SPF", "DKIM", "DMARC", "TLS"],
+  "screenshots": [
+    {
+      "alt": "Hostinger DNS zone editor placeholder",
+      "caption": "Hostinger DNS Zone Editor — MX/SPF/DKIM/DMARC records"
+    },
+    {
+      "alt": "Zoho Mail admin console placeholder",
+      "caption": "Zoho Mail Admin Console — domain and alias configuration"
+    },
+    {
+      "alt": "MXToolbox validation placeholder",
+      "caption": "MXToolbox validation results"
+    },
+    {
+      "alt": "Email authentication results placeholder",
+      "caption": "Email authentication test results"
+    }
+  ],
+  "technologies": [
+    "DNS",
+    "Zoho Mail",
+    "Hostinger",
+    "MX",
+    "SPF",
+    "DKIM",
+    "DMARC",
+    "TLS"
+  ],
   "bullets": [
     "Configured professional custom-domain email for jeremymcain.com",
     "Implemented secure email authentication with SPF, DKIM, and DMARC",

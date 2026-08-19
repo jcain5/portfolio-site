@@ -4,15 +4,24 @@
   "category": "Linux Infrastructure & Web Operations",
   "status": "Beta",
   "color": "blue",
-  "focusTracks": ["sysadmin", "infrastructure"],
-  "competencies": ["systems-administration", "operations-reliability", "technical-documentation"],
+  "competencies": [
+    "systems-administration",
+    "operations-reliability",
+    "technical-documentation"
+  ],
   "published": true,
   "featured": true,
   "featuredRank": 2,
   "featuredVariant": "secondary",
   "displayOrder": 0,
   "summary": "Volunteer-led Linux infrastructure and web operations for West Freeway Church of Christ: a self-managed Ubuntu Server environment running Nginx, ASP.NET Core, and Umbraco CMS as a systemd-managed service, live today in a beta environment with automated nightly backups, documented recovery procedures, and layered incident response — while the existing legacy production site continues serving visitors until cutover.",
-  "featuredChips": ["Ubuntu Server", "systemd", "Nginx", "Backups & Recovery", "Incident Response"],
+  "featuredChips": [
+    "Ubuntu Server",
+    "systemd",
+    "Nginx",
+    "Backups & Recovery",
+    "Incident Response"
+  ],
   "problem": "The legacy site lacked a documented accessibility testing process and presented accessibility limitations. Its content workflow prevented non-technical staff from publishing updates independently, and its mobile experience lagged modern expectations. Any redesign had to preserve the existing live site throughout the migration while operating within a volunteer-led IT model with no dedicated budget for professional hosting or support staff.",
   "environment": "Independent infrastructure and web operations role for the organization — covering the website, livestream systems, and PBX phone system — with the website rebuild scoped, deployed, and administered independently while those other systems stay in daily operation.",
   "ownership": "Sole technical implementer for architecture, implementation, deployment, backup design, troubleshooting, and documentation, with current responsibility for the beta environment and expected operational ownership after production cutover.",
@@ -71,7 +80,23 @@
       "alt": "Terminal output of systemctl status nginx showing the service active and running"
     }
   ],
-  "technologies": ["Ubuntu Server", "Nginx", "systemd", ".NET 10", "ASP.NET Core", "Umbraco 18 CMS", "SQLite", "C#", "Razor Pages", "Bootstrap 5", "Playwright", "axe", "GitHub", "Google Calendar", "YouTube"],
+  "technologies": [
+    "Ubuntu Server",
+    "Nginx",
+    "systemd",
+    ".NET 10",
+    "ASP.NET Core",
+    "Umbraco 18 CMS",
+    "SQLite",
+    "C#",
+    "Razor Pages",
+    "Bootstrap 5",
+    "Playwright",
+    "axe",
+    "GitHub",
+    "Google Calendar",
+    "YouTube"
+  ],
   "github": "https://github.com/jcain5/wfcoc-redesign",
   "bullets": [
     "Deployed to Ubuntu Server behind an Nginx reverse proxy as a systemd-managed beta service",

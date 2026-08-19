@@ -6,7 +6,6 @@ import type { ProjectCaseStudy } from "../lib/projects";
 interface ProjectCardProps {
   project: ProjectCaseStudy;
   variant: "primary" | "featured-secondary" | "grid";
-  isDimmed?: boolean;
   ctaLabel?: string;
   showImage?: boolean;
   size?: "default" | "large";
@@ -15,7 +14,6 @@ interface ProjectCardProps {
 export default function ProjectCard({
   project,
   variant,
-  isDimmed = false,
   ctaLabel = "View Case Study →",
   showImage = true,
   size = "default",
@@ -23,7 +21,6 @@ export default function ProjectCard({
   const c = colors[project.color];
   const thumb = project.heroImage ?? project.screenshots?.[0]?.src;
   const thumbAlt = project.screenshots?.[0]?.alt ?? project.title;
-  const dimClass = isDimmed ? "opacity-40" : "opacity-100";
 
   if (variant === "primary") {
     return (
@@ -109,7 +106,7 @@ export default function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`relative flex flex-col p-6 rounded-lg bg-white border ${c.border} ${c.borderHover} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(11,23,42,0.06)] ${dimClass}`}
+      className={`relative flex flex-col p-6 rounded-lg bg-white border ${c.border} ${c.borderHover} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(11,23,42,0.06)]`}
     >
       <div className={`h-1 w-10 rounded-full mb-5 ${c.accentBar}`} />
 

@@ -3,7 +3,6 @@ import { IBM_Plex_Sans, IBM_Plex_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import { CareerFocusProvider } from "./context/CareerFocusContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,9 +40,7 @@ export default function RootLayout({
     >
       <body>
         <Nav />
-        <CareerFocusProvider>
-          <main>{children}</main>
-        </CareerFocusProvider>
+        <main>{children}</main>
         <Footer />
         <Analytics />
       </body>

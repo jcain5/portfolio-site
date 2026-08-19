@@ -1,10 +1,8 @@
-"use client";
 import Link from "next/link";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
 import { toolsAndPlatforms } from "../lib/skills";
 import type { Competency } from "../lib/competencies";
-import { useCareerFocus } from "../context/CareerFocusContext";
 
 export interface EvidenceProject {
   slug: string;
@@ -18,8 +16,6 @@ export default function Skills({
   competencies: Competency[];
   evidenceByCompetency: Record<string, EvidenceProject[]>;
 }) {
-  const { activeFocus } = useCareerFocus();
-
   return (
     <Section
       id="skills"
@@ -32,14 +28,11 @@ export default function Skills({
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {competencies.map((competency) => {
           const c = colors[competency.color];
-          const isHighlighted = !activeFocus || competency.focusTracks.includes(activeFocus);
           const evidence = evidenceByCompetency[competency.slug] ?? [];
           return (
             <div
               key={competency.slug}
-              className={`p-6 rounded-lg bg-canvas border ${c.border} ${c.borderHover} transition-all duration-200 ${
-                activeFocus ? (isHighlighted ? "opacity-100" : "opacity-30") : ""
-              }`}
+              className={`p-6 rounded-lg bg-canvas border ${c.border} ${c.borderHover} transition-all duration-200`}
             >
               <div className="flex items-center gap-2 mb-2">
                 {competency.icon && <span aria-hidden="true">{competency.icon}</span>}

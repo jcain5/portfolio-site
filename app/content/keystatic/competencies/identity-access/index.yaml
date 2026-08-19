@@ -3,10 +3,6 @@
   "description": "Identity lifecycle management, access control, and domain-level authentication trust across Microsoft identity platforms and email infrastructure.",
   "color": "amber",
   "icon": "🔐",
-  "focusTracks": [
-    "sysadmin",
-    "iam"
-  ],
   "skills": [
     {
       "label": "Microsoft Entra ID (Azure AD)"

@@ -3,9 +3,6 @@
   "description": "Practical security awareness applied through firewall policy, network isolation, and endpoint/network monitoring tooling.",
   "color": "rose",
   "icon": "🛡️",
-  "focusTracks": [
-    "infrastructure"
-  ],
   "skills": [
     {
       "label": "CompTIA Security+"
