@@ -111,5 +111,7 @@
     "Covered the codebase with 27 automated unit tests using mocked sockets"
   ],
   "metaTitle": "Python Network Port Scanner (Phase 2) | Jeremy M. Cain",
-  "metaDescription": "A modular Python TCP port scanner with CLI controls, input validation, CSV reporting, and 27 automated tests — built for authorized lab use."
+  "metaDescription": "A modular Python TCP port scanner with CLI controls, input validation, CSV reporting, and 27 automated tests — built for authorized lab use.",
+  "evidenceSource": "portfolio-project",
+  "evidenceStatus": "demonstrated"
 }

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { colors } from "../../lib/colors";
 import { getAllProjects, getProjectBySlug } from "../../lib/projects";
 import ScreenshotGallery from "../../components/ui/ScreenshotGallery";
+import EvidenceBadge from "../../components/ui/EvidenceBadge";
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -51,6 +52,10 @@ export default async function ProjectDetailPage({
                 {project.status}
               </span>
             )}
+            <EvidenceBadge
+              source={project.evidenceSource}
+              status={project.evidenceStatus === "demonstrated" ? undefined : project.evidenceStatus}
+            />
           </div>
           <h1 className="font-heading text-2xl sm:text-3xl font-semibold text-ink leading-tight mt-2">{project.title}</h1>
           {project.subtitle && (

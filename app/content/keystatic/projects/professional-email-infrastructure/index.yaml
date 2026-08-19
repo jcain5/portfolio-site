@@ -1,5 +1,6 @@
 {
   "title": "Professional Email Infrastructure",
+  "subtitle": "Independent Project",
   "category": "Email & DNS Infrastructure",
   "status": "Complete",
   "color": "purple",
@@ -111,5 +112,7 @@
     "Implemented secure email authentication with SPF, DKIM, and DMARC",
     "Documented DNS configuration for maintainability",
     "Established a recruiter-ready email identity with purpose-scoped aliases"
-  ]
+  ],
+  "evidenceSource": "portfolio-project",
+  "evidenceStatus": "demonstrated"
 }

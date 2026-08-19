@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { colors } from "../lib/colors";
+import EvidenceBadge from "./ui/EvidenceBadge";
 import type { ProjectCaseStudy } from "../lib/projects";
+
+// Only surfaces EvidenceStatus alongside the source badge when it adds real
+// information — "demonstrated" is the implicit default and would just be
+// clutter next to the lifecycle status pill.
+function evidenceStatusIfNotable(project: ProjectCaseStudy) {
+  return project.evidenceStatus === "demonstrated" ? undefined : project.evidenceStatus;
+}
 
 interface ProjectCardProps {
   project: ProjectCaseStudy;
@@ -30,7 +38,10 @@ export default function ProjectCard({
       >
         <div className="grid md:grid-cols-5">
           <div className="md:col-span-3 p-8">
-            <span className={`text-xs font-mono ${c.label}`}>{project.category}</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className={`text-xs font-mono ${c.label}`}>{project.category}</span>
+              <EvidenceBadge source={project.evidenceSource} status={evidenceStatusIfNotable(project)} />
+            </div>
             <h3 className="font-heading text-2xl font-semibold text-ink mt-2 mb-3">{project.title}</h3>
             <p className="text-body leading-relaxed mb-6">{project.problem ?? project.summary}</p>
             <div className="flex flex-wrap gap-2 mb-6">
@@ -73,6 +84,7 @@ export default function ProjectCard({
                 {project.status}
               </span>
             )}
+            <EvidenceBadge source={project.evidenceSource} status={evidenceStatusIfNotable(project)} />
           </div>
           <h3 className={`font-heading font-semibold text-ink mt-2 mb-1 ${isLarge ? "text-2xl" : "text-lg"}`}>{project.title}</h3>
           <p className="text-body text-sm leading-relaxed max-w-2xl mb-3">{project.summary}</p>
@@ -117,6 +129,7 @@ export default function ProjectCard({
             {project.status}
           </span>
         )}
+        <EvidenceBadge source={project.evidenceSource} status={evidenceStatusIfNotable(project)} />
       </div>
       <h3 className="text-ink font-heading font-semibold text-lg leading-snug mb-2">{project.title}</h3>
       {project.cardSummary && <p className="text-body text-sm leading-relaxed mb-4">{project.cardSummary}</p>}

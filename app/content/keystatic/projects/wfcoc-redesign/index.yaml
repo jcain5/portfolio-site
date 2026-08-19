@@ -107,5 +107,7 @@
     "Architecture designed with clean separation of concerns: Pages, Services, ViewModels, and API Controllers",
     "Implemented 9 core pages with Bootstrap 5 responsive design and automated accessibility checks supporting progress toward WCAG 2.2 AA",
     "Wrote a Playwright browser test suite with axe accessibility checks for automated quality assurance"
-  ]
+  ],
+  "evidenceSource": "volunteer",
+  "evidenceStatus": "demonstrated"
 }
