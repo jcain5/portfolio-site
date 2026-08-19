@@ -23,5 +23,10 @@
       "label": "Email Authentication (SPF / DKIM / DMARC)"
     }
   ],
-  "displayOrder": 2
+  "displayOrder": 2,
+  "sources": [
+    "professional",
+    "independent-lab",
+    "portfolio-project"
+  ]
 }

@@ -23,5 +23,9 @@
       "label": "Zero-Trust Principles"
     }
   ],
-  "displayOrder": 6
+  "displayOrder": 6,
+  "sources": [
+    "independent-lab",
+    "education"
+  ]
 }

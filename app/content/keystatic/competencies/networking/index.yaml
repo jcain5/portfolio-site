@@ -17,14 +17,16 @@
       "label": "VLAN Segmentation"
     },
     {
-      "label": "VPN (OpenVPN)"
-    },
-    {
       "label": "CCNA Certified"
     },
     {
       "label": "TCP Socket Programming & Port Scanning"
     }
   ],
-  "displayOrder": 3
+  "displayOrder": 3,
+  "sources": [
+    "independent-lab",
+    "education",
+    "portfolio-project"
+  ]
 }

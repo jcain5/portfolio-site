@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Section from "./ui/Section";
+import EvidenceBadge from "./ui/EvidenceBadge";
 import { colors } from "../lib/colors";
 import { toolsAndPlatforms } from "../lib/skills";
+import { evidenceStatusMeta } from "../lib/evidence";
 import type { Competency } from "../lib/competencies";
 
 export interface EvidenceProject {
@@ -38,6 +40,13 @@ export default function Skills({
                 {competency.icon && <span aria-hidden="true">{competency.icon}</span>}
                 <span className={`text-sm font-semibold ${c.label}`}>{competency.label}</span>
               </div>
+              {competency.sources.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {competency.sources.map((source) => (
+                    <EvidenceBadge key={source} source={source} />
+                  ))}
+                </div>
+              )}
               {competency.description && (
                 <p className="text-xs text-muted leading-relaxed mb-4">{competency.description}</p>
               )}
@@ -45,7 +54,12 @@ export default function Skills({
                 {competency.skills.map((skill) => (
                   <li key={skill.label} className="flex items-center gap-2.5">
                     <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${c.dot}`} />
-                    <span className="text-sm text-body">{skill.label}</span>
+                    <span className="text-sm text-body">
+                      {skill.label}
+                      {skill.status && (
+                        <span className="text-muted"> — {evidenceStatusMeta[skill.status].label.toLowerCase()}</span>
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>

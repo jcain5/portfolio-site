@@ -1,4 +1,5 @@
 import type { ColorKey } from "./colors";
+import type { EvidenceSource } from "./evidence";
 
 export interface RelatedProject {
   slug: string;
@@ -11,6 +12,7 @@ export interface Job {
   location: string;
   period: string;
   type: string;
+  source: EvidenceSource;
   coreTechnologies: string[];
   highlights: string[];
   accent: ColorKey;
@@ -24,14 +26,15 @@ export const jobs: Job[] = [
     location: "Irving, TX",
     period: "Feb 2022 – Present",
     type: "Full-time",
+    source: "professional",
     coreTechnologies: [
       "Microsoft Intune", "VMware Horizon", "Citrix", "Windows 365",
       "Microsoft 365", "Active Directory", "BlackBerry UEM", "ServiceNow",
     ],
     highlights: [
-      "Administer and support enterprise endpoint infrastructure for 1,000+ internal employees across business-critical financial operations, sustaining a 100% ticket quality score",
+      "Administer and support enterprise endpoint infrastructure across business-critical financial operations, maintaining a 100% quality score on reviewed support tickets in this role",
       "Operate and troubleshoot Windows 10/11 endpoints, Microsoft 365, VMware Horizon virtual desktops, Citrix, and Windows 365 Cloud PCs in a large-scale enterprise environment",
-      "Administer Microsoft Intune and BlackBerry UEM to enforce device compliance and security policy across the organization's mobile and endpoint fleet",
+      "Support and troubleshoot Microsoft Intune and BlackBerry UEM device-management issues, including enrollment, access, compliance, and device-related incidents",
       "Manage Active Directory identity and access issues — account provisioning, authentication, and permissions — via ServiceNow and enterprise remote support tooling",
       "Partner with infrastructure, identity, and desktop engineering teams to resolve escalated incidents and improve service delivery workflows",
     ],
@@ -44,11 +47,16 @@ export const jobs: Job[] = [
     location: "Fort Worth, TX",
     period: "Oct 2020 – Jun 2021",
     type: "Full-time",
-    coreTechnologies: ["Azure AD / Entra ID", "Microsoft 365", "PowerShell", "Windows Administration", "Identity Management"],
+    source: "professional",
+    coreTechnologies: [
+      "Azure AD / Entra ID", "Microsoft 365", "PowerShell", "Windows Administration",
+      "Identity Management", "Microsoft SCCM",
+    ],
     highlights: [
-      "Administered Windows workstations, Microsoft 365, and Azure Active Directory (Entra ID) for 1,000+ globally distributed employees in an enterprise environment",
-      "Owned Active Directory and Microsoft 365 identity lifecycle management — account provisioning, deprovisioning, and access control — using PowerShell to automate routine administration",
-      "Managed enterprise mobile device management (VMware AirWatch) and Cisco IP phone deployments across a distributed workforce",
+      "Administered Windows workstations, Microsoft 365, and Azure Active Directory (Entra ID) accounts for a globally distributed enterprise workforce",
+      "Directly provisioned and supported Active Directory and Microsoft 365 accounts, using prebuilt PowerShell scripts to execute account creation as part of established account-creation workflows",
+      "Used Microsoft SCCM for remote endpoint support, software installation workflows, and Windows workstation imaging",
+      "Managed enterprise mobile device management (VMware AirWatch) and Cisco IP phone configuration across a distributed workforce",
       "Resolved hardware failures, software issues, and multi-factor authentication problems, maintaining secure access across a geographically dispersed organization",
     ],
     accent: "purple",
@@ -60,10 +68,11 @@ export const jobs: Job[] = [
     location: "Irving, TX",
     period: "Apr 2020 – Oct 2020",
     type: "Contract",
+    source: "professional",
     coreTechnologies: ["Windows", "Active Directory", "Hardware Lifecycle", "Enterprise Troubleshooting"],
     highlights: [
       "Delivered Level II enterprise troubleshooting for Windows laptops, virtual machines, and Chromebooks in a high-volume financial services environment",
-      "Resolved advanced hardware, software, and Active Directory account issues using BMC Remedy and enterprise remote support tooling",
+      "Resolved escalated hardware, software, and Active Directory account issues using BMC Remedy and enterprise remote support tooling",
     ],
     accent: "slate",
   },
@@ -73,10 +82,11 @@ export const jobs: Job[] = [
     location: "Bedford, TX",
     period: "Jul 2018 – Mar 2020",
     type: "Full-time",
+    source: "professional",
     coreTechnologies: ["Windows", "Active Directory", "Hardware Lifecycle", "ServiceNow", "Enterprise Troubleshooting"],
     highlights: [
       "Provided Windows systems and Active Directory account support — Tier 1/2 troubleshooting across desktops, printers, and core business applications",
-      "Led imaging and deployment of 600+ Windows 10 workstations, managing the full hardware lifecycle from installation and configuration through asset tracking",
+      "Supported the imaging and deployment of more than 600 Windows 10 workstations as part of a company-wide endpoint deployment initiative",
       "Authored knowledge base documentation to standardize troubleshooting and reduce repeat incident volume",
       "Triaged and routed ServiceNow incidents to the appropriate support teams, maintaining SLA compliance",
     ],
@@ -88,6 +98,7 @@ export const jobs: Job[] = [
     location: "Fort Worth, TX",
     period: "Sep 2017 – Present",
     type: "Volunteer",
+    source: "volunteer",
     coreTechnologies: [
       "Ubuntu Server", "Nginx", "ASP.NET Core", "Umbraco CMS", "DNS",
       "SSL/TLS", "Networking", "Audio/Visual Systems",

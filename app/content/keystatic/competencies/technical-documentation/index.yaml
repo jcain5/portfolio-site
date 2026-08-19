@@ -20,5 +20,11 @@
       "label": "Staff Handoff Documentation"
     }
   ],
-  "displayOrder": 7
+  "displayOrder": 7,
+  "sources": [
+    "professional",
+    "independent-lab",
+    "volunteer",
+    "portfolio-project"
+  ]
 }

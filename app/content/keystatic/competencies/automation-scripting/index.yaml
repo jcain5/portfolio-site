@@ -14,17 +14,19 @@
       "label": "Infrastructure Validation"
     },
     {
-      "label": "Active Directory Administration"
+      "label": "Microsoft Intune (Enrollment & Compliance Support)"
     },
     {
-      "label": "Microsoft Intune MDM"
+      "label": "BlackBerry UEM / AirWatch (Device Support)"
     },
     {
-      "label": "BlackBerry UEM / AirWatch"
-    },
-    {
-      "label": "SCCM / Endpoint Deployment Support"
+      "label": "Microsoft SCCM (Remote Support, Deployment & Imaging)"
     }
   ],
-  "displayOrder": 4
+  "displayOrder": 4,
+  "sources": [
+    "independent-lab",
+    "professional",
+    "portfolio-project"
+  ]
 }

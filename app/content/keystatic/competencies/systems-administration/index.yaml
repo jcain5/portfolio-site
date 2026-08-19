@@ -11,7 +11,8 @@
       "label": "Windows Server 2022"
     },
     {
-      "label": "Group Policy (GPO)"
+      "label": "Group Policy (GPO)",
+      "status": "planned"
     },
     {
       "label": "DNS Server Management"
@@ -20,32 +21,22 @@
       "label": "DHCP Server Management"
     },
     {
-      "label": "IIS Web Server"
-    },
-    {
-      "label": "Remote Desktop Services"
-    },
-    {
       "label": "Server Roles & Features"
     },
     {
       "label": "Linux Service Administration (systemd)"
     },
     {
-      "label": "Microsoft 365 Admin Center"
-    },
-    {
-      "label": "Exchange Online"
-    },
-    {
-      "label": "SharePoint Online"
-    },
-    {
-      "label": "Microsoft Teams Admin"
+      "label": "Microsoft 365"
     },
     {
       "label": "ServiceNow / BMC Remedy"
     }
   ],
-  "displayOrder": 0
+  "displayOrder": 0,
+  "sources": [
+    "independent-lab",
+    "volunteer",
+    "professional"
+  ]
 }
