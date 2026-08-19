@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Hero from "./components/Hero";
+import EvidenceModel from "./components/EvidenceModel";
 import CoreCompetencies from "./components/CoreCompetencies";
 import TechDocsTeaser from "./components/TechDocsTeaser";
 import ProjectCard from "./components/ProjectCard";
@@ -20,6 +21,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <EvidenceModel />
       <CoreCompetencies competencies={competencies} />
 
       {primary && (

@@ -1,14 +1,6 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
 import OperationsDiagram from "./OperationsDiagram";
-import { IconCalendar, IconUsers, IconMonitor } from "./icons";
-
-const stats = [
-  { value: "8+", label: "Years Experience", Icon: IconCalendar },
-  { value: "1,000+", label: "Users & Endpoints Supported", Icon: IconUsers },
-  { value: "3", label: "Certifications", Icon: IconMonitor },
-];
 
 export default function Hero() {
   return (
@@ -20,24 +12,21 @@ export default function Hero() {
         <div className="grid lg:grid-cols-12 lg:gap-8 items-center">
           <div className="lg:col-span-7">
             <Image src="/logo-mark-dark.png" alt="Jeremy Cain" width={32} height={40} className="h-10 w-auto mb-6" priority />
-            <p className="font-mono text-[#38A6B8] text-xs sm:text-sm tracking-[0.2em] mb-6 uppercase">
-              Systems Administration · Infrastructure · Identity &amp; Access
-            </p>
             <h1 className="font-heading text-4xl sm:text-6xl font-semibold text-white mb-3 tracking-tight">
               Jeremy Cain
             </h1>
             <p className="text-lg sm:text-xl text-[#8FB4DC] font-medium mb-6">
-              IT Operations &amp; Infrastructure Professional
+              IT Operations | Systems Administration | Infrastructure | Identity
             </p>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-4">
-              I support and troubleshoot Windows, Linux, networking, virtualization, identity, and
-              security technologies in enterprise environments, while directly designing and
-              administering infrastructure in my lab and nonprofit work, including monitoring,
-              backups, recovery, automation, and incident response.
+              I have enterprise IT operations experience supporting endpoints, identity, and access
+              for enterprise environments, and I&apos;m building deeper systems, infrastructure, and
+              identity administration capability through hands-on independent lab and volunteer
+              work — plus developing Azure administration skills through AZ-104-aligned lab projects.
             </p>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-10">
-              Target roles: Systems Administrator, Infrastructure Administrator, IT Operations Analyst,
-              IAM Administrator, Platform Operations Engineer.
+              Target roles: Systems Administrator, Infrastructure Administrator, IT Operations
+              Analyst, IAM Analyst.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -45,42 +34,27 @@ export default function Hero() {
                 href="/projects"
                 className="px-6 py-3 bg-[#2F75C8] text-white text-sm font-semibold rounded-lg hover:bg-[#265f9f] transition-colors"
               >
-                View Projects
+                View Infrastructure Projects
+              </Link>
+              <Link
+                href="/experience"
+                className="px-6 py-3 border border-slate-500 text-white text-sm font-semibold rounded-lg hover:border-slate-300 hover:bg-white/5 transition-colors"
+              >
+                View Experience
               </Link>
               <a
                 href="/Jeremy_Cain_Jr_System_Administrator.pdf"
                 download
-                className="px-6 py-3 border border-slate-500 text-white text-sm font-semibold rounded-lg hover:border-slate-300 hover:bg-white/5 transition-colors"
+                className="px-6 py-3 border border-slate-700 text-slate-300 text-sm font-semibold rounded-lg hover:border-slate-500 hover:text-white transition-colors"
               >
                 Download Résumé
               </a>
-              <Link
-                href="/contact"
-                className="px-6 py-3 border border-slate-700 text-slate-300 text-sm font-semibold rounded-lg hover:border-slate-500 hover:text-white transition-colors"
-              >
-                Contact
-              </Link>
             </div>
           </div>
 
           <div className="hidden lg:block lg:col-span-5">
             <OperationsDiagram />
           </div>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-6 sm:gap-8 border-t border-white/10 pt-8">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex items-start gap-3">
-              <span className="shrink-0 text-[#38A6B8] mt-0.5">
-                <stat.Icon className="w-5 h-5" />
-              </span>
-              <div>
-                <div className="font-heading text-2xl sm:text-3xl font-semibold text-white">{stat.value}</div>
-                <div className="text-xs text-slate-400 mt-1 tracking-wide font-mono">{stat.label}</div>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>

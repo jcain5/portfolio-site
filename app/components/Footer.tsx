@@ -16,7 +16,9 @@ export default function Footer() {
           <Image src="/logo-mark-dark.png" alt="Jeremy Cain" width={19} height={24} className="h-6 w-auto" />
           <p className="text-slate-400 text-xs font-mono">© 2026 Jeremy Cain · Fort Worth, TX</p>
         </div>
-        <p className="text-slate-500 text-xs font-mono">IT Operations · Systems Administration · Identity</p>
+        <p className="text-slate-500 text-xs font-mono">
+          IT Operations | Systems Administration | Infrastructure | Identity
+        </p>
       </div>
     </footer>
   );
