@@ -22,17 +22,17 @@ const cards: EvidenceCard[] = [
       "Windows Server, Active Directory, virtualization, networking, DNS/DHCP, and segmentation — administered in my independent infrastructure lab.",
   },
   {
-    title: "Azure Administration Lab",
+    title: "Azure Administration Development",
     source: "independent-lab",
     status: "developing",
     description:
-      "Azure administration work aligned to AZ-104 domains — RBAC, identity, networking, compute, storage, governance, and monitoring. Independent lab work, not professional production Azure administration.",
+      "Actively developing Azure administration capability through structured AZ-104 study and hands-on labs. Independent, developing capability — not professional production Azure administration.",
   },
   {
     title: "Automation",
     source: "portfolio-project",
     description:
-      "PowerShell, Python, and JavaScript tooling used to reinforce systems administration and infrastructure workflows.",
+      "PowerShell and Python tooling used to reinforce systems administration and infrastructure workflows.",
   },
 ];
 

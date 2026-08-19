@@ -1,6 +1,6 @@
 {
   "label": "Systems Administration",
-  "description": "Windows Server, Active Directory, Group Policy, and Linux service administration across enterprise support and independent lab environments.",
+  "description": "Windows Server, Active Directory, Group Policy, and Linux service administration demonstrated across independent lab, volunteer, and enterprise support environments.",
   "color": "cyan",
   "icon": "🏢",
   "skills": [
@@ -11,8 +11,7 @@
       "label": "Windows Server 2022"
     },
     {
-      "label": "Group Policy (GPO)",
-      "status": "planned"
+      "label": "Group Policy (GPO)"
     },
     {
       "label": "DNS Server Management"

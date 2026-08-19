@@ -23,6 +23,7 @@
   "featuredChips": [
     "Windows Server",
     "Active Directory",
+    "Group Policy",
     "Proxmox",
     "PowerShell",
     "DNS",
@@ -36,6 +37,7 @@
       "items": [
         "Windows Server 2022",
         "Active Directory Domain Services",
+        "Group Policy",
         "DNS",
         "PowerShell",
         "Windows 11"
@@ -77,6 +79,7 @@
     "Deployed Windows Server 2022 with Active Directory Domain Services and DNS",
     "Created organizational units, users, security groups, administrative accounts, and domain-joined workstations",
     "Implemented separation between standard and privileged administrative accounts",
+    "Built and linked a tier-oriented Group Policy structure covering domain, server, and workstation baselines, validated via GPMC modeling and gpresult",
     "Configured Cisco switching, VLAN segmentation, routing, pfSense firewall services, and DNS infrastructure",
     "Deployed and evaluated Wazuh and Suricata for endpoint and network security monitoring",
     "Diagnosed DNS resolution failures, Active Directory health warnings, DFS-R events, and service connectivity issues",
@@ -91,7 +94,7 @@
   ],
   "roadmap": [
     "Deploy a secondary domain controller",
-    "Implement Group Policy security baselines",
+    "Implement Fine-Grained Password Policies (PSOs) for Tier 0 accounts",
     "Add centralized file services",
     "Validate backup and recovery procedures",
     "Expand Wazuh agent coverage and detections",
@@ -128,6 +131,7 @@
   "technologies": [
     "Windows Server",
     "Active Directory",
+    "Group Policy",
     "DNS",
     "PowerShell",
     "Proxmox VE",

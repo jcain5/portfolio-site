@@ -53,7 +53,7 @@ export const jobs: Job[] = [
       "Identity Management", "Microsoft SCCM",
     ],
     highlights: [
-      "Administered Windows workstations, Microsoft 365, and Azure Active Directory (Entra ID) accounts for a globally distributed enterprise workforce",
+      "Supported Windows workstations and Microsoft 365 / Azure Active Directory (Entra ID) access for a globally distributed enterprise workforce",
       "Directly provisioned and supported Active Directory and Microsoft 365 accounts, using prebuilt PowerShell scripts to execute account creation as part of established account-creation workflows",
       "Used Microsoft SCCM for remote endpoint support, software installation workflows, and Windows workstation imaging",
       "Managed enterprise mobile device management (VMware AirWatch) and Cisco IP phone configuration across a distributed workforce",

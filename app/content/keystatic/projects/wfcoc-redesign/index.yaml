@@ -102,8 +102,8 @@
     "Deployed to Ubuntu Server behind an Nginx reverse proxy as a systemd-managed beta service",
     "Implemented automated nightly database backups with integrity verification and retention management",
     "Diagnosed and resolved a reverse-proxy/application-service failure using layered health checks and service logs",
-    "Developing a modern ASP.NET Core website for West Freeway Church of Christ to replace the existing Finalweb 2.0 CMS",
-    "Integrating Umbraco 18 CMS to enable non-technical staff to manage content independently",
+    "Developed a modern ASP.NET Core website for West Freeway Church of Christ to replace the existing Finalweb 2.0 CMS",
+    "Integrated Umbraco 18 CMS to enable non-technical staff to manage content independently",
     "Architecture designed with clean separation of concerns: Pages, Services, ViewModels, and API Controllers",
     "Implemented 9 core pages with Bootstrap 5 responsive design and automated accessibility checks supporting progress toward WCAG 2.2 AA",
     "Wrote a Playwright browser test suite with axe accessibility checks for automated quality assurance"

@@ -22,7 +22,7 @@ export default function Hero() {
               I have enterprise IT operations experience supporting endpoints, identity, and access
               for enterprise environments, and I&apos;m building deeper systems, infrastructure, and
               identity administration capability through hands-on independent lab and volunteer
-              work — plus developing Azure administration skills through AZ-104-aligned lab projects.
+              work — plus developing Azure administration capability through structured AZ-104 study.
             </p>
             <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mb-10">
               Target roles: Systems Administrator, Infrastructure Administrator, IT Operations
