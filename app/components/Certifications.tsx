@@ -1,4 +1,3 @@
-"use client";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
 import { certs } from "../lib/certifications";

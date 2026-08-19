@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Section from "./ui/Section";
 import { colors } from "../lib/colors";
@@ -19,7 +18,7 @@ function Timeline({ jobs }: { jobs: Job[] }) {
               <div className="p-6 rounded-lg bg-white border border-border hover:border-border-strong transition-colors">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                   <div>
-                    <h4 className="text-ink font-heading font-semibold text-lg leading-tight">{job.title}</h4>
+                    <h3 className="text-ink font-heading font-semibold text-lg leading-tight">{job.title}</h3>
                     <div className="text-body text-sm mt-0.5">
                       {job.company} <span className="text-muted">·</span> {job.location}
                     </div>

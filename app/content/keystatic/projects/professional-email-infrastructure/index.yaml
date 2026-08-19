@@ -79,24 +79,6 @@
   "relatedDocumentation": [
     "configuring-spf-dkim-dmarc-and-email-aliases"
   ],
-  "screenshots": [
-    {
-      "alt": "Hostinger DNS zone editor placeholder",
-      "caption": "Hostinger DNS Zone Editor — MX/SPF/DKIM/DMARC records"
-    },
-    {
-      "alt": "Zoho Mail admin console placeholder",
-      "caption": "Zoho Mail Admin Console — domain and alias configuration"
-    },
-    {
-      "alt": "MXToolbox validation placeholder",
-      "caption": "MXToolbox validation results"
-    },
-    {
-      "alt": "Email authentication results placeholder",
-      "caption": "Email authentication test results"
-    }
-  ],
   "technologies": [
     "DNS",
     "Zoho Mail",

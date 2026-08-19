@@ -20,9 +20,15 @@ export async function generateMetadata({
   const project = await getProjectBySlug(slug);
   if (!project) return {};
 
+  const title = project.metaTitle ?? `${project.title} | Jeremy M. Cain`;
+  const description = project.metaDescription ?? project.summary;
+  const url = `/projects/${slug}`;
+
   return {
-    title: project.metaTitle ?? `${project.title} | Jeremy M. Cain`,
-    description: project.metaDescription ?? project.summary,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, type: "article" },
   };
 }
 

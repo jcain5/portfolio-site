@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { DocumentRendererProps } from "@keystatic/core/renderer";
 import { reader } from "./keystatic-reader";
 
@@ -33,7 +34,10 @@ async function normalizeEntry(slug: string, entry: any): Promise<DocumentationEn
   };
 }
 
-export async function getDocumentationEntries(): Promise<DocumentationEntry[]> {
+// Memoized per-request — getAllProjects() also reads documentation entries
+// (for related-doc titles), so without this, a single page render that calls
+// both would read every documentation entry from disk twice.
+export const getDocumentationEntries = cache(async (): Promise<DocumentationEntry[]> => {
   try {
     const entries = await reader.collections.documentation.all();
     return await Promise.all(entries.map(({ slug, entry }) => normalizeEntry(slug, entry)));
@@ -41,7 +45,7 @@ export async function getDocumentationEntries(): Promise<DocumentationEntry[]> {
     console.error("Failed to read documentation from Keystatic:", err);
     return [];
   }
-}
+});
 
 export async function getDocumentationBySlug(slug: string): Promise<DocumentationEntry | undefined> {
   try {

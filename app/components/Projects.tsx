@@ -9,7 +9,7 @@ export default function Projects({ projects }: { projects: ProjectCaseStudy[] })
       eyebrow="PROJECTS"
       title="Case Studies"
       intro="Networking, automation, and software development evidence that supports the infrastructure and systems administration work above."
-      headingLevel="h1"
+      headingLevel="h2"
       threshold={0.05}
     >
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

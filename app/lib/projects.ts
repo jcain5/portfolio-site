@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { ColorKey } from "./colors";
 import type { EvidenceSource, EvidenceStatus } from "./evidence";
 import { reader } from "./keystatic-reader";
@@ -186,7 +187,10 @@ async function getDocTitleMap(): Promise<Map<string, string>> {
   return new Map(docs.map((d) => [d.slug, d.title]));
 }
 
-export async function getAllProjects(): Promise<ProjectCaseStudy[]> {
+// Memoized per-request — getFeaturedProjects() and getNonFeaturedProjects()
+// both call this independently, so without caching, a page that renders both
+// (home, /projects) would read every project from disk twice.
+export const getAllProjects = cache(async (): Promise<ProjectCaseStudy[]> => {
   try {
     const [entries, docTitleBySlug] = await Promise.all([reader.collections.projects.all(), getDocTitleMap()]);
     return entries
@@ -197,7 +201,7 @@ export async function getAllProjects(): Promise<ProjectCaseStudy[]> {
     console.error("Failed to read projects from Keystatic:", err);
     return [];
   }
-}
+});
 
 export async function getProjectBySlug(slug: string): Promise<ProjectCaseStudy | undefined> {
   try {

@@ -19,9 +19,15 @@ export async function generateMetadata({
   const article = await getDocumentationBySlug(slug);
   if (!article) return {};
 
+  const title = `${article.title} | Jeremy Cain`;
+  const description = article.goal || `${article.title} — technical documentation from Jeremy Cain.`;
+  const url = `/documentation/${slug}`;
+
   return {
-    title: `${article.title} | Jeremy Cain`,
-    description: article.goal || `${article.title} — technical documentation from Jeremy Cain.`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title, description, url, type: "article" },
   };
 }
 

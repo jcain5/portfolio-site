@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { ColorKey } from "./colors";
 import type { EvidenceSource, EvidenceStatus } from "./evidence";
 import { normalizeSkillStatus } from "./evidence";
@@ -33,7 +34,9 @@ function normalizeSkill(skill: any): CompetencySkill {
   };
 }
 
-export async function getCompetencies(): Promise<Competency[]> {
+// Memoized per-request — avoids re-reading every competency from disk if
+// multiple components on the same page call this independently.
+export const getCompetencies = cache(async (): Promise<Competency[]> => {
   try {
     const entries = await reader.collections.competencies.all();
     return entries
@@ -52,7 +55,7 @@ export async function getCompetencies(): Promise<Competency[]> {
     console.error("Failed to read competencies from Keystatic:", err);
     return [];
   }
-}
+});
 
 export async function getCompetencyBySlug(slug: string): Promise<Competency | undefined> {
   const all = await getCompetencies();

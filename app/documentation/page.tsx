@@ -2,8 +2,15 @@ import Link from "next/link";
 import Section from "../components/ui/Section";
 import { getDocumentationEntries } from "../lib/documentation";
 
+const title = "Documentation | Jeremy Cain";
+const description =
+  "Technical documentation from independent infrastructure and administration projects — written for repeatability and handoff.";
+
 export const metadata = {
-  title: "Documentation | Jeremy Cain",
+  title,
+  description,
+  alternates: { canonical: "/documentation" },
+  openGraph: { title, description, url: "/documentation" },
 };
 
 export default async function DocumentationPage() {
@@ -14,7 +21,7 @@ export default async function DocumentationPage() {
       id="documentation"
       eyebrow="KNOWLEDGE BASE"
       title="Documentation"
-      intro="Step-by-step reference notes and architecture write-ups from real infrastructure work — written for repeatability and handoff."
+      intro="Technical documentation from independent infrastructure and administration projects — written for repeatability and handoff."
       headingLevel="h1"
       firstOnPage
       threshold={0.05}
@@ -28,7 +35,7 @@ export default async function DocumentationPage() {
           >
             <div className="h-1 w-10 rounded-full mb-5 bg-[#2F75C8]" />
             <span className="text-xs font-mono text-[#2F75C8] mb-1">{entry.category}</span>
-            <h3 className="text-ink font-heading font-semibold text-lg leading-snug mb-3">{entry.title}</h3>
+            <h2 className="text-ink font-heading font-semibold text-lg leading-snug mb-3">{entry.title}</h2>
             <p className="text-sm text-body leading-relaxed">{entry.goal}</p>
           </Link>
         ))}

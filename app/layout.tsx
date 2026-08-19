@@ -22,10 +22,30 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://jeremymcain.com";
+const SITE_TITLE = "Jeremy Cain — IT Operations | Systems Administration | Infrastructure | Identity";
+const SITE_DESCRIPTION =
+  "Enterprise support experience strengthened by hands-on identity, Windows Server, virtualization, networking, automation, and infrastructure deployment.";
+
 export const metadata: Metadata = {
-  title: "Jeremy Cain — IT Operations & Systems Administration Professional",
-  description:
-    "Enterprise support experience strengthened by hands-on identity, Windows Server, virtualization, networking, automation, and infrastructure deployment.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Jeremy Cain",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

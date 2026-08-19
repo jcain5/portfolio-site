@@ -2,10 +2,15 @@ import Skills, { type EvidenceProject } from "../components/Skills";
 import { getCompetencies } from "../lib/competencies";
 import { getAllProjects } from "../lib/projects";
 
+const title = "Skills | Jeremy Cain";
+const description =
+  "Evidence-backed competency areas — systems administration, infrastructure, security, and automation — each linked to supporting projects.";
+
 export const metadata = {
-  title: "Skills | Jeremy Cain",
-  description:
-    "Evidence-backed competency areas — systems administration, infrastructure, security, and automation — each linked to supporting projects.",
+  title,
+  description,
+  alternates: { canonical: "/skills" },
+  openGraph: { title, description, url: "/skills" },
 };
 
 export default async function SkillsPage() {
