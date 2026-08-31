@@ -23,9 +23,9 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const SITE_URL = "https://jeremymcain.com";
-const SITE_TITLE = "Jeremy Cain — IT Operations | Systems Administration | Infrastructure | Identity";
+const SITE_TITLE = "Jeremy Cain — Systems & Infrastructure Administrator";
 const SITE_DESCRIPTION =
-  "Enterprise support experience strengthened by hands-on identity, Windows Server, virtualization, networking, automation, and infrastructure deployment.";
+  "Enterprise IT operations professional with hands-on systems and infrastructure administration experience — Windows Server, Active Directory, networking, Linux infrastructure, and automation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

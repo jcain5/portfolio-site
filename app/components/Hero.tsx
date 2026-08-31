@@ -13,17 +13,22 @@ export default function Hero() {
           <h1 className="font-heading text-4xl sm:text-6xl font-semibold text-white mb-3 tracking-tight">
             Jeremy Cain
           </h1>
-          <p className="text-lg sm:text-xl text-[#8FB4DC] font-medium mb-6">
-            IT Operations | Systems Administration | Infrastructure | Identity
+          <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-[#8FB4DC] mb-6 tracking-tight">
+            Systems &amp; Infrastructure Administrator
+          </h2>
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6">
+            Enterprise IT operations professional with hands-on systems and infrastructure
+            administration experience — administering Windows Server and Active Directory,
+            configuring networking and Linux infrastructure, and automating operational
+            workflows. Ready for broader Systems Administrator and Infrastructure Administrator
+            responsibility.
           </p>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-4">
-            I have enterprise IT operations experience supporting endpoints, identity, and access
-            for enterprise environments, and I&apos;m building deeper systems, infrastructure, and
-            identity administration capability through hands-on independent lab and volunteer
-            work — plus developing Azure administration capability through structured AZ-104 study.
+
+          <p className="text-[#8FB4DC] text-sm font-mono mb-2">
+            Windows Server · Active Directory · Networking · Linux · Automation
           </p>
-          <p className="text-slate-400 text-sm leading-relaxed mb-10">
-            Target roles: Systems Administrator · Infrastructure Analyst · IT Operations Analyst · IAM Analyst
+          <p className="text-slate-400 text-sm font-mono mb-10">
+            Fort Worth / DFW
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -31,7 +36,7 @@ export default function Hero() {
               href="/projects"
               className="px-6 py-3 bg-[#2F75C8] text-white text-sm font-semibold rounded-lg hover:bg-[#265f9f] transition-colors"
             >
-              View Infrastructure Projects
+              View Infrastructure
             </Link>
             <Link
               href="/experience"

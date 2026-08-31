@@ -15,7 +15,7 @@ export default function ResumePage() {
       <div className="max-w-2xl mx-auto text-center">
         <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Resume</p>
         <h1 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-6 tracking-tight">
-          Jeremy Cain — IT Operations | Systems Administration | Infrastructure | Identity
+          Jeremy Cain — Systems &amp; Infrastructure Administrator
         </h1>
         <p className="text-body mb-10 leading-relaxed">
           Download the résumé covering enterprise IT operations, infrastructure, and identity

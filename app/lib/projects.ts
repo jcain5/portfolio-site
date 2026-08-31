@@ -290,6 +290,37 @@ export async function getFeaturedProjects(): Promise<ProjectCaseStudy[]> {
     .sort((a, b) => (a.featuredRank ?? 0) - (b.featuredRank ?? 0));
 }
 
+export interface HomepageProjectSelection {
+  flagship: ProjectCaseStudy | undefined;
+  supporting: ProjectCaseStudy[];
+}
+
+// Homepage-only selection, derived entirely from general CMS fields — never a
+// project slug. The rule:
+//   flagship   = featured projects at "flagship" strategicPriority (the top,
+//                strongest-treatment slot — normally just one project)
+//   supporting = published "supporting"-priority projects that are NOT
+//                currently featured, i.e. lower-priority work that isn't
+//                already being shown prominently elsewhere on the homepage
+// A project that is featured but only "supporting" priority (used when a
+// project should keep its featured placement on /projects while being held
+// back from the homepage's top-tier treatment) intentionally appears in
+// neither list here — that's how a project can be temporarily excluded from
+// the homepage without touching its published/featured CMS state.
+export async function getHomepageFeaturedProjects(): Promise<HomepageProjectSelection> {
+  const all = await getAllProjects();
+
+  const flagshipCandidates = all
+    .filter((p) => p.featured && p.strategicPriority === "flagship")
+    .sort((a, b) => (a.featuredRank ?? 0) - (b.featuredRank ?? 0));
+
+  const supporting = all
+    .filter((p) => !p.featured && p.strategicPriority === "supporting")
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+
+  return { flagship: flagshipCandidates[0], supporting };
+}
+
 export async function getNonFeaturedProjects(): Promise<ProjectCaseStudy[]> {
   const all = await getAllProjects();
   return all.filter((p) => !p.featured || p.featuredRank == null).sort((a, b) => a.displayOrder - b.displayOrder);

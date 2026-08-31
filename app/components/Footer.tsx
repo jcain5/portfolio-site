@@ -17,7 +17,7 @@ export default function Footer() {
           <p className="text-slate-400 text-xs font-mono">© 2026 Jeremy Cain · Fort Worth, TX</p>
         </div>
         <p className="text-slate-500 text-xs font-mono">
-          IT Operations | Systems Administration | Infrastructure | Identity
+          Windows | Identity | Infrastructure | Automation
         </p>
       </div>
     </footer>

@@ -4,50 +4,40 @@ import EvidenceModel from "./components/EvidenceModel";
 import CoreCompetencies from "./components/CoreCompetencies";
 import TechDocsTeaser from "./components/TechDocsTeaser";
 import ProjectCard from "./components/ProjectCard";
-import { getFeaturedProjects, getNonFeaturedProjects } from "./lib/projects";
-import { getCompetencies } from "./lib/competencies";
+import { getHomepageFeaturedProjects } from "./lib/projects";
 import { getDocumentationEntries } from "./lib/documentation";
 
 export default async function Home() {
-  const [featured, otherProjects, competencies, documentationEntries] = await Promise.all([
-    getFeaturedProjects(),
-    getNonFeaturedProjects(),
-    getCompetencies(),
+  const [{ flagship, supporting }, documentationEntries] = await Promise.all([
+    getHomepageFeaturedProjects(),
     getDocumentationEntries(),
   ]);
-  const primary = featured.find((p) => p.featuredVariant === "primary") ?? featured[0];
-  const secondaryProjects = featured.filter((p) => p !== primary);
 
   return (
     <>
       <Hero />
       <EvidenceModel />
-      <CoreCompetencies competencies={competencies} />
+      <CoreCompetencies />
 
-      {primary && (
+      {flagship && (
         <section className="py-20 px-6">
           <div className="container-grid">
-            <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Featured Projects</p>
+            <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Featured Infrastructure</p>
             <h2 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-10 tracking-tight">
-              {primary.title}
+              {flagship.title}
             </h2>
 
-            <ProjectCard project={primary} variant="primary" />
+            <ProjectCard project={flagship} variant="primary" />
 
-            {secondaryProjects.length > 0 && (
-              <div className="mt-6 space-y-4">
-                {secondaryProjects.map((project) => (
-                  <ProjectCard key={project.slug} project={project} variant="featured-secondary" />
-                ))}
-              </div>
-            )}
-
-            {otherProjects.length > 0 && (
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                {otherProjects.map((project) => (
-                  <ProjectCard key={project.slug} project={project} variant="grid" />
-                ))}
-              </div>
+            {supporting.length > 0 && (
+              <>
+                <p className="font-mono text-muted text-xs tracking-[0.15em] font-medium mt-12 mb-4 uppercase">Supporting Work</p>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {supporting.map((project) => (
+                    <ProjectCard key={project.slug} project={project} variant="grid" />
+                  ))}
+                </div>
+              </>
             )}
 
             <div className="text-center mt-8">
@@ -70,7 +60,7 @@ export default async function Home() {
             Let&apos;s talk operations
           </h2>
           <p className="text-slate-300 mb-8">
-            Open to Systems Administration, IT Operations, and Identity &amp; Access Management roles.
+            Open to Systems Administration, Infrastructure Administration, and IT Operations roles.
           </p>
           <Link
             href="/contact"
