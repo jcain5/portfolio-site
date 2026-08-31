@@ -1,8 +1,8 @@
 import Projects from "../components/Projects";
 import ProjectCard from "../components/ProjectCard";
-import { getFeaturedProjects, getNonFeaturedProjects } from "../lib/projects";
+import { getFeaturedProjects, getProjectsByTier } from "../lib/projects";
 
-const title = "Projects | Jeremy Cain";
+const title = "Infrastructure | Jeremy Cain";
 const description =
   "Networking, automation, and software development evidence that supports the infrastructure and systems administration work above.";
 
@@ -14,16 +14,25 @@ export const metadata = {
 };
 
 export default async function ProjectsPage() {
-  const [featured, nonFeatured] = await Promise.all([getFeaturedProjects(), getNonFeaturedProjects()]);
+  const [featured, tiers] = await Promise.all([getFeaturedProjects(), getProjectsByTier()]);
+
+  // Featured projects already render in their own tier (Infrastructure
+  // Ownership), so the grid below excludes anything already shown above.
+  const featuredSlugs = new Set(featured.map((p) => p.slug));
+  const administrationAutomation = tiers.administrationAutomation.filter((p) => !featuredSlugs.has(p.slug));
+  const supportingTechnicalWork = tiers.supportingTechnicalWork.filter((p) => !featuredSlugs.has(p.slug));
+  const archive = tiers.archive.filter((p) => !featuredSlugs.has(p.slug));
 
   return (
     <>
       <section className="pt-32 pb-4 px-6">
         <div className="container-grid space-y-4">
           <div className="mb-2">
-            <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Projects</p>
-            <h1 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-2 tracking-tight">Projects</h1>
-            <h2 className="font-heading text-lg font-semibold text-body">Featured Projects</h2>
+            <p className="font-mono text-[#2F75C8] text-xs tracking-[0.15em] font-medium mb-3 uppercase">Infrastructure</p>
+            <h1 className="font-heading text-3xl sm:text-4xl font-semibold text-ink mb-2 tracking-tight">Infrastructure</h1>
+            {featured.length > 0 && (
+              <h2 className="font-heading text-lg font-semibold text-body">Infrastructure Ownership</h2>
+            )}
           </div>
           {featured.map((project) => (
             <ProjectCard
@@ -37,7 +46,26 @@ export default async function ProjectsPage() {
           ))}
         </div>
       </section>
-      <Projects projects={nonFeatured} />
+
+      {administrationAutomation.length > 0 && (
+        <Projects
+          id="administration-automation"
+          projects={administrationAutomation}
+          heading="Administration & Automation"
+          intro="PowerShell, Python, health tooling, and administration utilities."
+        />
+      )}
+      {supportingTechnicalWork.length > 0 && (
+        <Projects
+          id="supporting-technical-work"
+          projects={supportingTechnicalWork}
+          heading="Supporting Technical Work"
+          intro="Useful projects that reinforce the primary trajectory without standing as flagship infrastructure evidence."
+        />
+      )}
+      {archive.length > 0 && (
+        <Projects id="archive" projects={archive} heading="Archive" intro="Lower-priority projects, published for reference." />
+      )}
     </>
   );
 }

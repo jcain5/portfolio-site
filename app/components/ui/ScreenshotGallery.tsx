@@ -3,6 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { ScreenshotSlot } from "../../lib/projects";
 
+// "log-output" -> "Log Output". Only rendered when the CMS entry sets an
+// evidenceType other than the default "screenshot" (which adds no information).
+function evidenceTypeLabel(type?: string): string | undefined {
+  if (!type || type === "screenshot") return undefined;
+  return type.replace(/-/g, " ").replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
 export default function ScreenshotGallery({ screenshots }: { screenshots: ScreenshotSlot[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -62,7 +69,12 @@ export default function ScreenshotGallery({ screenshots }: { screenshots: Screen
                   className="object-contain"
                 />
               </button>
-              <figcaption className="text-xs font-mono text-muted mt-2">{shot.caption}</figcaption>
+              <figcaption className="text-xs font-mono text-muted mt-2">
+                {evidenceTypeLabel(shot.evidenceType) && (
+                  <span className="text-muted/80">{evidenceTypeLabel(shot.evidenceType)} — </span>
+                )}
+                {shot.caption}
+              </figcaption>
             </figure>
           ) : (
             <div

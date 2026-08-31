@@ -2,7 +2,12 @@
   "title": "Professional Email Infrastructure",
   "subtitle": "Independent Project",
   "category": "Email & DNS Infrastructure",
+  "categories": [
+    "networking",
+    "security"
+  ],
   "status": "Complete",
+  "strategicPriority": "supporting",
   "color": "purple",
   "competencies": [
     "identity-access",

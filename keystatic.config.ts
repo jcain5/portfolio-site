@@ -19,9 +19,42 @@ const statusOptions = [
   { label: "Planned", value: "Planned" },
   { label: "Active", value: "Active" },
   { label: "In Development", value: "In Development" },
+  { label: "Ongoing", value: "Ongoing" },
   { label: "Beta", value: "Beta" },
   { label: "Complete", value: "Complete" },
+  { label: "Paused", value: "Paused" },
   { label: "Archived", value: "Archived" },
+] as const;
+
+// Career-trajectory categorization (Systems & Infrastructure Administrator
+// positioning). Multi-select — a project can genuinely span several, e.g. an
+// AD lab is both "infrastructure" and "identity". Distinct from the existing
+// free-text `category` field, which stays as-is for the display badge label.
+const projectCategoryOptions = [
+  { label: "Infrastructure", value: "infrastructure" },
+  { label: "Systems Administration", value: "systems-administration" },
+  { label: "Automation", value: "automation" },
+  { label: "Networking", value: "networking" },
+  { label: "Identity", value: "identity" },
+  { label: "Linux", value: "linux" },
+  { label: "Cloud", value: "cloud" },
+  { label: "Security", value: "security" },
+  { label: "Software Development", value: "software-development" },
+  { label: "Other", value: "other" },
+] as const;
+
+const strategicPriorityOptions = [
+  { label: "Flagship", value: "flagship" },
+  { label: "Supporting", value: "supporting" },
+  { label: "Archive", value: "archive" },
+] as const;
+
+const evidenceTypeOptions = [
+  { label: "Screenshot", value: "screenshot" },
+  { label: "Diagram", value: "diagram" },
+  { label: "Log Output", value: "log-output" },
+  { label: "Config File", value: "config-file" },
+  { label: "Other", value: "other" },
 ] as const;
 
 const documentationCategoryOptions = [
@@ -84,6 +117,12 @@ const screenshotField = fields.object(
       description: "Required — describes the image for screen readers.",
     }),
     caption: fields.text({ label: "Caption", multiline: true }),
+    evidenceType: fields.select({
+      label: "Evidence type (optional)",
+      description: "What kind of evidence this is — shown as a small label next to the caption.",
+      options: evidenceTypeOptions,
+      defaultValue: "screenshot",
+    }),
   },
   { label: "Screenshot" }
 );
@@ -102,13 +141,28 @@ export default config({
         title: fields.slug({ name: { label: "Title" } }),
         subtitle: fields.text({ label: "Subtitle" }),
         category: fields.text({
-          label: "Category",
-          description: 'Free text, e.g. "Enterprise Infrastructure" — not a fixed list.',
+          label: "Display category",
+          description: 'Free text shown as the badge label, e.g. "Enterprise Infrastructure" — not a fixed list. For grouping/filtering, use "Career categories" below instead.',
+        }),
+        categories: fields.multiselect({
+          label: "Career categories",
+          description:
+            "Systems & Infrastructure Administrator trajectory categories. Pick every category this project genuinely demonstrates — drives grouping on the public Infrastructure listing page (Infrastructure Ownership / Administration & Automation / Supporting Technical Work).",
+          options: projectCategoryOptions,
+          defaultValue: [],
         }),
         status: fields.select({
           label: "Status",
+          description: "Describes the actual state of the project. Planned work must not be presented as completed.",
           options: statusOptions,
           defaultValue: "Active",
+        }),
+        strategicPriority: fields.select({
+          label: "Strategic priority",
+          description:
+            "Controls presentation priority only — NOT visibility (use Published for that). Flagship = top Infrastructure Ownership tier. Supporting = normal Administration & Automation / Supporting Technical Work tier. Archive = lowest-priority tier, rendered in its own Archive section if Published is checked. To actually hide a project, uncheck Published — do not rely on Archive for that.",
+          options: strategicPriorityOptions,
+          defaultValue: "supporting",
         }),
         color: fields.select({
           label: "Color token",
@@ -250,6 +304,10 @@ export default config({
           label: "Related documentation",
           collection: "documentation",
         }),
+        relatedProjects: fields.multiRelationship({
+          label: "Related projects",
+          collection: "projects",
+        }),
 
         technologies: fields.array(fields.text({ label: "Technology" }), {
           label: "Technologies (chip list)",
@@ -259,6 +317,36 @@ export default config({
         }),
         github: fields.url({ label: "GitHub URL" }),
         liveUrl: fields.url({ label: "Live URL" }),
+        demoUrl: fields.url({ label: "Demo URL", description: "For a separate demo distinct from the live production URL." }),
+        documentationUrl: fields.url({
+          label: "External documentation URL",
+          description: "An external doc link, distinct from Related Documentation above (which links to this site's own Documentation collection).",
+        }),
+        externalReference: fields.object(
+          {
+            label: fields.text({ label: "Label" }),
+            url: fields.url({ label: "URL" }),
+          },
+          { label: "External reference (optional)" }
+        ),
+
+        customSections: fields.array(
+          fields.object({
+            title: fields.text({ label: "Section title" }),
+            body: fields.text({ label: "Section body", multiline: true }),
+            code: fields.text({
+              label: "Code / command block (optional)",
+              multiline: true,
+              description: "Rendered in a monospace block below the section body.",
+            }),
+          }),
+          {
+            label: "Custom sections",
+            description:
+              "Use this for project-specific content that doesn't fit the fields above (e.g. Mission, Incident, Monitoring, Backup & Recovery). Renders after all other sections, in the order listed here — drag to reorder. Lets you add new kinds of project content without editing code.",
+            itemLabel: (props) => props.fields.title.value || "Section",
+          }
+        ),
 
         metaTitle: fields.text({ label: "Meta title (SEO override)" }),
         metaDescription: fields.text({ label: "Meta description (SEO override)", multiline: true }),

@@ -2,13 +2,25 @@ import Section from "./ui/Section";
 import ProjectCard from "./ProjectCard";
 import type { ProjectCaseStudy } from "../lib/projects";
 
-export default function Projects({ projects }: { projects: ProjectCaseStudy[] }) {
+interface ProjectsProps {
+  projects: ProjectCaseStudy[];
+  id?: string;
+  heading?: string;
+  intro?: string;
+}
+
+export default function Projects({
+  projects,
+  id = "projects",
+  heading = "Case Studies",
+  intro,
+}: ProjectsProps) {
   return (
     <Section
-      id="projects"
+      id={id}
       eyebrow="PROJECTS"
-      title="Case Studies"
-      intro="Networking, automation, and software development evidence that supports the infrastructure and systems administration work above."
+      title={heading}
+      intro={intro}
       headingLevel="h2"
       threshold={0.05}
     >

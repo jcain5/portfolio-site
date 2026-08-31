@@ -55,7 +55,7 @@ export default async function Home() {
                 href="/projects"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-border-strong text-body rounded-lg hover:border-[#2F75C8] hover:text-[#2F75C8] transition-colors text-sm font-medium"
               >
-                View All Projects →
+                View All Infrastructure →
               </Link>
             </div>
           </div>

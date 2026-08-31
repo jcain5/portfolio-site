@@ -2,7 +2,12 @@
   "title": "West Freeway Church Infrastructure & Web Operations",
   "subtitle": "Ubuntu, Nginx, ASP.NET Core, systemd, automated backups, incident response, and production-cutover planning.",
   "category": "Linux Infrastructure & Web Operations",
+  "categories": [
+    "linux",
+    "systems-administration"
+  ],
   "status": "Beta",
+  "strategicPriority": "supporting",
   "color": "blue",
   "competencies": [
     "systems-administration",

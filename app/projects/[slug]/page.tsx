@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -5,6 +6,20 @@ import { colors } from "../../lib/colors";
 import { getAllProjects, getProjectBySlug } from "../../lib/projects";
 import ScreenshotGallery from "../../components/ui/ScreenshotGallery";
 import EvidenceBadge from "../../components/ui/EvidenceBadge";
+import ProjectSection from "../../components/ProjectSection";
+import RelatedDocumentationList from "../../components/RelatedDocumentationList";
+
+// A custom section titled "Documentation" or "Evidence" (case/whitespace
+// insensitive) is treated as introductory prose for the Related
+// Documentation links / Screenshot Gallery respectively — when one exists,
+// that block anchors directly beneath it instead of rendering in its
+// default fixed slot higher up the page. This is title-keyed, not
+// slug-keyed, so it applies to any CMS project entry that adopts the
+// pattern, and falls back to the original fixed position when no matching
+// custom section exists (unchanged behavior for every other project today).
+function normalizedTitle(title: string) {
+  return title.trim().toLowerCase();
+}
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
@@ -42,6 +57,20 @@ export default async function ProjectDetailPage({
   if (!project) notFound();
 
   const c = colors[project.color];
+
+  const hasDocumentationSection = project.customSections?.some(
+    (s) => normalizedTitle(s.title) === "documentation"
+  ) ?? false;
+  const hasEvidenceSection = project.customSections?.some(
+    (s) => normalizedTitle(s.title) === "evidence"
+  ) ?? false;
+  const hasRelatedDocs = project.relatedDocumentation && project.relatedDocumentation.length > 0;
+  const hasScreenshots = project.screenshots && project.screenshots.length > 0;
+  // Anchor to the matching custom section only when both the section and the
+  // content it introduces are actually present — otherwise fall back to the
+  // default fixed position so nothing silently disappears.
+  const anchorRelatedDocs = hasDocumentationSection && hasRelatedDocs;
+  const anchorScreenshots = hasEvidenceSection && hasScreenshots;
 
   return (
     <section className="pt-32 pb-24 px-6">
@@ -310,22 +339,8 @@ export default async function ProjectDetailPage({
               <p className="text-body leading-relaxed">{project.lessonsLearned}</p>
             </div>
           )}
-          {project.relatedDocumentation && project.relatedDocumentation.length > 0 && (
-            <div className="p-5 rounded-lg border border-border">
-              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Related Documentation</h2>
-              <ul className="space-y-2">
-                {project.relatedDocumentation.map((doc) => (
-                  <li key={doc.slug}>
-                    <Link
-                      href={`/documentation/${doc.slug}`}
-                      className={`text-sm font-mono ${c.label} hover:underline`}
-                    >
-                      {doc.title} →
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {!anchorRelatedDocs && hasRelatedDocs && (
+            <RelatedDocumentationList docs={project.relatedDocumentation} labelClass={c.label} />
           )}
           {project.outcome && project.outcome.length > 0 && (
             <div className="p-5 rounded-lg bg-canvas border border-border">
@@ -358,8 +373,43 @@ export default async function ProjectDetailPage({
               </ul>
             </div>
           )}
-          {project.screenshots && project.screenshots.length > 0 && (
-            <ScreenshotGallery screenshots={project.screenshots} />
+          {!anchorScreenshots && hasScreenshots && (
+            <ScreenshotGallery screenshots={project.screenshots!} />
+          )}
+
+          {/* CMS-authored sections that don't fit a named field above — rendered
+              last, in the order the editor listed them in Keystatic. A section
+              titled "Documentation" or "Evidence" pulls the Related
+              Documentation links / Screenshot Gallery in directly beneath it
+              (see anchorRelatedDocs / anchorScreenshots above). */}
+          {project.customSections?.map((section, i) => {
+            const key = normalizedTitle(section.title);
+            return (
+              <Fragment key={i}>
+                <ProjectSection title={section.title} body={section.body} code={section.code} />
+                {key === "documentation" && anchorRelatedDocs && (
+                  <RelatedDocumentationList docs={project.relatedDocumentation} labelClass={c.label} />
+                )}
+                {key === "evidence" && anchorScreenshots && (
+                  <ScreenshotGallery screenshots={project.screenshots!} />
+                )}
+              </Fragment>
+            );
+          })}
+
+          {project.relatedProjects && project.relatedProjects.length > 0 && (
+            <div className="p-5 rounded-lg border border-border">
+              <h2 className="text-xs font-mono text-[#2F75C8] tracking-[0.15em] uppercase font-medium mb-3">Related Projects</h2>
+              <ul className="space-y-2">
+                {project.relatedProjects.map((rel) => (
+                  <li key={rel.slug}>
+                    <Link href={`/projects/${rel.slug}`} className={`text-sm font-mono ${c.label} hover:underline`}>
+                      {rel.title} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
 
@@ -371,16 +421,58 @@ export default async function ProjectDetailPage({
               </span>
             ))}
           </div>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
-            >
-              View on GitHub ↗
-            </a>
-          )}
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
+              >
+                View on GitHub ↗
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
+              >
+                View Live ↗
+              </a>
+            )}
+            {project.demoUrl && (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
+              >
+                View Demo ↗
+              </a>
+            )}
+            {project.documentationUrl && (
+              <a
+                href={project.documentationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
+              >
+                Documentation ↗
+              </a>
+            )}
+            {project.externalReference && (
+              <a
+                href={project.externalReference.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 text-sm font-mono ${c.label} hover:underline`}
+              >
+                {project.externalReference.label} ↗
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </section>

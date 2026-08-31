@@ -2,7 +2,14 @@
   "title": "Enterprise Infrastructure Lab",
   "subtitle": "Independent Systems Administration Project",
   "category": "Enterprise Infrastructure",
+  "categories": [
+    "infrastructure",
+    "systems-administration",
+    "networking",
+    "identity"
+  ],
   "status": "Active",
+  "strategicPriority": "flagship",
   "color": "cyan",
   "competencies": [
     "systems-administration",
@@ -29,79 +36,7 @@
     "DNS",
     "pfSense"
   ],
-  "environment": "A Dell PowerEdge R720XD running Proxmox VE as the virtualization host, with Cisco Catalyst switching and a pfSense firewall providing VLAN-segmented network infrastructure.",
-  "architecture": "Cisco Catalyst switching and VLAN segmentation route traffic through a pfSense firewall enforcing inter-VLAN access policy, with DHCP, Pi-hole, and Unbound handling DNS resolution for the segmented network.",
-  "technologyCategories": [
-    {
-      "category": "Microsoft",
-      "items": [
-        "Windows Server 2022",
-        "Active Directory Domain Services",
-        "Group Policy",
-        "DNS",
-        "PowerShell",
-        "Windows 11"
-      ]
-    },
-    {
-      "category": "Virtualization & Hardware",
-      "items": [
-        "Dell PowerEdge R720XD",
-        "Proxmox VE"
-      ]
-    },
-    {
-      "category": "Networking",
-      "items": [
-        "Cisco Catalyst switching",
-        "Cisco routing",
-        "VLAN segmentation",
-        "pfSense",
-        "DHCP",
-        "Pi-hole",
-        "Unbound"
-      ]
-    },
-    {
-      "category": "Security & Linux",
-      "items": [
-        "Wazuh",
-        "Suricata",
-        "Ubuntu",
-        "Debian",
-        "SSH",
-        "systemd"
-      ]
-    }
-  ],
-  "implementation": [
-    "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",
-    "Deployed Windows Server 2022 with Active Directory Domain Services and DNS",
-    "Created organizational units, users, security groups, administrative accounts, and domain-joined workstations",
-    "Implemented separation between standard and privileged administrative accounts",
-    "Built and linked a tier-oriented Group Policy structure covering domain, server, and workstation baselines, validated via GPMC modeling and gpresult",
-    "Configured Cisco switching, VLAN segmentation, routing, pfSense firewall services, and DNS infrastructure",
-    "Deployed and evaluated Wazuh and Suricata for endpoint and network security monitoring",
-    "Diagnosed DNS resolution failures, Active Directory health warnings, DFS-R events, and service connectivity issues",
-    "Developed PowerShell tools for system inventory, Defender status, event collection, DNS validation, and network testing",
-    "Documented architecture, configuration decisions, validation procedures, and troubleshooting outcomes"
-  ],
-  "troubleshootingHighlights": [
-    "Restored Active Directory-related name resolution after an upstream DNS resolver interruption",
-    "Investigated DFS-R and domain-controller health warnings using native Windows diagnostic tools",
-    "Validated DNS records, service ports, domain connectivity, and infrastructure health using PowerShell",
-    "Corrected deployment and service issues in Linux-hosted environments using systemd, Nginx, logs, and file validation"
-  ],
-  "roadmap": [
-    "Deploy a secondary domain controller",
-    "Implement Fine-Grained Password Policies (PSOs) for Tier 0 accounts",
-    "Add centralized file services",
-    "Validate backup and recovery procedures",
-    "Expand Wazuh agent coverage and detections",
-    "Improve rack cabling and install structured patch-panel connectivity",
-    "Build automated infrastructure health reporting"
-  ],
-  "transparencyNote": "This is an actively developed independent lab used to practice, validate, and document enterprise administration workflows. Planned components are identified separately from completed work.",
+  "architecture": "A Dell PowerEdge R720XD running Proxmox VE serves as the virtualization host for the multi-server infrastructure environment. Cisco Catalyst switching and VLAN segmentation route traffic through a pfSense firewall enforcing inter-VLAN access policy, with DHCP, Pi-hole, and Unbound handling DNS resolution for the segmented network.",
   "screenshots": [
     {
       "image": "/images/projects/enterprise-infrastructure-lab/rack.jpg",
@@ -128,6 +63,56 @@
     "active-directory-design",
     "network-topology"
   ],
+  "customSections": [
+    {
+      "title": "Services",
+      "body": "Core services running across the environment: Active Directory Domain Services and DNS on Windows Server 2022 domain controllers, Group Policy for domain, server, and workstation baselines, DHCP with layered DNS resolution (Pi-hole and Unbound) at the network edge, and Wazuh/Suricata for endpoint and network security monitoring. Proxmox VE hosts the virtualized workload layer underneath all of it."
+    },
+    {
+      "title": "Administrative Work",
+      "body": "Ongoing administration covers creating and maintaining organizational units, users, security groups, administrative accounts, and domain-joined workstations, with standard and privileged accounts kept separate. Administrative account activity is reviewed with PowerShell alongside routine Active Directory and DNS health checks on the domain controller."
+    },
+    {
+      "title": "Identity & Policy",
+      "body": "Active Directory Domain Services and DNS run on Windows Server 2022 domain controllers. A tier-oriented Group Policy structure covers domain, server, and workstation baselines, applied through the organizational unit and security-group structure and validated with GPMC modeling and gpresult."
+    },
+    {
+      "title": "Network Administration",
+      "body": "Configured Cisco Catalyst switching, VLAN segmentation, and routing, plus pfSense firewall services enforcing inter-VLAN access policy. DHCP and layered DNS resolution (Pi-hole and Unbound) handle network-edge name resolution, separate from the Active Directory-integrated DNS running on the domain controllers."
+    },
+    {
+      "title": "Administration & Automation",
+      "body": "PowerShell tooling built for the lab covers system inventory collection, Microsoft Defender status checks, event log collection, DNS record validation, and network connectivity testing — used for both routine administration and troubleshooting across the Windows Server and domain-controller layer."
+    },
+    {
+      "title": "Validation",
+      "body": "Group Policy application validated with GPMC modeling and gpresult. DNS records, service ports, domain connectivity, and general infrastructure health validated using PowerShell, alongside documented PowerShell-driven Active Directory and DNS health checks on the domain controller."
+    },
+    {
+      "title": "Troubleshooting & Incidents",
+      "body": "• Restored Active Directory-related name resolution after an upstream DNS resolver interruption.\n• Investigated DFS-R and domain-controller health warnings using native Windows diagnostic tools.\n• Validated DNS records, service ports, domain connectivity, and infrastructure health using PowerShell.\n• Corrected deployment and service issues in Linux-hosted environments using systemd, Nginx, logs, and file validation."
+    },
+    {
+      "title": "Monitoring",
+      "body": "Wazuh and Suricata deployed and evaluated for endpoint and network security monitoring across the lab environment."
+    },
+    {
+      "title": "Documentation",
+      "body": "Architecture, configuration decisions, validation procedures, and troubleshooting outcomes documented alongside the lab, including the linked Active Directory Design and Network Topology references above."
+    },
+    {
+      "title": "Evidence",
+      "body": "Screenshot evidence above includes the physical rack and virtualization hardware, the Proxmox VE dashboard, the Active Directory organizational unit structure, and PowerShell-driven administrative account review and DNS health validation."
+    },
+    {
+      "title": "Next Validation Work",
+      "body": "• Deploy a secondary domain controller (DC02).\n• Add centralized file services with access control.\n• Validate backup and recovery procedures."
+    },
+    {
+      "title": "Environment Disclosure",
+      "body": "This is an independent, self-hosted lab — a multi-server infrastructure environment, not a professional production deployment — built and administered to practice and document real systems administration work. Planned work is tracked separately from what's already completed."
+    }
+  ],
   "technologies": [
     "Windows Server",
     "Active Directory",
@@ -144,7 +129,7 @@
     "Linux"
   ],
   "bullets": [
-    "Designed and administered a virtualized enterprise environment on Dell PowerEdge hardware using Proxmox VE",
+    "Designed and administered a multi-server infrastructure environment on Dell PowerEdge hardware using Proxmox VE",
     "Deployed Windows Server 2022 with Active Directory Domain Services and DNS",
     "Implemented administrative separation, OU structure, and role-based security groups",
     "Configured Cisco switching, VLAN segmentation, and pfSense firewall services",

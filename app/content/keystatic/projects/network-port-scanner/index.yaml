@@ -2,7 +2,12 @@
   "title": "Python Network Port Scanner",
   "subtitle": "Modular TCP scanner with CLI controls, CSV reporting, validation, and automated tests.",
   "category": "Software Development",
+  "categories": [
+    "software-development",
+    "networking"
+  ],
   "status": "In Development",
+  "strategicPriority": "supporting",
   "color": "slate",
   "competencies": [
     "networking",
