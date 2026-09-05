@@ -26,7 +26,7 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (pathname?.startsWith("/keystatic")) {
+  if (pathname === "/" || pathname?.startsWith("/keystatic")) {
     return null;
   }
 

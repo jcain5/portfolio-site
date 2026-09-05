@@ -1,0 +1,133 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  background-color: #0b1116;
+  color: #eef4f8;
+  isolation: isolate;
+}
+
+.imageLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(7, 11, 14, 0.92) 0%, rgba(7, 11, 14, 0.68) 42%, rgba(7, 11, 14, 0.12) 100%),
+    linear-gradient(0deg, rgba(7, 11, 14, 0.62), transparent 48%);
+  pointer-events: none;
+}
+
+.panelWrap {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: grid;
+  align-items: end;
+  padding: clamp(1.5rem, 4vw, 4rem);
+}
+
+.panel {
+  width: min(100%, 48rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(218, 231, 239, 0.24);
+  border-radius: 8px;
+  background: rgba(10, 15, 20, 0.66);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.36);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  color: #ecad47;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.statusDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ecad47;
+  box-shadow: 0 0 0 0.28rem rgba(236, 173, 71, 0.15);
+}
+
+.heading {
+  max-width: 15ch;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.55rem, 6vw, 5.2rem);
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.intro {
+  max-width: 55ch;
+  margin: 1.4rem 0 0;
+  color: #b5c0c9;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.8vw, 1.16rem);
+  line-height: 1.65;
+}
+
+.footerNote {
+  margin-top: 2.25rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(218, 231, 239, 0.24);
+  color: #8f9ca6;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.mailLink {
+  color: #eef4f8;
+}
+
+@media (max-width: 38rem) {
+  .imageLayer {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 26rem;
+  }
+
+  .image {
+    object-position: 72% top;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .panelWrap {
+    position: static;
+    min-height: 0;
+    display: block;
+    padding: 0;
+  }
+
+  .panel {
+    width: 100%;
+    min-height: calc(100vh - 26rem);
+    padding: 1.75rem 1.5rem 2.5rem;
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(180deg, rgba(9, 14, 18, 0.98), #0b1116 18rem);
+    box-shadow: none;
+  }
+}
